@@ -8,7 +8,14 @@ function App() {
   const [theme, setTheme] = useState('windows');
 
   useEffect(() => {
+    // Switch CSS theme variables
     document.documentElement.setAttribute('data-theme', theme);
+    
+    // Switch Favicon dynamically
+    const favicon = document.querySelector('link[rel="icon"]');
+    if (favicon) {
+      favicon.href = theme === 'windows' ? '/favicon-win.svg' : '/favicon-unix.svg';
+    }
   }, [theme]);
 
   const toggleTheme = () => {
