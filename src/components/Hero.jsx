@@ -3,7 +3,7 @@ import React from 'react';
 const Hero = () => {
   return (
     <section style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-      <div className="container">
+      <div className="container" style={{ maxWidth: '90%' }}>
         
         <div className="window-panel animate-pop-in">
           <div className="window-header">

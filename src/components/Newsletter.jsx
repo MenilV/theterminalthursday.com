@@ -15,7 +15,7 @@ const Newsletter = () => {
   };
 
   return (
-    <section id="subscribe">
+    <section id="subscribe" style={{ paddingBottom: '60px' }}>
       <div className="container">
         <div className="window-panel animate-pop-in delay-1" style={{ maxWidth: '700px', margin: '0 auto' }}>
           
