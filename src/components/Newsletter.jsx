@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-const Newsletter = () => {
+const Newsletter = ({ theme }) => {
   const [email, setEmail] = useState('');
   const [status, setStatus] = useState('idle');
 
@@ -20,7 +20,7 @@ const Newsletter = () => {
         <div className="window-panel animate-pop-in delay-1">
           
           <div className="window-header">
-            <span>NETWORK_CONFIG.SYS</span>
+            <span>{theme === 'windows' ? 'NETWORK_CONFIG.SYS' : '/etc/resolv.conf'}</span>
             <div className="window-controls">
               <span className="window-btn"></span>
               <span className="window-btn"></span>
@@ -80,7 +80,7 @@ const Newsletter = () => {
                       style={{ flex: '1 1 300px' }}
                     />
                     <button type="submit" className="btn btn-primary" disabled={status === 'loading'}>
-                      {status === 'loading' ? 'EXECUTING...' : 'INITIATE'}
+                      {status === 'loading' ? 'EXECUTING...' : (theme === 'windows' ? 'INITIATE.EXE' : './initiate.sh')}
                     </button>
                   </div>
                   <div style={{ fontSize: '0.85rem', fontWeight: '700' }}>

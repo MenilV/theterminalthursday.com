@@ -6,7 +6,7 @@ const ARCHIVE_POSTS = [
   { id: '001', date: '07-18-2026', title: 'CURL_INTERNET_BACKBONE', description: 'A deep dive into Daniel Stenberg\'s ubiquitous tool that powers the modern web.', category: 'CLI' }
 ];
 
-const Archive = () => {
+const Archive = ({ theme }) => {
   return (
     <section id="archive">
       <div className="container">
@@ -14,7 +14,7 @@ const Archive = () => {
         <div className="window-panel animate-pop-in delay-2">
           
           <div className="window-header">
-            <span>FILE_EXPLORER.EXE - C:\\TTT\\ARCHIVE</span>
+            <span>{theme === 'windows' ? 'FILE_EXPLORER.EXE - C:\\TTT\\ARCHIVE' : '~/ttt $ ls -la ./archive'}</span>
             <div className="window-controls">
               <span className="window-btn"></span>
               <span className="window-btn"></span>
@@ -56,7 +56,7 @@ const Archive = () => {
                       TYPE: {post.category}
                     </span>
                     <a href={`/archive/${post.id}`} className="btn" style={{ padding: '6px 16px', fontSize: '0.9rem' }}>
-                      READ.EXE
+                      {theme === 'windows' ? 'READ.EXE' : './read.sh'}
                     </a>
                   </div>
                 </article>

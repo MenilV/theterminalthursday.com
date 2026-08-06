@@ -1,13 +1,13 @@
 import React from 'react';
 
-const Hero = () => {
+const Hero = ({ theme }) => {
   return (
     <section style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
       <div className="container" style={{ maxWidth: '90%' }}>
         
         <div className="window-panel animate-pop-in">
           <div className="window-header">
-            <span>TTT_SETUP.EXE</span>
+            <span>{theme === 'windows' ? 'TTT_SETUP.EXE' : 'ttt_setup.sh'}</span>
             <div className="window-controls">
               <span className="window-btn"></span>
               <span className="window-btn"></span>
@@ -31,10 +31,10 @@ const Hero = () => {
             
             <div style={{ display: 'flex', gap: '20px', flexWrap: 'wrap', justifyContent: 'center' }}>
               <a href="#subscribe" className="btn btn-primary">
-                SUBSCRIBE.BAT
+                {theme === 'windows' ? 'SUBSCRIBE.BAT' : './subscribe.sh'}
               </a>
               <a href="#archive" className="btn">
-                READ_ARCHIVE.TXT
+                {theme === 'windows' ? 'READ_ARCHIVE.TXT' : 'cat archive.txt'}
               </a>
             </div>
             

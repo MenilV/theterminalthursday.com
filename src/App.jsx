@@ -44,9 +44,9 @@ function App() {
 
       {/* Main Content */}
       <main style={{ padding: '60px 0' }}>
-        <Hero />
-        <Newsletter />
-        <Archive />
+        <Hero theme={theme} />
+        <Newsletter theme={theme} />
+        <Archive theme={theme} />
       </main>
 
       {/* Footer */}
