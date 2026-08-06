@@ -28,9 +28,9 @@ const Newsletter = () => {
             </div>
           </div>
 
-          <div className="window-content" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '40px', alignItems: 'center', padding: '40px' }}>
+          <div className="window-content" style={{ display: 'flex', flexWrap: 'wrap', gap: '60px', alignItems: 'center', justifyContent: 'center', padding: '60px 8vw' }}>
             
-            <div style={{ display: 'flex', justifyContent: 'center' }}>
+            <div style={{ display: 'flex', justifyContent: 'center', flex: '0 0 auto' }}>
               {/* Windows 95 'My Computer' Icon */}
               <svg className="win-icon" viewBox="0 0 64 64" width="100%" height="100%" style={{ maxWidth: '180px' }} xmlns="http://www.w3.org/2000/svg">
                 {/* Desktop Case (horizontal) */}
@@ -56,7 +56,7 @@ const Newsletter = () => {
               </svg>
             </div>
 
-            <div>
+            <div style={{ flex: '1 1 400px', maxWidth: '700px' }}>
               <h2 style={{ fontSize: '2.5rem', marginBottom: '16px', textDecoration: 'underline' }}>JOIN THE NETWORK</h2>
               <p style={{ marginBottom: '32px', fontWeight: '600', fontSize: '1.2rem' }}>
                 Get the latest issue delivered straight to your inbox every Thursday. No spam, just pure homage.
