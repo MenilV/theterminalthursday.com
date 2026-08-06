@@ -210,3 +210,10 @@ h1, h2, h3 {
 
 .delay-1 { animation-delay: 0.1s; opacity: 0; }
 .delay-2 { animation-delay: 0.2s; opacity: 0; }
+
+/* Icon Theme Toggles */
+.unix-icon { display: none; }
+.win-icon { display: block; }
+
+[data-theme="unix"] .win-icon { display: none; }
+[data-theme="unix"] .unix-icon { display: block; }
