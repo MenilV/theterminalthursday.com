@@ -117,6 +117,19 @@ h1, h2, h3 {
   background: var(--panel-bg);
   border: 2px solid var(--border-color);
   display: inline-block;
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+}
+
+/* Minimize, Maximize, Close */
+.window-btn:nth-child(1):hover {
+  background-color: #ffbd2e;
+}
+.window-btn:nth-child(2):hover {
+  background-color: #27c93f;
+}
+.window-btn:nth-child(3):hover {
+  background-color: #ff5f56;
 }
 
 [data-theme="unix"] .window-btn {
