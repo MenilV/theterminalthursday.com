@@ -34,7 +34,7 @@ function App() {
           </div>
           <div style={{ display: 'flex', gap: '24px', fontSize: '1rem', alignItems: 'center' }}>
             <a href="#archive">Archive</a>
-            <a href="https://twitter.com" target="_blank" rel="noreferrer">X</a>
+            <a href="https://twitter.com/MenilVukovic" target="_blank" rel="noreferrer">X (Twitter)</a>
             <button onClick={toggleTheme} className="btn" style={{ padding: '4px 8px', fontSize: '0.85rem' }}>
               {theme === 'windows' ? 'SWITCH TO UNIX' : 'SWITCH TO WIN95'}
             </button>
@@ -50,9 +50,24 @@ function App() {
       </main>
 
       {/* Footer */}
-      <footer style={{ background: 'var(--panel-bg)', borderTop: 'var(--border-width) var(--border-style) var(--border-color)', padding: '24px 0', textAlign: 'center', fontWeight: '700', transition: 'all 0.3s ease' }}>
-        <div className="container">
-          <p>SYSTEM HALTED. © {new Date().getFullYear()} The Terminal Thursday.</p>
+      <footer style={{ background: 'var(--panel-bg)', borderTop: 'var(--border-width) var(--border-style) var(--border-color)', padding: '40px 0', textAlign: 'center', fontWeight: '600', transition: 'all 0.3s ease' }}>
+        <div className="container" style={{ display: 'flex', flexDirection: 'column', gap: '16px', alignItems: 'center' }}>
+          
+          <div style={{ display: 'flex', gap: '32px', flexWrap: 'wrap', justifyContent: 'center', fontSize: '1.1rem', fontWeight: '700' }}>
+            <a href="mailto:hello@theterminalthursday.com">
+              {theme === 'windows' ? 'CONTACT.BAT' : './contact.sh'}
+            </a>
+            <a href="https://github.com/MenilV/theterminalthursday.com" target="_blank" rel="noreferrer">
+              {theme === 'windows' ? 'SOURCE_CODE.EXE' : 'cat source.c'}
+            </a>
+            <a href="#">
+              {theme === 'windows' ? 'RSS_FEED.XML' : 'rss.xml'}
+            </a>
+          </div>
+          
+          <p style={{ marginTop: '24px', fontWeight: '800', opacity: 0.8 }}>
+            SYSTEM HALTED. © {new Date().getFullYear()} THE TERMINAL THURSDAY.
+          </p>
         </div>
       </footer>
     </div>
