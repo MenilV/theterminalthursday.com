@@ -371,3 +371,20 @@ h1, h2, h3 {
     padding: 16px;
   }
 }
+
+/* Footer Links */
+.footer-links {
+  display: flex;
+  gap: 32px;
+  justify-content: center;
+  font-size: 1.1rem;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+@media (max-width: 600px) {
+  .footer-links {
+    gap: 12px;
+    font-size: 0.75rem;
+  }
+}

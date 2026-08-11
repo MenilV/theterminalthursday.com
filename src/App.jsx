@@ -101,14 +101,14 @@ function App() {
       <footer style={{ background: 'var(--panel-bg)', borderTop: 'var(--border-width) var(--border-style) var(--border-color)', padding: '40px 0', textAlign: 'center', fontWeight: '600', transition: 'all 0.3s ease' }}>
         <div className="container" style={{ display: 'flex', flexDirection: 'column', gap: '16px', alignItems: 'center' }}>
           
-          <div style={{ display: 'flex', gap: '32px', flexWrap: 'wrap', justifyContent: 'center', fontSize: '1.1rem', fontWeight: '700' }}>
+          <div className="footer-links">
             <a href="mailto:hello@theterminalthursday.com">
               {theme === 'windows' ? 'CONTACT.BAT' : './contact.sh'}
             </a>
             <a href="https://github.com/MenilV/theterminalthursday.com" target="_blank" rel="noreferrer">
               {theme === 'windows' ? 'SOURCE_CODE.EXE' : 'cat source.c'}
             </a>
-            <a href="#">
+            <a href="/rss.xml">
               {theme === 'windows' ? 'RSS_FEED.XML' : 'rss.xml'}
             </a>
           </div>
