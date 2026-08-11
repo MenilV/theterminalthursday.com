@@ -67,8 +67,8 @@ function App() {
             </a>
           </div>
           <div className="nav-links">
-            <a href="#archive">Archive</a>
-            <a href="https://twitter.com/MenilVukovic" target="_blank" rel="noreferrer">X (Twitter)</a>
+            <a href="https://linkedin.com/in/menilv" target="_blank" rel="noreferrer">LinkedIn</a>
+            <a href="https://twitter.com/MenilVukovic" target="_blank" rel="noreferrer">X(Twitter)</a>
             <button onClick={toggleTheme} className="btn">
               <span className="hide-mobile">SWITCH TO&nbsp;</span>
               {theme === 'windows' ? 'UNIX' : 'WIN95'}
