@@ -4,14 +4,29 @@ const Newsletter = ({ theme }) => {
   const [email, setEmail] = useState('');
   const [status, setStatus] = useState('idle');
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (!email) return;
     setStatus('loading');
-    setTimeout(() => {
-      setStatus('success');
-      setEmail('');
-    }, 1200);
+    
+    try {
+      const response = await fetch('/api/subscribe', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email })
+      });
+      
+      if (response.ok) {
+        setStatus('success');
+        setEmail('');
+      } else {
+        setStatus('error');
+        console.error('Subscription failed');
+      }
+    } catch (error) {
+      setStatus('error');
+      console.error(error);
+    }
   };
 
   return (
