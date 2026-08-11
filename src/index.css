@@ -361,3 +361,13 @@ h1, h2, h3 {
   color: var(--bg-color);
   border: 1px dotted var(--text-color);
 }
+
+/* Mobile Padding Adjustments */
+@media (max-width: 600px) {
+  .container {
+    padding: 0 12px;
+  }
+  .window-content {
+    padding: 16px;
+  }
+}
