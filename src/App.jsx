@@ -70,7 +70,8 @@ function App() {
             <a href="#archive">Archive</a>
             <a href="https://twitter.com/MenilVukovic" target="_blank" rel="noreferrer">X (Twitter)</a>
             <button onClick={toggleTheme} className="btn">
-              {theme === 'windows' ? 'SWITCH TO UNIX' : 'SWITCH TO WIN95'}
+              <span className="hide-mobile">SWITCH TO </span>
+              {theme === 'windows' ? 'UNIX' : 'WIN95'}
             </button>
           </div>
         </div>
