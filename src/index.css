@@ -51,6 +51,11 @@
   padding: 0;
 }
 
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 100px;
+}
+
 body {
   background-color: var(--bg-color);
   color: var(--text-color);
