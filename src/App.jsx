@@ -22,6 +22,26 @@ function App() {
     }
   }, [theme]);
 
+  // Intercept anchor clicks to scroll manually without updating URL hash
+  useEffect(() => {
+    const handleSmoothScroll = (e) => {
+      const target = e.target.closest('a');
+      if (!target) return;
+      
+      const href = target.getAttribute('href');
+      if (href && href.startsWith('#') && href.length > 1) {
+        e.preventDefault();
+        const element = document.querySelector(href);
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth' });
+        }
+      }
+    };
+
+    document.addEventListener('click', handleSmoothScroll);
+    return () => document.removeEventListener('click', handleSmoothScroll);
+  }, []);
+
   const toggleTheme = () => {
     setTheme(prev => prev === 'windows' ? 'unix' : 'windows');
   };
