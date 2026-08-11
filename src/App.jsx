@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Hero from './components/Hero';
 import Newsletter from './components/Newsletter';
 import Archive from './components/Archive';
+import DesktopIcons from './components/DesktopIcons';
 import './index.css';
 
 function App() {
@@ -48,6 +49,9 @@ function App() {
           </div>
         </div>
       </nav>
+
+      {/* Desktop Background Icons (Visible on large screens) */}
+      <DesktopIcons theme={theme} />
 
       {/* Main Content */}
       <main style={{ padding: '60px 0' }}>
