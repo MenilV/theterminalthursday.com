@@ -29,11 +29,21 @@ function App() {
       if (!target) return;
       
       const href = target.getAttribute('href');
+      
+      // Handle # section links
       if (href && href.startsWith('#') && href.length > 1) {
         e.preventDefault();
         const element = document.querySelector(href);
         if (element) {
           element.scrollIntoView({ behavior: 'smooth' });
+        }
+      } 
+      // Handle root logo click
+      else if (href === '/') {
+        if (window.location.pathname === '/') {
+          e.preventDefault();
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+          history.replaceState(null, '', '/');
         }
       }
     };
@@ -49,21 +59,17 @@ function App() {
   return (
     <div className="app">
       {/* Taskbar / Navbar */}
-      <nav style={{ background: 'var(--panel-bg)', borderBottom: 'var(--border-width) var(--border-style) var(--border-color)', padding: '10px 0', position: 'sticky', top: 0, zIndex: 100, transition: 'all 0.3s ease' }}>
-        <div className="container" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
-            <a 
-              href="/" 
-              onClick={(e) => { e.preventDefault(); window.scrollTo({ top: 0, behavior: 'smooth' }); }} 
-              style={{ background: 'var(--panel-header-bg)', color: 'var(--panel-header-text)', padding: '4px 12px', fontWeight: '800', border: 'var(--border-width) var(--border-style) var(--border-color)', textDecoration: 'none' }}
-            >
+      <nav className="navbar">
+        <div className="container nav-container">
+          <div className="nav-brand">
+            <a href="/">
               {theme === 'windows' ? 'C:\\TTT' : '~/ttt $'}
             </a>
           </div>
-          <div style={{ display: 'flex', gap: '24px', fontSize: '1rem', alignItems: 'center' }}>
+          <div className="nav-links">
             <a href="#archive">Archive</a>
             <a href="https://twitter.com/MenilVukovic" target="_blank" rel="noreferrer">X (Twitter)</a>
-            <button onClick={toggleTheme} className="btn" style={{ padding: '4px 8px', fontSize: '0.85rem' }}>
+            <button onClick={toggleTheme} className="btn">
               {theme === 'windows' ? 'SWITCH TO UNIX' : 'SWITCH TO WIN95'}
             </button>
           </div>

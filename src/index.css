@@ -1,5 +1,71 @@
 @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700;800&display=swap');
 
+/* ==========================================================================
+   Navigation Bar
+   ========================================================================== */
+.navbar {
+  background: var(--panel-bg);
+  border-bottom: var(--border-width) var(--border-style) var(--border-color);
+  padding: 10px 0;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  transition: all 0.3s ease;
+}
+
+.nav-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+}
+
+.nav-brand {
+  flex-shrink: 0;
+}
+
+.nav-brand a {
+  background: var(--panel-header-bg);
+  color: var(--panel-header-text);
+  padding: 4px 12px;
+  font-weight: 800;
+  border: var(--border-width) var(--border-style) var(--border-color);
+  text-decoration: none;
+  white-space: nowrap;
+  display: inline-block;
+}
+
+.nav-links {
+  display: flex;
+  gap: 24px;
+  font-size: 1rem;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
+.nav-links a {
+  white-space: nowrap;
+}
+
+.nav-links button {
+  padding: 4px 8px;
+  font-size: 0.85rem;
+  white-space: nowrap;
+}
+
+@media (max-width: 600px) {
+  .nav-container {
+    flex-direction: column;
+    gap: 12px;
+  }
+  .nav-links {
+    gap: 16px;
+    justify-content: center;
+    font-size: 0.9rem;
+  }
+}
+
 :root {
   /* WINDOWS 95 THEME */
   --bg-color: #008080;
