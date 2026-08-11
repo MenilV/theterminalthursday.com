@@ -50,15 +50,25 @@ function App() {
         </div>
       </nav>
 
-      {/* Desktop Background Icons (Visible on large screens) */}
-      <DesktopIcons theme={theme} />
+      {/* App Layout */}
+      <div style={{ display: 'flex', maxWidth: '100%', margin: '0 auto', padding: '60px 0' }}>
+        
+        {/* Left Sidebar for Desktop Icons */}
+        <aside className="desktop-sidebar" style={{ width: '120px', flexShrink: 0, paddingLeft: '20px' }}>
+          <DesktopIcons theme={theme} />
+        </aside>
 
-      {/* Main Content */}
-      <main style={{ padding: '60px 0' }}>
-        <Hero theme={theme} />
-        <Newsletter theme={theme} />
-        <Archive theme={theme} />
-      </main>
+        {/* Main Content Windows */}
+        <main style={{ flex: 1, minWidth: 0 }}>
+          <Hero theme={theme} />
+          <Newsletter theme={theme} />
+          <Archive theme={theme} />
+        </main>
+        
+        {/* Right Sidebar to balance layout visually */}
+        <aside className="desktop-sidebar" style={{ width: '120px', flexShrink: 0 }}></aside>
+        
+      </div>
 
       {/* Footer */}
       <footer style={{ background: 'var(--panel-bg)', borderTop: 'var(--border-width) var(--border-style) var(--border-color)', padding: '40px 0', textAlign: 'center', fontWeight: '600', transition: 'all 0.3s ease' }}>

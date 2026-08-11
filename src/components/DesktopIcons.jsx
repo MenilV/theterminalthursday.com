@@ -3,9 +3,8 @@ import React from 'react';
 const DesktopIcons = ({ theme }) => {
   return (
     <div className="desktop-icons" style={{
-      position: 'fixed',
+      position: 'sticky',
       top: '120px',
-      left: '4vw',
       display: 'flex',
       flexDirection: 'column',
       gap: '40px',

@@ -232,13 +232,16 @@ h1, h2, h3 {
 [data-theme="unix"] .unix-icon { display: block; }
 
 /* Desktop Background Icons */
-.desktop-icons {
+.desktop-icons, .desktop-sidebar {
   display: none;
 }
 
 @media (min-width: 1200px) {
   .desktop-icons {
     display: flex;
+  }
+  .desktop-sidebar {
+    display: block;
   }
 }
 
