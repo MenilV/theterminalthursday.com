@@ -116,6 +116,9 @@ function App() {
           <p style={{ marginTop: '24px', fontWeight: '800', opacity: 0.8 }}>
             SYSTEM HALTED. © {new Date().getFullYear()} THE TERMINAL THURSDAY.
           </p>
+          <div style={{ marginTop: '8px', fontSize: '0.8rem', opacity: 0.5, fontFamily: 'monospace' }}>
+            v{import.meta.env.VITE_APP_VERSION || '0.0.0'}
+          </div>
         </div>
       </footer>
     </div>
