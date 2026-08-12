@@ -13,8 +13,8 @@ export async function onRequestPost(context) {
       return new Response(JSON.stringify({ error: "Server configuration missing" }), { status: 500 });
     }
 
-    // We send a transactional email based on the ID provided by the user
-    const response = await fetch("https://app.loops.so/api/v1/transactional", {
+    // Hit the Contacts API to add the subscriber (triggers double opt-in)
+    const response = await fetch("https://app.loops.so/api/v1/contacts/create", {
       method: "POST",
       headers: {
         "Authorization": `Bearer ${LOOPS_API_KEY}`,
@@ -22,7 +22,7 @@ export async function onRequestPost(context) {
       },
       body: JSON.stringify({
         email: body.email,
-        transactionalId: "cmpfv5myt05se0jwmbsv05uhr" // Hardcoded transactional ID from user
+        source: "Terminal Thursday Website"
       })
     });
 

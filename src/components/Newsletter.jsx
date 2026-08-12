@@ -120,10 +120,10 @@ const Newsletter = ({ theme }) => {
             </div>
             <div className="window-content" style={{ padding: '40px', textAlign: 'center', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
               <h3 style={{ marginBottom: '16px', fontSize: '1.8rem', color: 'var(--accent-color)' }}>
-                CONNECTION ESTABLISHED
+                VERIFICATION REQUIRED
               </h3>
               <p style={{ fontWeight: '600', marginBottom: '32px' }}>
-                Welcome to the network. You will receive the next issue of The Terminal Thursday directly in your inbox.
+                We've sent a secure link to your inbox. Please click it to verify your email and join the network.
               </p>
               <button className="btn btn-primary" onClick={() => setStatus('idle')} style={{ width: '100%' }}>
                 {theme === 'windows' ? 'ACKNOWLEDGE.EXE' : './acknowledge.sh'}
