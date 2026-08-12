@@ -22,7 +22,7 @@ export async function onRequestPost(context) {
       },
       body: JSON.stringify({
         email: body.email,
-        transactionalId: "cmpfzrmp403j90jy2ml509htj" // Hardcoded transactional ID from user
+        transactionalId: "cmpfv5myt05se0jwmbsv05uhr" // Hardcoded transactional ID from user
       })
     });
 

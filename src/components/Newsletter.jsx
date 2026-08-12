@@ -20,8 +20,9 @@ const Newsletter = ({ theme }) => {
         setStatus('success');
         setEmail('');
       } else {
+        const errorData = await response.text();
         setStatus('error');
-        console.error('Subscription failed');
+        console.error('Subscription failed:', response.status, errorData);
       }
     } catch (error) {
       setStatus('error');
@@ -77,37 +78,60 @@ const Newsletter = ({ theme }) => {
                 Get the latest issue delivered straight to your inbox every Thursday. No spam, just pure homage.
               </p>
               
-              {status === 'success' ? (
-                <div className="highlight-box" style={{ padding: '20px', fontWeight: '800', textAlign: 'center' }}>
-                  &gt; CONNECTION ESTABLISHED. WELCOME.
+              <form onSubmit={handleSubmit} style={{ display: 'flex', gap: '16px', flexDirection: 'column' }}>
+                <div style={{ display: 'flex', gap: '16px', width: '100%', flexWrap: 'wrap' }}>
+                  <input 
+                    type="email" 
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    placeholder="ENTER_EMAIL_ADDRESS" 
+                    className="input" 
+                    required
+                    disabled={status === 'loading' || status === 'success'}
+                    style={{ flex: '1 1 300px' }}
+                  />
+                  <button type="submit" className="btn btn-primary" disabled={status === 'loading' || status === 'success'}>
+                    {status === 'loading' ? 'EXECUTING...' : (status === 'success' ? 'SUBSCRIBED' : (theme === 'windows' ? 'INITIATE.EXE' : './initiate.sh'))}
+                  </button>
                 </div>
-              ) : (
-                <form onSubmit={handleSubmit} style={{ display: 'flex', gap: '16px', flexDirection: 'column' }}>
-                  <div style={{ display: 'flex', gap: '16px', width: '100%', flexWrap: 'wrap' }}>
-                    <input 
-                      type="email" 
-                      value={email}
-                      onChange={(e) => setEmail(e.target.value)}
-                      placeholder="ENTER_EMAIL_ADDRESS" 
-                      className="input" 
-                      required
-                      disabled={status === 'loading'}
-                      style={{ flex: '1 1 300px' }}
-                    />
-                    <button type="submit" className="btn btn-primary" disabled={status === 'loading'}>
-                      {status === 'loading' ? 'EXECUTING...' : (theme === 'windows' ? 'INITIATE.EXE' : './initiate.sh')}
-                    </button>
-                  </div>
-                  <div style={{ fontSize: '0.85rem', fontWeight: '700' }}>
-                    // POWERED_BY: LOOPS.SO
-                  </div>
-                </form>
-              )}
+                <div style={{ fontSize: '0.85rem', fontWeight: '700' }}>
+                  // POWERED_BY: LOOPS.SO
+                </div>
+              </form>
             </div>
             
           </div>
         </div>
       </div>
+
+      {/* Confirmation Modal */}
+      {status === 'success' && (
+        <div style={{ 
+          position: 'fixed', top: 0, left: 0, width: '100vw', height: '100vh', 
+          backgroundColor: 'rgba(0,0,0,0.85)', display: 'flex', justifyContent: 'center', 
+          alignItems: 'center', zIndex: 9999 
+        }}>
+          <div className="window-panel animate-pop-in" style={{ maxWidth: '450px', width: '90%', padding: '0', boxShadow: '0 10px 30px rgba(0,0,0,0.5)' }}>
+            <div className="window-header">
+              <span>{theme === 'windows' ? 'SUCCESS.LOG' : 'cat success.log'}</span>
+              <div className="window-controls">
+                <span className="window-btn" onClick={() => setStatus('idle')} style={{ cursor: 'pointer', backgroundColor: '#ff5f56' }}></span>
+              </div>
+            </div>
+            <div className="window-content" style={{ padding: '40px', textAlign: 'center', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+              <h3 style={{ marginBottom: '16px', fontSize: '1.8rem', color: 'var(--accent-color)' }}>
+                CONNECTION ESTABLISHED
+              </h3>
+              <p style={{ fontWeight: '600', marginBottom: '32px' }}>
+                Welcome to the network. You will receive the next issue of The Terminal Thursday directly in your inbox.
+              </p>
+              <button className="btn btn-primary" onClick={() => setStatus('idle')} style={{ width: '100%' }}>
+                {theme === 'windows' ? 'ACKNOWLEDGE.EXE' : './acknowledge.sh'}
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </section>
   );
 };
