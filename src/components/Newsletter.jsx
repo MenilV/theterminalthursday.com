@@ -10,10 +10,12 @@ const Newsletter = ({ theme }) => {
     setStatus('loading');
     
     try {
-      const response = await fetch('/api/subscribe', {
+      const formBody = new URLSearchParams({ email: email }).toString();
+      
+      const response = await fetch('https://app.loops.so/api/newsletter-form/cmpfndk7a027p0jvsdr9a4bud', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email })
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: formBody
       });
       
       if (response.ok) {
