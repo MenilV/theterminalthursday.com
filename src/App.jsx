@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Hero from './components/Hero';
 import Newsletter from './components/Newsletter';
 import Archive from './components/Archive';
-import HallOfFame from './components/HallOfFame';
+import HallOfFameCarousel from './components/HallOfFameCarousel';
 import DesktopIcons from './components/DesktopIcons';
 import './index.css';
 
@@ -89,8 +89,12 @@ function App() {
         {/* Main Content Windows */}
         <main style={{ flex: 1, minWidth: 0 }}>
           <Hero theme={theme} />
-          <Newsletter theme={theme} />
-          <HallOfFame theme={theme} />
+          <section id="subscribe" style={{ paddingBottom: '60px' }}>
+            <div className="container" style={{ maxWidth: '90%', display: 'flex', flexWrap: 'wrap', gap: '30px', alignItems: 'stretch' }}>
+              <Newsletter theme={theme} />
+              <HallOfFameCarousel theme={theme} />
+            </div>
+          </section>
           {/* <Archive theme={theme} /> */}
         </main>
         
