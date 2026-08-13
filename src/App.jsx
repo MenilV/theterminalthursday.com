@@ -96,7 +96,7 @@ function App() {
               <HallOfFameCarousel theme={theme} />
             </div>
           </section>
-          {/* <Archive theme={theme} /> */}
+          {new Date() >= new Date('2026-08-20T00:00:00Z') && <Archive theme={theme} />}
         </main>
         
         {/* Right Sidebar to balance layout visually */}
