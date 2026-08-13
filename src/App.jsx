@@ -10,6 +10,7 @@ function App() {
   const [theme, setTheme] = useState(() => {
     return localStorage.getItem('ttt_theme') || 'windows';
   });
+  const [showCredits, setShowCredits] = useState(false);
 
   useEffect(() => {
     // Switch CSS theme variables
@@ -117,21 +118,70 @@ function App() {
             <a href="/rss.xml">
               {theme === 'windows' ? 'RSS_FEED.XML' : 'rss.xml'}
             </a>
+            <a href="#" onClick={(e) => { e.preventDefault(); setShowCredits(true); }}>
+              {theme === 'windows' ? 'OPEN_SOURCE.TXT' : 'cat opensource.txt'}
+            </a>
           </div>
           
           <p style={{ marginTop: '24px', fontWeight: '800', opacity: 0.8 }}>
             SYSTEM HALTED. © {new Date().getFullYear()} THE TERMINAL THURSDAY.
           </p>
-          
-          <div style={{ marginTop: '12px', fontSize: '0.85rem', fontWeight: 'bold', opacity: 0.9 }}>
-            BUILT WITH OPEN SOURCE: <a href="https://react.dev" target="_blank" rel="noreferrer" style={{ color: 'inherit' }}>REACT</a>, <a href="https://vitejs.dev" target="_blank" rel="noreferrer" style={{ color: 'inherit' }}>VITE</a> & <a href="https://github.com/JetBrains/JetBrainsMono" target="_blank" rel="noreferrer" style={{ color: 'inherit' }}>JETBRAINS MONO</a>
-          </div>
 
           <div style={{ marginTop: '16px', fontSize: '0.8rem', opacity: 0.5, fontFamily: 'monospace' }}>
             v{import.meta.env.VITE_APP_VERSION || '0.0.0'}
           </div>
         </div>
       </footer>
+
+      {/* Credits Modal */}
+      {showCredits && (
+        <div style={{ 
+          position: 'fixed', top: 0, left: 0, width: '100vw', height: '100vh', 
+          backgroundColor: 'rgba(0,0,0,0.85)', display: 'flex', justifyContent: 'center', 
+          alignItems: 'center', zIndex: 9999 
+        }}>
+          <div className="window-panel animate-pop-in" style={{ maxWidth: '600px', width: '90%', padding: '0', boxShadow: '0 10px 30px rgba(0,0,0,0.5)' }}>
+            <div className="window-header">
+              <span>{theme === 'windows' ? 'OPEN_SOURCE.TXT' : 'cat opensource.txt'}</span>
+              <div className="window-controls">
+                <span className="window-btn" onClick={() => setShowCredits(false)} style={{ cursor: 'pointer', backgroundColor: '#ff5f56' }}></span>
+              </div>
+            </div>
+            <div className="window-content" style={{ padding: '30px 40px', display: 'flex', flexDirection: 'column' }}>
+              <h3 style={{ marginBottom: '24px', fontSize: '1.8rem', textTransform: 'uppercase', borderBottom: 'var(--border-width) var(--border-style) var(--border-color)', paddingBottom: '10px' }}>
+                System Dependencies
+              </h3>
+              
+              <ul style={{ listStyleType: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '20px' }}>
+                <li>
+                  <a href="https://react.dev" target="_blank" rel="noreferrer" style={{ fontSize: '1.2rem', fontWeight: 'bold', color: 'var(--text-color)', textDecoration: 'none' }}>► React (react / react-dom)</a>
+                  <p style={{ margin: '4px 0 0 20px', opacity: 0.8, fontSize: '0.95rem' }}>The library for web and native user interfaces.</p>
+                </li>
+                <li>
+                  <a href="https://vitejs.dev" target="_blank" rel="noreferrer" style={{ fontSize: '1.2rem', fontWeight: 'bold', color: 'var(--text-color)', textDecoration: 'none' }}>► Vite (@vitejs/plugin-react)</a>
+                  <p style={{ margin: '4px 0 0 20px', opacity: 0.8, fontSize: '0.95rem' }}>Next generation frontend tooling for lightning fast HMR.</p>
+                </li>
+                <li>
+                  <a href="https://oxc.rs/docs/guide/usage/linter.html" target="_blank" rel="noreferrer" style={{ fontSize: '1.2rem', fontWeight: 'bold', color: 'var(--text-color)', textDecoration: 'none' }}>► Oxlint</a>
+                  <p style={{ margin: '4px 0 0 20px', opacity: 0.8, fontSize: '0.95rem' }}>A suite of high-performance tools for JavaScript and TypeScript.</p>
+                </li>
+                <li>
+                  <a href="https://github.com/JetBrains/JetBrainsMono" target="_blank" rel="noreferrer" style={{ fontSize: '1.2rem', fontWeight: 'bold', color: 'var(--text-color)', textDecoration: 'none' }}>► JetBrains Mono</a>
+                  <p style={{ margin: '4px 0 0 20px', opacity: 0.8, fontSize: '0.95rem' }}>A typeface made for developers, powering our retro aesthetic.</p>
+                </li>
+                <li>
+                  <a href="https://loops.so" target="_blank" rel="noreferrer" style={{ fontSize: '1.2rem', fontWeight: 'bold', color: 'var(--text-color)', textDecoration: 'none' }}>► Loops</a>
+                  <p style={{ margin: '4px 0 0 20px', opacity: 0.8, fontSize: '0.95rem' }}>The email API and delivery infrastructure powering our network.</p>
+                </li>
+              </ul>
+
+              <button className="btn btn-primary" onClick={() => setShowCredits(false)} style={{ width: '100%', marginTop: '32px' }}>
+                {theme === 'windows' ? 'CLOSE_WINDOW.EXE' : './exit.sh'}
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
