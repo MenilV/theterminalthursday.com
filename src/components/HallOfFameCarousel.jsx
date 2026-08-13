@@ -128,7 +128,7 @@ const HallOfFameCarousel = ({ theme }) => {
           backgroundColor: theme === 'windows' ? '#808080' : undefined,
           color: theme === 'windows' ? '#d4d0c8' : undefined
         }}>
-          <span>{theme === 'windows' ? 'SYSADMIN_DB.EXE' : 'cat /etc/passwd'}</span>
+          <span>{theme === 'windows' ? 'SYSADMIN_DB.EXE' : 'cat /etc/sudoers'}</span>
           <div className="window-controls">
             <span className="window-btn"></span>
             <span className="window-btn"></span>

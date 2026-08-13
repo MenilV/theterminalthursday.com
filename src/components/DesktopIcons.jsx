@@ -72,11 +72,11 @@ const DesktopIcons = ({ theme }) => {
         ) : (
           <div className="icon-graphic">
             <svg viewBox="0 0 32 32" width="48" height="48" xmlns="http://www.w3.org/2000/svg">
-              <text x="2" y="20" fontFamily="monospace" fontSize="11" fill="var(--border-color)" fontWeight="bold">passwd</text>
+              <text x="0" y="20" fontFamily="monospace" fontSize="10" fill="var(--border-color)" fontWeight="bold">sudoers</text>
             </svg>
           </div>
         )}
-        <span className="icon-label">{theme === 'windows' ? 'Architects' : '/etc/passwd'}</span>
+        <span className="icon-label">{theme === 'windows' ? 'Architects' : 'sudoers'}</span>
       </a>
 
     </div>
