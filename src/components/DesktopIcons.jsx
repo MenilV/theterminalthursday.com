@@ -72,7 +72,11 @@ const DesktopIcons = ({ theme }) => {
         ) : (
           <div className="icon-graphic">
             <svg viewBox="0 0 32 32" width="48" height="48" xmlns="http://www.w3.org/2000/svg">
-              <text x="0" y="20" fontFamily="monospace" fontSize="10" fill="var(--border-color)" fontWeight="bold">sudoers</text>
+              {/* User Silhouette */}
+              <circle cx="16" cy="10" r="5" fill="none" stroke="var(--border-color)" strokeWidth="2"/>
+              <path d="M 7 24 C 7 18, 25 18, 25 24" fill="none" stroke="var(--border-color)" strokeWidth="2"/>
+              {/* Root # Badge */}
+              <text x="21" y="13" fontFamily="monospace" fontSize="11" fill="var(--border-color)" fontWeight="bold">#</text>
             </svg>
           </div>
         )}
