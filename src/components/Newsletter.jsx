@@ -97,7 +97,7 @@ const Newsletter = ({ theme }) => {
                   </button>
                 </div>
                 <div style={{ fontSize: '0.85rem', fontWeight: '700' }}>
-                  // POWERED_BY: LOOPS.SO
+                  // POWERED_BY: <a href="https://loops.so" target="_blank" rel="noreferrer" style={{ color: 'inherit', textDecoration: 'underline' }}>LOOPS.SO</a>
                 </div>
               </form>
             </div>

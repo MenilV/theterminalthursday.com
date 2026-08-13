@@ -5,32 +5,6 @@
     <link>https://theterminalthursday.com</link>
     <description>A serial homage to the open-source projects, tools, and maintainers that form the bedrock of the modern web.</description>
     <language>en-us</language>
-    <lastBuildDate>Thu, 06 Aug 2026 12:00:00 GMT</lastBuildDate>
     <atom:link href="https://theterminalthursday.com/rss.xml" rel="self" type="application/rss+xml" />
-
-    <item>
-      <title>VOL_003: THE_MAGIC_OF_SQLITE</title>
-      <link>https://theterminalthursday.com/archive/003</link>
-      <guid>https://theterminalthursday.com/archive/003</guid>
-      <pubDate>Sat, 01 Aug 2026 12:00:00 GMT</pubDate>
-      <description>Why the most deployed database engine in the world is a masterclass in C programming.</description>
-    </item>
-
-    <item>
-      <title>VOL_002: TAILSCALE_ZERO_CONFIG</title>
-      <link>https://theterminalthursday.com/archive/002</link>
-      <guid>https://theterminalthursday.com/archive/002</guid>
-      <pubDate>Sat, 25 Jul 2026 12:00:00 GMT</pubDate>
-      <description>How Tailscale uses WireGuard to make complex networking disappear completely.</description>
-    </item>
-
-    <item>
-      <title>VOL_001: CURL_INTERNET_BACKBONE</title>
-      <link>https://theterminalthursday.com/archive/001</link>
-      <guid>https://theterminalthursday.com/archive/001</guid>
-      <pubDate>Sat, 18 Jul 2026 12:00:00 GMT</pubDate>
-      <description>A deep dive into Daniel Stenberg's ubiquitous tool that powers the modern web.</description>
-    </item>
-
   </channel>
 </rss>
