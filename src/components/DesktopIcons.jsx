@@ -57,12 +57,27 @@ const DesktopIcons = ({ theme }) => {
         <span className="icon-label">{theme === 'windows' ? 'Inbox' : '/var/mail'}</span>
       </a>
 
-      {/* 3. Network -> Scrolls to Archive (HIDDEN FOR NOW) */}
-      {/* 
-      <a href="#archive" className="desktop-icon" style={{ textDecoration: 'none' }}>
-        ...
+      {/* 3. System Architects -> Scrolls to Carousel */}
+      <a href="#subscribe" className="desktop-icon" style={{ textDecoration: 'none' }}>
+        {theme === 'windows' ? (
+          <div className="icon-graphic">
+            <svg viewBox="0 0 32 32" width="48" height="48" xmlns="http://www.w3.org/2000/svg">
+              <rect x="4" y="6" width="24" height="20" fill="var(--panel-bg)" stroke="var(--border-color)" strokeWidth="2"/>
+              <rect x="7" y="9" width="8" height="8" fill="#0000a8" stroke="var(--border-color)" strokeWidth="1"/>
+              <line x1="17" y1="11" x2="24" y2="11" stroke="var(--border-color)" strokeWidth="2"/>
+              <line x1="17" y1="15" x2="24" y2="15" stroke="var(--border-color)" strokeWidth="2"/>
+              <line x1="7" y1="21" x2="24" y2="21" stroke="var(--border-color)" strokeWidth="2"/>
+            </svg>
+          </div>
+        ) : (
+          <div className="icon-graphic">
+            <svg viewBox="0 0 32 32" width="48" height="48" xmlns="http://www.w3.org/2000/svg">
+              <text x="2" y="20" fontFamily="monospace" fontSize="11" fill="var(--border-color)" fontWeight="bold">passwd</text>
+            </svg>
+          </div>
+        )}
+        <span className="icon-label">{theme === 'windows' ? 'Architects' : '/etc/passwd'}</span>
       </a>
-      */}
 
     </div>
   );
