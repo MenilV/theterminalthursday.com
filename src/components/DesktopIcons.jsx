@@ -32,12 +32,30 @@ const DesktopIcons = ({ theme }) => {
         <span className="icon-label">{theme === 'windows' ? 'My Computer' : 'root'}</span>
       </a>
 
-      {/* 2. Inbox -> Scrolls to Newsletter (HIDDEN FOR NOW) */}
-      {/* 
+      {/* 2. Inbox -> Scrolls to Newsletter */}
       <a href="#subscribe" className="desktop-icon" style={{ textDecoration: 'none' }}>
-        ...
+        {theme === 'windows' ? (
+          <div className="icon-graphic">
+            <svg viewBox="0 0 32 32" width="48" height="48" xmlns="http://www.w3.org/2000/svg">
+               {/* Inbox Tray */}
+               <polygon points="6,16 26,16 22,26 10,26" fill="var(--panel-bg)" stroke="var(--border-color)" strokeWidth="2"/>
+               {/* Envelope inside */}
+               <rect x="10" y="8" width="12" height="10" fill="#fff" stroke="var(--border-color)" strokeWidth="2"/>
+               <path d="M 10 8 L 16 13 L 22 8" fill="none" stroke="var(--border-color)" strokeWidth="2"/>
+               {/* Front lip of tray to overlap envelope */}
+               <polygon points="6,20 26,20 22,26 10,26" fill="var(--panel-bg)" stroke="var(--border-color)" strokeWidth="2"/>
+            </svg>
+          </div>
+        ) : (
+          <div className="icon-graphic">
+            <svg viewBox="0 0 32 32" width="48" height="48" xmlns="http://www.w3.org/2000/svg">
+              <rect x="4" y="10" width="24" height="14" fill="none" stroke="var(--border-color)" strokeWidth="2"/>
+              <path d="M 4 10 L 16 18 L 28 10" fill="none" stroke="var(--border-color)" strokeWidth="2"/>
+            </svg>
+          </div>
+        )}
+        <span className="icon-label">{theme === 'windows' ? 'Inbox' : '/var/mail'}</span>
       </a>
-      */}
 
       {/* 3. Network -> Scrolls to Archive (HIDDEN FOR NOW) */}
       {/* 
