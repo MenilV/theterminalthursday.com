@@ -89,7 +89,7 @@ function App() {
         <main style={{ flex: 1, minWidth: 0 }}>
           <Hero theme={theme} />
           <Newsletter theme={theme} />
-          <Archive theme={theme} />
+          {/* <Archive theme={theme} /> */}
         </main>
         
         {/* Right Sidebar to balance layout visually */}
