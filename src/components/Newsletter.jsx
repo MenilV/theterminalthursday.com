@@ -35,9 +35,18 @@ const Newsletter = ({ theme }) => {
   return (
     <>
       <div style={{ flex: '1 1 400px', maxWidth: '700px', display: 'flex', flexDirection: 'column' }}>
-        <div className="window-panel animate-pop-in delay-1" style={{ height: '100%', display: 'flex', flexDirection: 'column' }}>
+        <div className="window-panel animate-pop-in delay-1" style={{ 
+          height: '100%', display: 'flex', flexDirection: 'column',
+          backgroundColor: theme === 'windows' ? '#ffffff' : '#1a0f00',
+          color: theme === 'windows' ? '#000000' : '#ffb000',
+          borderColor: theme === 'unix' ? '#ffb000' : undefined
+        }}>
           
-          <div className="window-header">
+          <div className="window-header" style={{
+            backgroundColor: theme === 'windows' ? '#0000a8' : '#ffb000',
+            color: theme === 'windows' ? '#ffffff' : '#1a0f00',
+            borderBottomColor: theme === 'unix' ? '#ffb000' : undefined
+          }}>
             <span>{theme === 'windows' ? 'NETWORK_CONFIG.SYS' : '/etc/resolv.conf'}</span>
             <div className="window-controls">
               <span className="window-btn"></span>

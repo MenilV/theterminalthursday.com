@@ -122,7 +122,12 @@ function App() {
           <p style={{ marginTop: '24px', fontWeight: '800', opacity: 0.8 }}>
             SYSTEM HALTED. © {new Date().getFullYear()} THE TERMINAL THURSDAY.
           </p>
-          <div style={{ marginTop: '8px', fontSize: '0.8rem', opacity: 0.5, fontFamily: 'monospace' }}>
+          
+          <div style={{ marginTop: '12px', fontSize: '0.85rem', fontWeight: 'bold', opacity: 0.9 }}>
+            BUILT WITH OPEN SOURCE: <a href="https://react.dev" target="_blank" rel="noreferrer" style={{ color: 'inherit' }}>REACT</a>, <a href="https://vitejs.dev" target="_blank" rel="noreferrer" style={{ color: 'inherit' }}>VITE</a> & <a href="https://github.com/JetBrains/JetBrainsMono" target="_blank" rel="noreferrer" style={{ color: 'inherit' }}>JETBRAINS MONO</a>
+          </div>
+
+          <div style={{ marginTop: '16px', fontSize: '0.8rem', opacity: 0.5, fontFamily: 'monospace' }}>
             v{import.meta.env.VITE_APP_VERSION || '0.0.0'}
           </div>
         </div>

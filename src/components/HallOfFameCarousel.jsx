@@ -49,8 +49,14 @@ const HallOfFameCarousel = ({ theme }) => {
 
   return (
     <div style={{ flex: '1 1 350px', maxWidth: '500px', display: 'flex', flexDirection: 'column' }}>
-      <div className="window-panel animate-pop-in delay-2" style={{ height: '100%', display: 'flex', flexDirection: 'column' }}>
-        <div className="window-header">
+      <div className="window-panel animate-pop-in delay-2" style={{ 
+        height: '100%', display: 'flex', flexDirection: 'column',
+        backgroundColor: theme === 'windows' ? '#ffffe1' : '#300a24'
+      }}>
+        <div className="window-header" style={{
+          backgroundColor: theme === 'windows' ? '#808080' : undefined,
+          color: theme === 'windows' ? '#d4d0c8' : undefined
+        }}>
           <span>{theme === 'windows' ? 'SYSADMIN_DB.EXE' : 'cat /etc/passwd'}</span>
           <div className="window-controls">
             <span className="window-btn"></span>
