@@ -3,6 +3,7 @@ import Hero from './components/Hero';
 import Newsletter from './components/Newsletter';
 import Archive from './components/Archive';
 import HallOfFameCarousel from './components/HallOfFameCarousel';
+import Favorites from './components/Favorites';
 import DesktopIcons from './components/DesktopIcons';
 import './index.css';
 
@@ -103,6 +104,13 @@ function App() {
         <aside className="desktop-sidebar" style={{ width: '120px', flexShrink: 0 }}></aside>
         
       </div>
+
+      {/* Full-width Favorites Section before Footer */}
+      <section style={{ paddingBottom: '60px' }}>
+        <div className="container" style={{ maxWidth: '96%' }}>
+          <Favorites theme={theme} />
+        </div>
+      </section>
 
       {/* Footer */}
       <footer style={{ background: 'var(--panel-bg)', borderTop: 'var(--border-width) var(--border-style) var(--border-color)', padding: '40px 0', textAlign: 'center', fontWeight: '600', transition: 'all 0.3s ease' }}>
