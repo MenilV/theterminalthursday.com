@@ -133,7 +133,7 @@ function App() {
               {theme === 'windows' ? 'RSS_FEED.XML' : 'rss.xml'}
             </a>
             <a href="#" onClick={(e) => { e.preventDefault(); setShowCredits(true); }}>
-              {theme === 'windows' ? 'OPEN_SOURCE.TXT' : 'cat opensource.txt'}
+              {theme === 'windows' ? 'OPEN_SOURCE.TXT' : 'opensource.txt'}
             </a>
           </div>
           
@@ -156,7 +156,7 @@ function App() {
         }}>
           <div className="window-panel animate-pop-in" style={{ maxWidth: '600px', width: '90%', padding: '0', boxShadow: '0 10px 30px rgba(0,0,0,0.5)' }}>
             <div className="window-header">
-              <span>{theme === 'windows' ? 'OPEN_SOURCE.TXT' : 'cat opensource.txt'}</span>
+              <span>{theme === 'windows' ? 'OPEN_SOURCE.TXT' : 'opensource.txt'}</span>
               <div className="window-controls">
                 <span className="window-btn" onClick={() => setShowCredits(false)} style={{ cursor: 'pointer', backgroundColor: '#ff5f56' }}></span>
               </div>
