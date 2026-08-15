@@ -39,8 +39,8 @@ const BottomSignup = ({ theme }) => {
         </div>
       </div>
 
-      <div className="window-content" style={{ padding: '24px 35px' }}>
-        <form onSubmit={handleSubmit} style={{ display: 'flex', gap: '16px', width: '100%', flexWrap: 'wrap', alignItems: 'center' }}>
+      <div className="window-content" style={{ padding: '28px 24px', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+        <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '16px', width: '100%', maxWidth: '500px', alignItems: 'center' }}>
           <input 
             type="email" 
             name="email"
@@ -56,20 +56,20 @@ const BottomSignup = ({ theme }) => {
             className="input notranslate" 
             required
             disabled={status === 'loading' || status === 'success'}
-            style={{ flex: '1 1 250px' }}
+            style={{ width: '100%', textAlign: 'center' }}
           />
           <button 
             type="submit" 
             className="btn btn-primary" 
             disabled={status === 'loading' || status === 'success'}
-            style={{ flexShrink: 0 }}
+            style={{ minWidth: '180px' }}
           >
             {status === 'loading' ? 'EXECUTING...' : (status === 'success' ? 'SUBSCRIBED' : (theme === 'windows' ? 'INITIATE.EXE' : './initiate.sh'))}
           </button>
         </form>
 
         {status === 'success' && (
-          <div style={{ marginTop: '12px', fontWeight: 'bold', color: theme === 'unix' ? '#33ff33' : '#008000', fontSize: '0.9rem' }}>
+          <div style={{ marginTop: '16px', fontWeight: 'bold', color: theme === 'unix' ? '#33ff33' : '#008000', fontSize: '0.9rem', textAlign: 'center' }}>
             ► SUCCESS: SUBSCRIBED TO THE TERMINAL THURSDAY.
           </div>
         )}

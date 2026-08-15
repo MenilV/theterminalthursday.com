@@ -47,7 +47,7 @@ const Favorites = ({ theme }) => {
           </div>
         </div>
 
-        <div className="window-content" style={{ padding: '35px', display: 'flex', flexDirection: 'column', gap: '25px' }}>
+        <div className="window-content" style={{ padding: '28px 24px', display: 'flex', flexDirection: 'column', gap: '25px' }}>
           <div>
             <div className="highlight-box" style={{ padding: '4px 8px', marginBottom: '12px', fontWeight: 'bold', display: 'inline-block' }}>
               DAILY DRIVERS & ESSENTIAL STACK

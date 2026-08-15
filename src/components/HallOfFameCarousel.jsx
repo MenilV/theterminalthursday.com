@@ -166,7 +166,7 @@ const HallOfFameCarousel = ({ theme }) => {
           </div>
         </div>
         
-        <div className="window-content" style={{ padding: '30px', flex: 1, display: 'flex', flexDirection: 'column' }}>
+        <div className="window-content" style={{ padding: '28px 24px', flex: 1, display: 'flex', flexDirection: 'column' }}>
           <div className="highlight-box" style={{ padding: '4px 8px', marginBottom: '20px', fontWeight: 'bold', display: 'inline-block', alignSelf: 'flex-start' }}>
             QUERY: MOST_WANTED (<span style={{ fontFamily: "'JetBrains Mono', 'Courier New', Courier, monospace", fontVariantNumeric: 'normal' }}>{visibleMaintainers.length}</span>/<span style={{ fontFamily: "'JetBrains Mono', 'Courier New', Courier, monospace", fontVariantNumeric: 'normal' }}>{maintainers.length}</span> UNLOCKED)
           </div>

@@ -55,7 +55,7 @@ const Newsletter = ({ theme }) => {
             </div>
           </div>
 
-          <div className="window-content" style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', padding: '50px 4vw', flex: 1 }}>
+          <div className="window-content" style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', padding: '28px 24px', flex: 1 }}>
             <h2 style={{ fontSize: '2.5rem', marginBottom: '16px', textDecoration: 'underline' }}>JOIN THE NETWORK</h2>
             <p style={{ marginBottom: '32px', fontWeight: '600', fontSize: '1.2rem' }}>
               Get the latest issue delivered straight to your inbox every Thursday. No spam, just pure homage.
