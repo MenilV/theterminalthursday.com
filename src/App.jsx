@@ -132,7 +132,7 @@ function App() {
           </div>
           
           <p style={{ marginTop: '24px', fontWeight: '800', opacity: 0.8 }}>
-            SYSTEM HALTED. © {new Date().getFullYear()} THE TERMINAL THURSDAY.
+            SYSTEM HALTED. © <span translate="no" className="notranslate" style={{ fontFamily: "'JetBrains Mono', 'Courier New', Courier, monospace", fontVariantNumeric: 'normal' }}>{new Date().getFullYear()}</span> THE TERMINAL THURSDAY.
           </p>
 
           <div style={{ marginTop: '16px', fontSize: '0.8rem', opacity: 0.5, fontFamily: 'monospace' }}>

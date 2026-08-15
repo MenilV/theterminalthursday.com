@@ -375,16 +375,16 @@ h1, h2, h3 {
 /* Footer Links */
 .footer-links {
   display: flex;
-  gap: 32px;
+  flex-wrap: wrap;
+  gap: 20px 32px;
   justify-content: center;
   font-size: 1.1rem;
   font-weight: 700;
-  white-space: nowrap;
 }
 
 @media (max-width: 600px) {
   .footer-links {
-    gap: 12px;
-    font-size: 0.75rem;
+    gap: 10px 16px;
+    font-size: 0.85rem;
   }
 }
