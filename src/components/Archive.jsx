@@ -39,7 +39,7 @@ const Archive = ({ theme }) => {
                   }}
                 >
                   <div style={{ display: 'flex', justifyContent: 'space-between', borderBottom: '2px dashed var(--border-color)', paddingBottom: '12px', marginBottom: '16px' }}>
-                    <span style={{ fontWeight: '800' }}>VOL_{post.id}</span>
+                    <span style={{ fontWeight: '700' }}>VOL_{post.id}</span>
                     <span style={{ fontWeight: '600' }}>{post.date}</span>
                   </div>
                   
@@ -52,7 +52,7 @@ const Archive = ({ theme }) => {
                   </p>
                   
                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                    <span style={{ border: '2px solid var(--border-color)', padding: '2px 8px', fontWeight: '800' }}>
+                    <span style={{ border: '2px solid var(--border-color)', padding: '2px 8px', fontWeight: '700' }}>
                       TYPE: {post.category}
                     </span>
                     <a href={`/archive/${post.id}`} className="btn" style={{ padding: '6px 16px', fontSize: '0.9rem' }}>

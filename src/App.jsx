@@ -131,8 +131,8 @@ function App() {
             </a>
           </div>
           
-          <p style={{ marginTop: '24px', fontWeight: '800', opacity: 0.8 }}>
-            SYSTEM HALTED. © <span translate="no" className="notranslate" style={{ fontFamily: "'JetBrains Mono', 'Courier New', Courier, monospace", fontVariantNumeric: 'normal' }}>{new Date().getFullYear()}</span> THE TERMINAL THURSDAY.
+          <p style={{ marginTop: '24px', fontWeight: '700', opacity: 0.8 }}>
+            SYSTEM HALTED. © <span translate="no" className="notranslate" style={{ fontFamily: "'JetBrains Mono', 'Courier New', Courier, monospace", fontWeight: '700', fontVariantNumeric: 'normal' }}>2026</span> THE TERMINAL THURSDAY.
           </p>
 
           <div style={{ marginTop: '16px', fontSize: '0.8rem', opacity: 0.5, fontFamily: 'monospace' }}>
