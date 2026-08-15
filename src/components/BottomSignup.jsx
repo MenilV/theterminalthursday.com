@@ -60,9 +60,9 @@ const BottomSignup = ({ theme }) => {
           />
           <button 
             type="submit" 
-            className="btn btn-primary mobile-full-width-btn" 
+            className="btn btn-primary" 
             disabled={status === 'loading' || status === 'success'}
-            style={{ minWidth: '180px' }}
+            style={{ width: '100%' }}
           >
             {status === 'loading' ? 'EXECUTING...' : (status === 'success' ? 'SUBSCRIBED' : (theme === 'windows' ? 'INITIATE.EXE' : './initiate.sh'))}
           </button>

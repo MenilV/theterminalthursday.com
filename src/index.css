@@ -402,9 +402,6 @@ footer {
     gap: 10px 16px;
     font-size: 0.85rem;
   }
-  .mobile-full-width-btn {
-    width: 100% !important;
-  }
 }
 
 @media (min-width: 601px) {

@@ -62,28 +62,31 @@ const Newsletter = ({ theme }) => {
             </p>
             
             <form onSubmit={handleSubmit} style={{ display: 'flex', gap: '16px', flexDirection: 'column' }}>
-              <div style={{ display: 'flex', gap: '16px', width: '100%', flexWrap: 'wrap' }}>
-                <input 
-                  type="email" 
-                  name="email"
-                  id="newsletter-email"
-                  autoComplete="email"
-                  autoCapitalize="none"
-                  autoCorrect="off"
-                  spellCheck="false"
-                  translate="no"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  placeholder="ENTER_EMAIL_ADDRESS" 
-                  className="input notranslate" 
-                  required
-                  disabled={status === 'loading' || status === 'success'}
-                  style={{ flex: '1 1 200px' }}
-                />
-                <button type="submit" className="btn btn-primary mobile-full-width-btn" disabled={status === 'loading' || status === 'success'}>
-                  {status === 'loading' ? 'EXECUTING...' : (status === 'success' ? 'SUBSCRIBED' : (theme === 'windows' ? 'INITIATE.EXE' : './initiate.sh'))}
-                </button>
-              </div>
+              <input 
+                type="email" 
+                name="email"
+                id="newsletter-email"
+                autoComplete="email"
+                autoCapitalize="none"
+                autoCorrect="off"
+                spellCheck="false"
+                translate="no"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                placeholder="ENTER_EMAIL_ADDRESS" 
+                className="input notranslate" 
+                required
+                disabled={status === 'loading' || status === 'success'}
+                style={{ width: '100%', textAlign: 'center' }}
+              />
+              <button 
+                type="submit" 
+                className="btn btn-primary" 
+                disabled={status === 'loading' || status === 'success'}
+                style={{ width: '100%' }}
+              >
+                {status === 'loading' ? 'EXECUTING...' : (status === 'success' ? 'SUBSCRIBED' : (theme === 'windows' ? 'INITIATE.EXE' : './initiate.sh'))}
+              </button>
               <div style={{ fontSize: '0.85rem', fontWeight: '700' }}>
                 // POWERED_BY: <a href="https://loops.so" target="_blank" rel="noreferrer" style={{ color: 'inherit', textDecoration: 'underline' }}>LOOPS.SO</a>
               </div>
