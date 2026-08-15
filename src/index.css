@@ -95,7 +95,7 @@
   --border-style: solid;
   --shadow-size: 6px;
   --shadow-hover: 2px;
-  --font-mono: 'JetBrains Mono', monospace;
+  --font-mono: 'JetBrains Mono', 'Courier New', Courier, monospace, sans-serif;
 }
 
 [data-theme="unix"] {
