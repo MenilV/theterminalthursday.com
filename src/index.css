@@ -380,7 +380,34 @@ h1, h2, h3 {
   }
 }
 
-/* Footer Links */
+/* Footer Links & Extended Safe Area Background */
+footer {
+  position: relative;
+  background-color: var(--panel-bg);
+  border-top: var(--border-width) var(--border-style) var(--border-color);
+  padding: 40px 0 calc(40px + env(safe-area-inset-bottom, 0px));
+  text-align: center;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+footer::after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: -50vw;
+  right: -50vw;
+  height: 3000px;
+  background-color: var(--panel-bg);
+  z-index: 0;
+  pointer-events: none;
+}
+
+footer > .container {
+  position: relative;
+  z-index: 1;
+}
+
 .footer-links {
   display: flex;
   flex-wrap: wrap;
