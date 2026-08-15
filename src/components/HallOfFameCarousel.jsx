@@ -167,30 +167,8 @@ const HallOfFameCarousel = ({ theme }) => {
         </div>
         
         <div className="window-content" style={{ padding: '30px', flex: 1, display: 'flex', flexDirection: 'column' }}>
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '20px', flexWrap: 'wrap', gap: '10px' }}>
-            <div className="highlight-box" style={{ padding: '4px 8px', fontWeight: 'bold' }}>
-              QUERY: MOST_WANTED (<span style={{ fontFamily: "'JetBrains Mono', 'Courier New', Courier, monospace", fontVariantNumeric: 'normal' }}>{visibleMaintainers.length}</span>/<span style={{ fontFamily: "'JetBrains Mono', 'Courier New', Courier, monospace", fontVariantNumeric: 'normal' }}>{maintainers.length}</span> UNLOCKED)
-            </div>
-
-            {/* Header Left/Right Carets for Desktop & Mobile */}
-            <div style={{ display: 'flex', gap: '6px' }}>
-              <button 
-                onClick={handlePrev} 
-                aria-label="Previous"
-                className="btn" 
-                style={{ padding: '2px 8px', fontSize: '0.85rem', fontWeight: 'bold', cursor: 'pointer' }}
-              >
-                ◄
-              </button>
-              <button 
-                onClick={handleNext} 
-                aria-label="Next"
-                className="btn" 
-                style={{ padding: '2px 8px', fontSize: '0.85rem', fontWeight: 'bold', cursor: 'pointer' }}
-              >
-                ►
-              </button>
-            </div>
+          <div className="highlight-box" style={{ padding: '4px 8px', marginBottom: '20px', fontWeight: 'bold', display: 'inline-block', alignSelf: 'flex-start' }}>
+            QUERY: MOST_WANTED (<span style={{ fontFamily: "'JetBrains Mono', 'Courier New', Courier, monospace", fontVariantNumeric: 'normal' }}>{visibleMaintainers.length}</span>/<span style={{ fontFamily: "'JetBrains Mono', 'Courier New', Courier, monospace", fontVariantNumeric: 'normal' }}>{maintainers.length}</span> UNLOCKED)
           </div>
           
           <div 
@@ -261,7 +239,7 @@ const HallOfFameCarousel = ({ theme }) => {
               onClick={handlePrev} 
               aria-label="Previous"
               className="btn" 
-              style={{ padding: '2px 10px', fontSize: '0.85rem', fontWeight: 'bold', cursor: 'pointer' }}
+              style={{ padding: '2px 10px', fontSize: '0.85rem', fontWeight: 'bold', cursor: 'pointer', display: 'inline-flex', alignItems: 'center', justifyContent: 'center' }}
             >
               ◄
             </button>
@@ -281,7 +259,7 @@ const HallOfFameCarousel = ({ theme }) => {
               onClick={handleNext} 
               aria-label="Next"
               className="btn" 
-              style={{ padding: '2px 10px', fontSize: '0.85rem', fontWeight: 'bold', cursor: 'pointer' }}
+              style={{ padding: '2px 10px', fontSize: '0.85rem', fontWeight: 'bold', cursor: 'pointer', display: 'inline-flex', alignItems: 'center', justifyContent: 'center' }}
             >
               ►
             </button>
