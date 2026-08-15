@@ -58,8 +58,8 @@ const maintainers = [
   {
     name: 'TJ Holowaychuk',
     alias: 'tj',
-    projects: [{ name: 'Express', url: 'https://github.com/expressjs/express' }],
-    desc: 'One of the most prolific open-source developers of the early Node.js ecosystem.',
+    projects: [{ name: 'Express', url: 'https://github.com/expressjs/express' }, { name: 'Koa', url: 'https://github.com/koajs/koa' }],
+    desc: 'Extremely prolific builder behind early Node.js web frameworks and CLI utilities.',
     id: '007',
     img: 'https://github.com/tj.png',
     revealDate: '2026-08-16T00:00:00Z' // Unlocks Aug 16
@@ -67,8 +67,8 @@ const maintainers = [
   {
     name: 'Sindre Sorhus',
     alias: 'sindresorhus',
-    projects: [{ name: 'NPM Ecosystem', url: 'https://github.com/sindresorhus' }],
-    desc: 'The most prolific NPM package maintainer, actively shaping modern JavaScript.',
+    projects: [{ name: 'chalk', url: 'https://github.com/chalk/chalk' }, { name: 'execa', url: 'https://github.com/sindresorhus/execa' }],
+    desc: 'Full-time open-source maintainer with thousands of ubiquitous npm modules.',
     id: '008',
     img: 'https://github.com/sindresorhus.png',
     revealDate: '2026-08-17T00:00:00Z' // Unlocks Aug 17
@@ -77,7 +77,7 @@ const maintainers = [
     name: 'Rich Harris',
     alias: 'Rich-Harris',
     projects: [{ name: 'Svelte', url: 'https://github.com/sveltejs/svelte' }, { name: 'Rollup', url: 'https://github.com/rollup/rollup' }],
-    desc: 'Pioneered compiled frontend frameworks and next-generation module bundlers.',
+    desc: 'Architect of compiler-first reactive UI and JavaScript module bundling.',
     id: '009',
     img: 'https://github.com/Rich-Harris.png',
     revealDate: '2026-08-18T00:00:00Z' // Unlocks Aug 18
@@ -86,7 +86,7 @@ const maintainers = [
     name: 'Guillermo Rauch',
     alias: 'rauchg',
     projects: [{ name: 'Socket.io', url: 'https://github.com/socketio/socket.io' }, { name: 'Next.js', url: 'https://github.com/vercel/next.js' }],
-    desc: 'Pioneered real-time web sockets and the modern React server-side rendering stack.',
+    desc: 'Pioneered real-time web communications and modern serverless frontend architecture.',
     id: '010',
     img: 'https://github.com/rauchg.png',
     revealDate: '2026-08-19T00:00:00Z' // Unlocks Aug 19
@@ -94,8 +94,8 @@ const maintainers = [
   {
     name: 'Brendan Eich',
     alias: 'BrendanEich',
-    projects: [{ name: 'JavaScript', url: 'https://github.com/v8/v8' }],
-    desc: 'Invented JavaScript in 10 days, fundamentally altering the trajectory of the web.',
+    projects: [{ name: 'JavaScript', url: 'https://github.com/tc39/ecma262' }, { name: 'Brave', url: 'https://github.com/brave/brave-browser' }],
+    desc: 'Created JavaScript in 10 days at Netscape, laying the programming language foundation for the web.',
     id: '011',
     img: 'https://github.com/BrendanEich.png',
     revealDate: '2026-08-20T00:00:00Z' // Unlocks Aug 20 (Launch Day!)
@@ -104,6 +104,8 @@ const maintainers = [
 
 const HallOfFameCarousel = ({ theme }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [touchStart, setTouchStart] = useState(null);
+  const [touchEnd, setTouchEnd] = useState(null);
 
   // Filter maintainers based on the current date compared to their revealDate
   const visibleMaintainers = maintainers.filter(m => new Date() >= new Date(m.revealDate));
@@ -114,6 +116,34 @@ const HallOfFameCarousel = ({ theme }) => {
     }, 20000); // 20 seconds autoplay
     return () => clearInterval(timer);
   }, [visibleMaintainers.length]);
+
+  const handlePrev = () => {
+    setCurrentIndex(prev => (prev - 1 + visibleMaintainers.length) % visibleMaintainers.length);
+  };
+
+  const handleNext = () => {
+    setCurrentIndex(prev => (prev + 1) % visibleMaintainers.length);
+  };
+
+  const handleTouchStart = (e) => {
+    setTouchStart(e.targetTouches[0].clientX);
+  };
+
+  const handleTouchMove = (e) => {
+    setTouchEnd(e.targetTouches[0].clientX);
+  };
+
+  const handleTouchEnd = () => {
+    if (!touchStart || !touchEnd) return;
+    const distance = touchStart - touchEnd;
+    if (distance > 40) {
+      handleNext();
+    } else if (distance < -40) {
+      handlePrev();
+    }
+    setTouchStart(null);
+    setTouchEnd(null);
+  };
 
   // Safe fallback if currentIndex goes out of bounds when list updates
   const m = visibleMaintainers[currentIndex] || visibleMaintainers[0];
@@ -137,20 +167,48 @@ const HallOfFameCarousel = ({ theme }) => {
         </div>
         
         <div className="window-content" style={{ padding: '30px', flex: 1, display: 'flex', flexDirection: 'column' }}>
-          <div className="highlight-box" style={{ padding: '4px 8px', marginBottom: '20px', fontWeight: 'bold', display: 'inline-block', alignSelf: 'flex-start' }}>
-            QUERY: MOST_WANTED (<span style={{ fontFamily: "'JetBrains Mono', 'Courier New', Courier, monospace", fontVariantNumeric: 'normal' }}>{visibleMaintainers.length}</span>/<span style={{ fontFamily: "'JetBrains Mono', 'Courier New', Courier, monospace", fontVariantNumeric: 'normal' }}>{maintainers.length}</span> UNLOCKED)
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '20px', flexWrap: 'wrap', gap: '10px' }}>
+            <div className="highlight-box" style={{ padding: '4px 8px', fontWeight: 'bold' }}>
+              QUERY: MOST_WANTED (<span style={{ fontFamily: "'JetBrains Mono', 'Courier New', Courier, monospace", fontVariantNumeric: 'normal' }}>{visibleMaintainers.length}</span>/<span style={{ fontFamily: "'JetBrains Mono', 'Courier New', Courier, monospace", fontVariantNumeric: 'normal' }}>{maintainers.length}</span> UNLOCKED)
+            </div>
+
+            {/* Header Left/Right Carets for Desktop & Mobile */}
+            <div style={{ display: 'flex', gap: '6px' }}>
+              <button 
+                onClick={handlePrev} 
+                aria-label="Previous"
+                className="btn" 
+                style={{ padding: '2px 8px', fontSize: '0.85rem', fontWeight: 'bold', cursor: 'pointer' }}
+              >
+                ◄
+              </button>
+              <button 
+                onClick={handleNext} 
+                aria-label="Next"
+                className="btn" 
+                style={{ padding: '2px 8px', fontSize: '0.85rem', fontWeight: 'bold', cursor: 'pointer' }}
+              >
+                ►
+              </button>
+            </div>
           </div>
           
-          <div style={{ 
-            border: 'var(--border-width) var(--border-style) var(--border-color)', 
-            background: 'var(--input-bg)', 
-            color: 'var(--text-color)',
-            padding: '20px',
-            boxShadow: 'var(--shadow-hover) var(--shadow-hover) 0 var(--shadow-color)',
-            display: 'flex',
-            flexDirection: 'column',
-            flex: 1
-          }}>
+          <div 
+            onTouchStart={handleTouchStart}
+            onTouchMove={handleTouchMove}
+            onTouchEnd={handleTouchEnd}
+            style={{ 
+              border: 'var(--border-width) var(--border-style) var(--border-color)', 
+              background: 'var(--input-bg)', 
+              color: 'var(--text-color)',
+              padding: '20px',
+              boxShadow: 'var(--shadow-hover) var(--shadow-hover) 0 var(--shadow-color)',
+              display: 'flex',
+              flexDirection: 'column',
+              flex: 1,
+              touchAction: 'pan-y'
+            }}
+          >
             <div style={{ display: 'flex', width: '100%', gap: '20px', marginBottom: '20px', alignItems: 'center' }}>
               <div style={{ width: '80px', height: '80px', border: 'var(--border-width) var(--border-style) var(--border-color)', flexShrink: 0, backgroundColor: 'var(--panel-bg)' }}>
                 <img src={m.img} alt={m.name} style={{ width: '100%', height: '100%', objectFit: 'cover' }} 
@@ -197,15 +255,36 @@ const HallOfFameCarousel = ({ theme }) => {
             </div>
           </div>
 
-          <div style={{ display: 'flex', gap: '8px', marginTop: '20px', justifyContent: 'center', flexWrap: 'wrap' }}>
-            {visibleMaintainers.map((_, i) => (
-              <div key={i} onClick={() => setCurrentIndex(i)} style={{ 
-                width: '14px', height: '14px', 
-                border: 'var(--border-width) var(--border-style) var(--border-color)', 
-                backgroundColor: i === currentIndex ? 'var(--border-color)' : 'var(--panel-bg)',
-                cursor: 'pointer'
-              }} />
-            ))}
+          {/* Bottom Dot Indicators + Carets */}
+          <div style={{ display: 'flex', gap: '12px', marginTop: '20px', justifyContent: 'center', alignItems: 'center', flexWrap: 'wrap' }}>
+            <button 
+              onClick={handlePrev} 
+              aria-label="Previous"
+              className="btn" 
+              style={{ padding: '2px 10px', fontSize: '0.85rem', fontWeight: 'bold', cursor: 'pointer' }}
+            >
+              ◄
+            </button>
+
+            <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap', alignItems: 'center' }}>
+              {visibleMaintainers.map((_, i) => (
+                <div key={i} onClick={() => setCurrentIndex(i)} style={{ 
+                  width: '14px', height: '14px', 
+                  border: 'var(--border-width) var(--border-style) var(--border-color)', 
+                  backgroundColor: i === currentIndex ? 'var(--border-color)' : 'var(--panel-bg)',
+                  cursor: 'pointer'
+                }} />
+              ))}
+            </div>
+
+            <button 
+              onClick={handleNext} 
+              aria-label="Next"
+              className="btn" 
+              style={{ padding: '2px 10px', fontSize: '0.85rem', fontWeight: 'bold', cursor: 'pointer' }}
+            >
+              ►
+            </button>
           </div>
         </div>
       </div>
