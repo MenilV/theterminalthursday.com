@@ -19,10 +19,14 @@ function App() {
     document.documentElement.setAttribute('data-theme', theme);
     localStorage.setItem('ttt_theme', theme);
     
-    // Switch Favicon dynamically
+    // Switch Favicon & Mobile Safari Address Bar Theme Color dynamically
     const favicon = document.querySelector('link[rel="icon"]');
     if (favicon) {
       favicon.href = theme === 'windows' ? '/favicon-win.svg' : '/favicon-unix.svg';
+    }
+    const metaTheme = document.querySelector('meta[name="theme-color"]');
+    if (metaTheme) {
+      metaTheme.content = theme === 'windows' ? '#c0c0c0' : '#000000';
     }
   }, [theme]);
 

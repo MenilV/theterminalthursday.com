@@ -127,6 +127,7 @@
 }
 
 html {
+  background-color: var(--panel-bg);
   scroll-behavior: smooth;
   scroll-padding-top: 100px;
   overflow-x: hidden;
