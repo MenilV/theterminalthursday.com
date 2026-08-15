@@ -4,6 +4,7 @@ import Newsletter from './components/Newsletter';
 import Archive from './components/Archive';
 import HallOfFameCarousel from './components/HallOfFameCarousel';
 import Favorites from './components/Favorites';
+import BottomSignup from './components/BottomSignup';
 import DesktopIcons from './components/DesktopIcons';
 import './index.css';
 
@@ -105,10 +106,11 @@ function App() {
         
       </div>
 
-      {/* Full-width Favorites Section before Footer */}
+      {/* Full-width Favorites Section & Bottom Signup before Footer */}
       <section style={{ paddingBottom: '60px' }}>
-        <div className="container" style={{ maxWidth: '96%' }}>
+        <div className="container" style={{ maxWidth: '96%', display: 'flex', flexDirection: 'column', gap: '40px' }}>
           <Favorites theme={theme} />
+          <BottomSignup theme={theme} />
         </div>
       </section>
 
