@@ -30,7 +30,7 @@ const QUICK_LIST = [
   { name: 'Stats (macOS)', url: 'https://github.com/exelban/stats' },
   { name: 'ngrok', url: 'https://ngrok.com' },
   { name: 'Sublime Text', url: 'https://www.sublimetext.com' },
-  { name: 'iTerm2', url: 'https://iterm2.com' },
+  { name: 'iTerm2 (macOS)', url: 'https://iterm2.com' },
   { name: 'aerc', url: 'https://aerc-mail.org' }
 ];
 
@@ -184,7 +184,7 @@ const Favorites = ({ theme }) => {
                         gap: '4px'
                       }}
                     >
-                      ► {item.name}
+                      ► <span translate="no" className="notranslate" style={{ fontFamily: "'JetBrains Mono', 'Courier New', Courier, monospace" }}>{item.name}</span>
                     </a>
                   </li>
                 ))}
