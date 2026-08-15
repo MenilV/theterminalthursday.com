@@ -28,8 +28,28 @@ const BottomSignup = ({ theme }) => {
     }
   };
 
+  const customThemeVars = theme === 'windows' ? {
+    '--panel-bg': '#ffffe1',
+    '--panel-header-bg': '#800000',
+    '--panel-header-text': '#ffffff',
+    '--btn-primary-bg': '#c0c0c0',
+    '--input-bg': '#ffffff',
+    width: '100%', 
+    marginBottom: 0
+  } : {
+    '--panel-bg': '#0000a8',
+    '--panel-header-bg': '#00aaaa',
+    '--panel-header-text': '#000000',
+    '--text-color': '#ffffff',
+    '--border-color': '#00aaaa',
+    '--btn-primary-bg': '#00aaaa',
+    '--input-bg': '#0000a8',
+    width: '100%', 
+    marginBottom: 0
+  };
+
   return (
-    <div className="window-panel animate-pop-in hide-on-desktop" style={{ width: '100%', marginBottom: 0 }}>
+    <div className="window-panel animate-pop-in hide-on-desktop" style={customThemeVars}>
       <div className="window-header">
         <span>{theme === 'windows' ? 'QUICK_SUBSCRIBE.EXE' : 'cat >> /etc/subscribers'}</span>
         <div className="window-controls">
