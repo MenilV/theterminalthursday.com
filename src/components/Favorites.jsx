@@ -16,11 +16,11 @@ const FEATURED_FAVORITES = [
     desc: 'Fair-code workflow automation engine powering backend triggers, scrapers, and automated content pipelines.'
   },
   {
-    name: 'aerc',
-    category: 'TUI MAIL',
-    url: 'https://aerc-mail.org',
-    img: 'https://github.com/aerc.png',
-    desc: 'TUI email client built for Unix terminals. Blazing fast, vim-keybindings, and keeps email directly inside the shell.'
+    name: 'Excalidraw',
+    category: 'DIAGRAMS',
+    url: 'https://excalidraw.com',
+    img: 'https://github.com/excalidraw.png',
+    desc: 'Virtual hand-drawn whiteboard for sketching architecture diagrams, wireframes, and open-source visual ideas.'
   }
 ];
 
@@ -31,7 +31,7 @@ const QUICK_LIST = [
   { name: 'ngrok', url: 'https://ngrok.com' },
   { name: 'Sublime Text', url: 'https://www.sublimetext.com' },
   { name: 'iTerm2', url: 'https://iterm2.com' },
-  { name: 'Pearcleaner (macOS)', url: 'https://github.com/alienator88/Pearcleaner' }
+  { name: 'aerc', url: 'https://aerc-mail.org' }
 ];
 
 const Favorites = ({ theme }) => {
