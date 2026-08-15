@@ -94,9 +94,9 @@ function App() {
         </aside>
 
         {/* Main Content Windows */}
-        <main style={{ flex: 1, minWidth: 0 }}>
+        <main style={{ flex: 1, minWidth: 0, display: 'flex', flexDirection: 'column', gap: '40px' }}>
           <Hero theme={theme} />
-          <section id="subscribe" style={{ paddingBottom: '40px' }}>
+          <section id="subscribe">
             <div className="container" style={{ maxWidth: '90%', display: 'flex', flexWrap: 'wrap', gap: '40px', alignItems: 'stretch' }}>
               <Newsletter theme={theme} />
               <HallOfFameCarousel theme={theme} />
@@ -111,7 +111,7 @@ function App() {
       </div>
 
       {/* Full-width Favorites Section & Bottom Signup before Footer */}
-      <section style={{ paddingBottom: '40px' }}>
+      <section style={{ paddingTop: '40px', paddingBottom: '40px' }}>
         <div className="container" style={{ maxWidth: '96%', display: 'flex', flexDirection: 'column', gap: '40px' }}>
           <Favorites theme={theme} />
           <BottomSignup theme={theme} />

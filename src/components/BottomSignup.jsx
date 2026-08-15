@@ -29,7 +29,7 @@ const BottomSignup = ({ theme }) => {
   };
 
   return (
-    <div className="window-panel animate-pop-in" style={{ width: '100%', marginBottom: 0 }}>
+    <div className="window-panel animate-pop-in hide-on-desktop" style={{ width: '100%', marginBottom: 0 }}>
       <div className="window-header">
         <span>{theme === 'windows' ? 'QUICK_SUBSCRIBE.EXE' : 'cat >> /etc/subscribers'}</span>
         <div className="window-controls">
@@ -60,7 +60,7 @@ const BottomSignup = ({ theme }) => {
           />
           <button 
             type="submit" 
-            className="btn btn-primary" 
+            className="btn btn-primary mobile-full-width-btn" 
             disabled={status === 'loading' || status === 'success'}
             style={{ minWidth: '180px' }}
           >

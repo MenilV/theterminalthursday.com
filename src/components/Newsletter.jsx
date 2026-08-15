@@ -80,7 +80,7 @@ const Newsletter = ({ theme }) => {
                   disabled={status === 'loading' || status === 'success'}
                   style={{ flex: '1 1 200px' }}
                 />
-                <button type="submit" className="btn btn-primary" disabled={status === 'loading' || status === 'success'}>
+                <button type="submit" className="btn btn-primary mobile-full-width-btn" disabled={status === 'loading' || status === 'success'}>
                   {status === 'loading' ? 'EXECUTING...' : (status === 'success' ? 'SUBSCRIBED' : (theme === 'windows' ? 'INITIATE.EXE' : './initiate.sh'))}
                 </button>
               </div>

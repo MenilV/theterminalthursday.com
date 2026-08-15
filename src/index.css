@@ -179,7 +179,6 @@ h1, h2, h3 {
   background-color: var(--panel-bg);
   border: var(--border-width) var(--border-style) var(--border-color);
   box-shadow: var(--shadow-size) var(--shadow-size) 0px var(--shadow-color);
-  margin-bottom: 40px;
   transition: all 0.3s ease;
 }
 
@@ -402,5 +401,14 @@ footer {
   .footer-links {
     gap: 10px 16px;
     font-size: 0.85rem;
+  }
+  .mobile-full-width-btn {
+    width: 100% !important;
+  }
+}
+
+@media (min-width: 601px) {
+  .hide-on-desktop {
+    display: none !important;
   }
 }
