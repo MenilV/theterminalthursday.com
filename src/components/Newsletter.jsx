@@ -65,10 +65,17 @@ const Newsletter = ({ theme }) => {
               <div style={{ display: 'flex', gap: '16px', width: '100%', flexWrap: 'wrap' }}>
                 <input 
                   type="email" 
+                  name="email"
+                  id="newsletter-email"
+                  autoComplete="email"
+                  autoCapitalize="none"
+                  autoCorrect="off"
+                  spellCheck="false"
+                  translate="no"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder="ENTER_EMAIL_ADDRESS" 
-                  className="input" 
+                  className="input notranslate" 
                   required
                   disabled={status === 'loading' || status === 'success'}
                   style={{ flex: '1 1 200px' }}
