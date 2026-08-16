@@ -48,7 +48,8 @@ const CliTerminal = ({ theme }) => {
         break;
 
       case 'ping':
-        addOutput('PONG. Latency: 23ms.');
+        const latency = Math.floor(Math.random() * 50) + 1;
+        addOutput(`PONG. Latency: ${latency}ms.`);
         break;
 
       case 'whoami':
