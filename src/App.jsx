@@ -6,6 +6,7 @@ import HallOfFameCarousel from './components/HallOfFameCarousel';
 import Favorites from './components/Favorites';
 import BottomSignup from './components/BottomSignup';
 import DesktopIcons from './components/DesktopIcons';
+import CliTerminal from './components/CliTerminal';
 import './index.css';
 
 function App() {
@@ -100,6 +101,11 @@ function App() {
             <div className="container" style={{ maxWidth: '90%', display: 'flex', flexWrap: 'wrap', gap: '40px', alignItems: 'stretch' }}>
               <Newsletter theme={theme} />
               <HallOfFameCarousel theme={theme} />
+            </div>
+          </section>
+          <section id="terminal" style={{ display: 'flex', justifyContent: 'center' }}>
+            <div className="container" style={{ maxWidth: '90%' }}>
+              <CliTerminal theme={theme} />
             </div>
           </section>
           {new Date() >= new Date('2026-08-20T00:00:00Z') && <Archive theme={theme} />}
