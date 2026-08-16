@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import Hero from './components/Hero';
-import Newsletter from './components/Newsletter';
-import Archive from './components/Archive';
-import HallOfFameCarousel from './components/HallOfFameCarousel';
 import Favorites from './components/Favorites';
 import BottomSignup from './components/BottomSignup';
 import DesktopIcons from './components/DesktopIcons';
 import CliTerminal from './components/CliTerminal';
+import ServerStatusWidget from './components/ServerStatusWidget';
+import Newsletter from './components/Newsletter';
+import Archive from './components/Archive';
+import HallOfFameCarousel from './components/HallOfFameCarousel';
 import './index.css';
 
 function App() {
@@ -103,11 +104,6 @@ function App() {
               <HallOfFameCarousel theme={theme} />
             </div>
           </section>
-          <section id="terminal" style={{ display: 'flex', justifyContent: 'center' }}>
-            <div className="container" style={{ maxWidth: '90%' }}>
-              <CliTerminal theme={theme} />
-            </div>
-          </section>
           {new Date() >= new Date('2026-08-20T00:00:00Z') && <Archive theme={theme} />}
         </main>
         
@@ -116,9 +112,20 @@ function App() {
         
       </div>
 
-      {/* Full-width Favorites Section & Bottom Signup before Footer */}
+      {/* Full-width Sections before Footer */}
       <section style={{ paddingTop: '40px', paddingBottom: '40px' }}>
         <div className="container" style={{ maxWidth: '96%', display: 'flex', flexDirection: 'column', gap: '40px' }}>
+          
+          {/* Terminal & Sysmon row */}
+          <div style={{ display: 'flex', flexWrap: 'wrap', gap: '40px', alignItems: 'stretch' }}>
+            <div style={{ flex: '1 1 500px', display: 'flex', flexDirection: 'column' }}>
+              <CliTerminal theme={theme} />
+            </div>
+            <div style={{ flex: '1 1 300px', display: 'flex', flexDirection: 'column' }}>
+              <ServerStatusWidget theme={theme} />
+            </div>
+          </div>
+
           <Favorites theme={theme} />
           <BottomSignup theme={theme} />
         </div>

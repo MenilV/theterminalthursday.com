@@ -196,7 +196,7 @@ const HallOfFameCarousel = ({ theme }) => {
               touchAction: 'pan-y'
             }}
           >
-            <div style={{ display: 'flex', width: '100%', gap: '20px', marginBottom: '20px', alignItems: 'center' }}>
+            <div style={{ display: 'flex', width: '100%', gap: '20px', marginBottom: '10px', alignItems: 'center' }}>
               <div style={{ width: '80px', height: '80px', border: 'var(--border-width) var(--border-style) var(--border-color)', flexShrink: 0, backgroundColor: 'var(--panel-bg)' }}>
                 <img src={m.img} alt={m.name} style={{ width: '100%', height: '100%', objectFit: 'cover' }} 
                      onError={(e) => { e.target.src = 'https://github.com/ghost.png'; }} />
@@ -215,10 +215,10 @@ const HallOfFameCarousel = ({ theme }) => {
               </div>
             </div>
 
-            <div style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: '15px' }}>
+            <div style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: '10px' }}>
               <div>
                 <span style={{ fontSize: '0.75rem', fontWeight: 'bold', textTransform: 'uppercase', opacity: 0.8 }}>Key Projects:</span>
-                <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap', marginTop: '8px' }}>
+                <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap', marginTop: '4px' }}>
                   {m.projects.map(p => (
                     <a key={p.name} href={p.url} target="_blank" rel="noreferrer" style={{ 
                       background: 'var(--accent-bg)', 
@@ -235,7 +235,7 @@ const HallOfFameCarousel = ({ theme }) => {
                 </div>
               </div>
               
-              <div style={{ marginTop: 'auto', paddingTop: '10px' }}>
+              <div style={{ marginTop: 'auto', paddingTop: '0px' }}>
                 <span style={{ fontSize: '0.75rem', fontWeight: 'bold', textTransform: 'uppercase', opacity: 0.8 }}>Remarks:</span>
                 <p style={{ 
                   fontSize: '0.95rem', 
@@ -243,11 +243,11 @@ const HallOfFameCarousel = ({ theme }) => {
                   lineHeight: '1.4', 
                   margin: '4px 0 0 0',
                   display: '-webkit-box',
-                  WebkitLineClamp: 2,
+                  WebkitLineClamp: 3,
                   WebkitBoxOrient: 'vertical',
                   overflow: 'hidden',
                   textOverflow: 'ellipsis',
-                  minHeight: '2.8em'
+                  minHeight: '4.2em'
                 }}>
                   {m.desc}
                 </p>
