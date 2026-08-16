@@ -55,7 +55,7 @@ const Favorites = ({ theme }) => {
             <h2 style={{ fontSize: '2rem', textTransform: 'uppercase', margin: 0 }}>
               {theme === 'windows' ? 'MY CURRENT FAVORITES' : 'curated_tools.log'}
             </h2>
-            <p style={{ marginTop: '8px', opacity: 0.8, fontSize: '0.95rem', fontWeight: '600', maxWidth: '700px' }}>
+            <p style={{ marginTop: '8px', opacity: 0.8, fontSize: '0.95rem', fontWeight: '600', maxWidth: '900px' }}>
               A hand-picked collection of software, CLI utilities, and open-source tools I rely on daily.
             </p>
           </div>
