@@ -246,12 +246,11 @@ const HallOfFameCarousel = ({ theme }) => {
 
             <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap', alignItems: 'center' }}>
               {visibleMaintainers.map((_, i) => (
-                <div key={i} onClick={() => setCurrentIndex(i)} style={{ 
-                  width: '20px', height: '20px', 
-                  border: 'var(--border-width) var(--border-style) var(--border-color)', 
-                  backgroundColor: i === currentIndex ? 'var(--border-color)' : 'var(--panel-bg)',
-                  cursor: 'pointer'
-                }} />
+                <div 
+                  key={i} 
+                  onClick={() => setCurrentIndex(i)} 
+                  className={`carousel-dot ${i === currentIndex ? 'active' : ''}`}
+                />
               ))}
             </div>
 
