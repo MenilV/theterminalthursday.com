@@ -152,7 +152,7 @@ function App() {
           </div>
 
           <p style={{ marginTop: '24px', fontWeight: '700', opacity: 0.8, maxWidth: '600px', lineHeight: '1.6' }}>
-            SYSTEM HALTED. © <span translate="no" className="notranslate" style={{ fontFamily: "'JetBrains Mono', 'Courier New', Courier, monospace", fontWeight: '700', fontVariantNumeric: 'normal' }}>2026</span> THE TERMINAL THURSDAY.
+            SYSTEM HALTED. © <span translate="no" className="notranslate" style={{ fontFamily: "'JetBrains Mono', 'Courier New', Courier, monospace", fontWeight: '700', fontVariantNumeric: 'normal' }}>2026</span> <a href="/" style={{ color: 'inherit', textDecoration: 'none' }}>THE TERMINAL THURSDAY.</a>
             <br />
             <span style={{ fontSize: '0.85rem', fontFamily: 'var(--font-mono)' }}>
               {theme === 'windows' ? 'Best Viewed In 800x600.' : 'Best Viewed on VT100.'} Requires Pentium II processor, SVGA display, and a sense of humor. Compatible with Netscape Navigator and modern browsers.
