@@ -228,7 +228,20 @@ const HallOfFameCarousel = ({ theme }) => {
               
               <div style={{ marginTop: 'auto', paddingTop: '10px' }}>
                 <span style={{ fontSize: '0.75rem', fontWeight: 'bold', textTransform: 'uppercase', opacity: 0.8 }}>Remarks:</span>
-                <p style={{ fontSize: '0.95rem', fontWeight: '600', lineHeight: '1.4', margin: '4px 0 0 0' }}>{m.desc}</p>
+                <p style={{ 
+                  fontSize: '0.95rem', 
+                  fontWeight: '600', 
+                  lineHeight: '1.4', 
+                  margin: '4px 0 0 0',
+                  display: '-webkit-box',
+                  WebkitLineClamp: 2,
+                  WebkitBoxOrient: 'vertical',
+                  overflow: 'hidden',
+                  textOverflow: 'ellipsis',
+                  minHeight: '2.8em'
+                }}>
+                  {m.desc}
+                </p>
               </div>
             </div>
           </div>
