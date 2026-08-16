@@ -168,7 +168,7 @@ const HallOfFameCarousel = ({ theme }) => {
         
         <div className="window-content" style={{ padding: '28px 24px', flex: 1, display: 'flex', flexDirection: 'column' }}>
           <div className="highlight-box" style={{ padding: '4px 8px', marginBottom: '20px', fontWeight: 'bold', display: 'inline-block', alignSelf: 'flex-start' }}>
-            QUERY: MOST_WANTED (<span style={{ fontFamily: "'JetBrains Mono', 'Courier New', Courier, monospace", fontVariantNumeric: 'normal' }}>{visibleMaintainers.length}</span>/<span style={{ fontFamily: "'JetBrains Mono', 'Courier New', Courier, monospace", fontVariantNumeric: 'normal' }}>{maintainers.length}</span> UNLOCKED)
+            MOST_WANTED (<span style={{ fontFamily: "'JetBrains Mono', 'Courier New', Courier, monospace", fontVariantNumeric: 'normal' }}>{visibleMaintainers.length}</span>/<span style={{ fontFamily: "'JetBrains Mono', 'Courier New', Courier, monospace", fontVariantNumeric: 'normal' }}>{maintainers.length}</span> UNLOCKED)
           </div>
           
           <div 
@@ -247,7 +247,7 @@ const HallOfFameCarousel = ({ theme }) => {
             <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap', alignItems: 'center' }}>
               {visibleMaintainers.map((_, i) => (
                 <div key={i} onClick={() => setCurrentIndex(i)} style={{ 
-                  width: '14px', height: '14px', 
+                  width: '20px', height: '20px', 
                   border: 'var(--border-width) var(--border-style) var(--border-color)', 
                   backgroundColor: i === currentIndex ? 'var(--border-color)' : 'var(--panel-bg)',
                   cursor: 'pointer'
