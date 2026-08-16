@@ -58,7 +58,7 @@ const Newsletter = ({ theme }) => {
           <div className="window-content" style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', padding: '28px 24px', flex: 1 }}>
             <h2 style={{ fontSize: '2.5rem', marginBottom: '16px', textDecoration: 'underline' }}>JOIN THE NETWORK</h2>
             <p style={{ marginBottom: '32px', fontWeight: '600', fontSize: '1.2rem' }}>
-              Get the latest issue delivered straight to your inbox every Thursday. No spam, just pure homage.
+              A weekly deep dive into legendary open-source tools and retro aesthetics. Dispatched to your terminal every Thursday.
             </p>
             
             <form onSubmit={handleSubmit} style={{ display: 'flex', gap: '16px', flexDirection: 'column' }}>
