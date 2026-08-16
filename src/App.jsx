@@ -128,12 +128,13 @@ function App() {
 
           <Favorites theme={theme} />
           <BottomSignup theme={theme} />
+
         </div>
       </section>
 
       {/* Footer */}
       <footer>
-        <div className="container" style={{ display: 'flex', flexDirection: 'column', gap: '16px', alignItems: 'center' }}>
+        <div className="container" style={{ position: 'relative', display: 'flex', flexDirection: 'column', gap: '16px', alignItems: 'center' }}>
           
           <div className="footer-links">
             <a href="mailto:hello@theterminalthursday.com">
@@ -149,9 +150,13 @@ function App() {
               {theme === 'windows' ? 'OPEN_SOURCE.TXT' : 'opensource.txt'}
             </a>
           </div>
-          
-          <p style={{ marginTop: '24px', fontWeight: '700', opacity: 0.8 }}>
+
+          <p style={{ marginTop: '24px', fontWeight: '700', opacity: 0.8, maxWidth: '600px', lineHeight: '1.6' }}>
             SYSTEM HALTED. © <span translate="no" className="notranslate" style={{ fontFamily: "'JetBrains Mono', 'Courier New', Courier, monospace", fontWeight: '700', fontVariantNumeric: 'normal' }}>2026</span> THE TERMINAL THURSDAY.
+            <br />
+            <span style={{ fontSize: '0.85rem', fontFamily: 'var(--font-mono)' }}>
+              {theme === 'windows' ? 'Best Viewed In 800x600.' : 'Best Viewed on VT100.'} Requires Pentium II processor, SVGA display, and a sense of humor. Compatible with Netscape Navigator and modern browsers.
+            </span>
           </p>
 
           <div style={{ marginTop: '16px', fontSize: '0.8rem', opacity: 0.5, fontFamily: 'monospace' }}>
