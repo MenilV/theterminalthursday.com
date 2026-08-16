@@ -117,7 +117,7 @@ function App() {
         <div className="container" style={{ maxWidth: '96%', display: 'flex', flexDirection: 'column', gap: '40px' }}>
           
           {/* Terminal & Sysmon row */}
-          <div style={{ display: 'flex', flexWrap: 'wrap', gap: '40px', alignItems: 'stretch' }}>
+          <div id="terminal" style={{ display: 'flex', flexWrap: 'wrap', gap: '40px', alignItems: 'stretch' }}>
             <div style={{ flex: '1 1 500px', display: 'flex', flexDirection: 'column' }}>
               <CliTerminal theme={theme} />
             </div>
