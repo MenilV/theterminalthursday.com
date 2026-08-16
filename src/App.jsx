@@ -159,7 +159,7 @@ function App() {
             </span>
           </p>
 
-          <div style={{ marginTop: '16px', fontSize: '0.8rem', opacity: 0.5, fontFamily: 'monospace' }}>
+          <div style={{ marginTop: '4px', fontSize: '0.8rem', opacity: 0.5, fontFamily: 'monospace' }}>
             v{import.meta.env.VITE_APP_VERSION || '0.0.0'}
           </div>
         </div>

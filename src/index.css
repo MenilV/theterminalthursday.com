@@ -418,7 +418,7 @@ h1, h2, h3 {
 footer {
   background-color: var(--panel-bg);
   border-top: var(--border-width) var(--border-style) var(--border-color);
-  padding: 40px 0;
+  padding: 24px 0;
   text-align: center;
   font-weight: 600;
   transition: all 0.3s ease;
