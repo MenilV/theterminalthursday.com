@@ -99,6 +99,15 @@ const maintainers = [
     id: '011',
     img: 'https://github.com/BrendanEich.png',
     revealDate: '2026-08-20T00:00:00Z' // Unlocks Aug 20 (Launch Day!)
+  },
+  {
+    name: 'David Heinemeier Hansson',
+    alias: 'dhh',
+    projects: [{ name: 'Ruby on Rails', url: 'https://github.com/rails/rails' }],
+    desc: 'Creator of Ruby on Rails, establishing the paradigm for modern MVC web frameworks.',
+    id: '012',
+    img: 'https://github.com/dhh.png',
+    revealDate: '2026-08-21T00:00:00Z' // Unlocks Aug 21
   }
 ];
 
