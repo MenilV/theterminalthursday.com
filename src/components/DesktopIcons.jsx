@@ -83,6 +83,49 @@ const DesktopIcons = ({ theme }) => {
         <span className="icon-label">{theme === 'windows' ? 'Architects' : 'sudoers'}</span>
       </a>
 
+      {/* 4. Terminal -> Scrolls to Terminal */}
+      <a href="#terminal" className="desktop-icon" style={{ textDecoration: 'none' }}>
+        {theme === 'windows' ? (
+          <div className="icon-graphic">
+            <svg viewBox="0 0 32 32" width="48" height="48" xmlns="http://www.w3.org/2000/svg">
+              <rect x="4" y="6" width="24" height="20" fill="#000" stroke="var(--border-color)" strokeWidth="2"/>
+              <rect x="4" y="6" width="24" height="4" fill="#0000a8" stroke="var(--border-color)" strokeWidth="1"/>
+              <text x="6" y="18" fontFamily="monospace" fontSize="10" fill="#fff" fontWeight="bold">&gt;_</text>
+            </svg>
+          </div>
+        ) : (
+          <div className="icon-graphic">
+            <svg viewBox="0 0 32 32" width="48" height="48" xmlns="http://www.w3.org/2000/svg">
+              <rect x="4" y="6" width="24" height="20" fill="none" stroke="var(--border-color)" strokeWidth="2"/>
+              <line x1="4" y1="10" x2="28" y2="10" stroke="var(--border-color)" strokeWidth="2"/>
+              <text x="6" y="22" fontFamily="monospace" fontSize="12" fill="var(--border-color)" fontWeight="bold">$_</text>
+            </svg>
+          </div>
+        )}
+        <span className="icon-label">{theme === 'windows' ? 'MS-DOS Prompt' : '/bin/bash'}</span>
+      </a>
+
+      {/* 5. Favorites -> Scrolls to Favorites */}
+      <a href="#favorites" className="desktop-icon" style={{ textDecoration: 'none' }}>
+        {theme === 'windows' ? (
+          <div className="icon-graphic">
+            <svg viewBox="0 0 32 32" width="48" height="48" xmlns="http://www.w3.org/2000/svg">
+              {/* Folder */}
+              <polygon points="4,10 12,10 14,13 28,13 28,26 4,26" fill="#ffff00" stroke="var(--border-color)" strokeWidth="2"/>
+              {/* Star inside */}
+              <polygon points="16,14 17.5,17.5 21,17.5 18,19.5 19,23 16,21 13,23 14,19.5 11,17.5 14.5,17.5" fill="var(--border-color)"/>
+            </svg>
+          </div>
+        ) : (
+          <div className="icon-graphic">
+            <svg viewBox="0 0 32 32" width="48" height="48" xmlns="http://www.w3.org/2000/svg">
+              <polygon points="16,6 18.5,13.5 26,13.5 20,18 22,25 16,21 10,25 12,18 6,13.5 13.5,13.5" fill="none" stroke="var(--border-color)" strokeWidth="2"/>
+            </svg>
+          </div>
+        )}
+        <span className="icon-label">{theme === 'windows' ? 'Favorites' : '.bookmarks'}</span>
+      </a>
+
     </div>
   );
 };
