@@ -105,6 +105,8 @@ const DesktopIcons = ({ theme }) => {
         <span className="icon-label">{theme === 'windows' ? 'Favorites' : '.bookmarks'}</span>
       </a>
 
+      
+
     </div>
   );
 };

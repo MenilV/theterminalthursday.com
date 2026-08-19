@@ -255,8 +255,8 @@ const HallOfFameCarousel = ({ theme }) => {
             </div>
           </div>
 
-          {/* Bottom Dot Indicators + Carets */}
-          <div style={{ display: 'flex', gap: '12px', marginTop: '20px', justifyContent: 'center', alignItems: 'center', flexWrap: 'wrap' }}>
+          {/* Bottom Navigation: Prev / Counter / Next */}
+          <div style={{ display: 'flex', gap: '12px', marginTop: '20px', justifyContent: 'center', alignItems: 'center' }}>
             <button 
               onClick={handlePrev} 
               aria-label="Previous"
@@ -266,15 +266,16 @@ const HallOfFameCarousel = ({ theme }) => {
               ◄
             </button>
 
-            <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap', alignItems: 'center' }}>
-              {visibleMaintainers.map((_, i) => (
-                <div 
-                  key={i} 
-                  onClick={() => setCurrentIndex(i)} 
-                  className={`carousel-dot ${i === currentIndex ? 'active' : ''}`}
-                />
-              ))}
-            </div>
+            <span style={{ 
+              fontFamily: 'var(--font-mono)', 
+              fontSize: '0.9rem', 
+              fontWeight: 'bold',
+              letterSpacing: '0.05em',
+              minWidth: '60px',
+              textAlign: 'center'
+            }}>
+              {String(currentIndex + 1).padStart(2, '0')} / {String(visibleMaintainers.length).padStart(2, '0')}
+            </span>
 
             <button 
               onClick={handleNext} 
