@@ -449,3 +449,101 @@ footer {
     display: none !important;
   }
 }
+
+/* =========================================
+   CRT FULLSCREEN EXPERIMENT
+   ========================================= */
+
+.crt-fullscreen-mode {
+  width: 100vw;
+  height: 100vh;
+  background: #111;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 10000;
+  padding: 2vw;
+}
+
+.crt-fullscreen-mode::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: #222; /* plastic monitor casing */
+  z-index: -2;
+}
+
+/* The physical screen glass */
+.crt-fullscreen-mode > #issue-reader {
+  width: 100%;
+  height: 100%;
+  max-width: 1200px;
+  background-color: var(--bg-color);
+  border-radius: 40px; /* curved CRT corners */
+  overflow: hidden;
+  position: relative;
+  box-shadow: 
+    inset 0 0 50px rgba(0,0,0,0.8), /* inner shadow for curvature */
+    0 0 20px rgba(0,0,0,1); /* drop shadow against the casing */
+  border: 15px solid #1a1a1a; /* plastic bezel */
+  border-bottom-width: 25px;
+}
+
+/* Scanlines Overlay */
+.crt-fullscreen-mode > #issue-reader::after {
+  content: " ";
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
+  z-index: 999;
+  background-size: 100% 4px, 6px 100%;
+  pointer-events: none;
+}
+
+/* Monitor Vignette and Glow */
+.crt-fullscreen-mode > #issue-reader::before {
+  content: " ";
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background: radial-gradient(circle, rgba(255,255,255,0.05) 0%, rgba(0,0,0,0.6) 100%);
+  z-index: 998;
+  pointer-events: none;
+}
+
+.crt-fullscreen-mode .window-panel {
+  border: none;
+  box-shadow: none;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.crt-fullscreen-mode .window-content {
+  flex: 1;
+  overflow-y: auto;
+  padding: 40px 10%;
+}
+
+.crt-fullscreen-mode .container {
+  max-width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.crt-fullscreen-mode .markdown-body {
+  color: var(--text-color);
+  text-shadow: 0 0 3px rgba(var(--text-color), 0.5); /* slight phosphor glow */
+}

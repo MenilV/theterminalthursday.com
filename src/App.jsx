@@ -92,6 +92,24 @@ function App() {
     setTheme(prev => prev === 'windows' ? 'unix' : 'windows');
   };
 
+  if (currentIssue) {
+    return (
+      <div className="crt-fullscreen-mode">
+        {/* Toggle Theme globally from inside the reader */}
+        <div style={{ position: 'fixed', top: '10px', right: '20px', zIndex: 9999 }}>
+          <button onClick={toggleTheme} className="btn" style={{ opacity: 0.7 }}>
+            {theme === 'windows' ? 'UNIX' : 'WIN95'}
+          </button>
+        </div>
+        <IssueReader 
+          theme={theme} 
+          issueId={currentIssue} 
+          onBack={() => { window.location.hash = '#archive'; }} 
+        />
+      </div>
+    );
+  }
+
   return (
     <div className="app">
       {/* Taskbar / Navbar */}
@@ -123,24 +141,14 @@ function App() {
 
         {/* Main Content Windows */}
         <main style={{ flex: 1, minWidth: 0, display: 'flex', flexDirection: 'column', gap: '40px' }}>
-          {currentIssue ? (
-            <IssueReader 
-              theme={theme} 
-              issueId={currentIssue} 
-              onBack={() => { window.location.hash = '#archive'; }} 
-            />
-          ) : (
-            <>
-              <Hero theme={theme} />
-              <section id="subscribe">
-                <div className="container" style={{ maxWidth: '90%', display: 'flex', flexWrap: 'wrap', gap: '40px', alignItems: 'stretch' }}>
-                  <Newsletter theme={theme} />
-                  <HallOfFameCarousel theme={theme} />
-                </div>
-              </section>
-              <Archive theme={theme} />
-            </>
-          )}
+          <Hero theme={theme} />
+          <section id="subscribe">
+            <div className="container" style={{ maxWidth: '90%', display: 'flex', flexWrap: 'wrap', gap: '40px', alignItems: 'stretch' }}>
+              <Newsletter theme={theme} />
+              <HallOfFameCarousel theme={theme} />
+            </div>
+          </section>
+          <Archive theme={theme} />
         </main>
         
         {/* Right Sidebar to balance layout visually */}

@@ -25,7 +25,7 @@ const IssueReader = ({ theme, issueId, onBack }) => {
   }, [issueId]);
 
   return (
-    <section id="issue-reader" style={{ padding: '0 0 20px 0' }}>
+    <section id="issue-reader" style={{ height: '100%', padding: 0 }}>
       <div className="container">
         
         <div style={{ marginBottom: '20px' }}>
