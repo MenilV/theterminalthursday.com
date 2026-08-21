@@ -8,6 +8,7 @@ import ServerStatusWidget from './components/ServerStatusWidget';
 import Newsletter from './components/Newsletter';
 import Archive from './components/Archive';
 import HallOfFameCarousel from './components/HallOfFameCarousel';
+import IssueReader from './components/IssueReader';
 import './index.css';
 
 function App() {
@@ -15,6 +16,10 @@ function App() {
     return localStorage.getItem('ttt_theme') || 'windows';
   });
   const [showCredits, setShowCredits] = useState(false);
+  const [currentIssue, setCurrentIssue] = useState(() => {
+    const hash = window.location.hash;
+    return hash.startsWith('#archive/') ? hash.replace('#archive/', '') : null;
+  });
 
   useEffect(() => {
     // Switch CSS theme variables
@@ -40,26 +45,47 @@ function App() {
       
       const href = target.getAttribute('href');
       
-      // Handle # section links
+      // Handle # section links (but ignore #archive/ routes)
       if (href && href.startsWith('#') && href.length > 1) {
+        if (href.startsWith('#archive/')) {
+          // Let the browser handle the hash change naturally
+          return;
+        }
         e.preventDefault();
-        const element = document.querySelector(href);
-        if (element) {
-          element.scrollIntoView({ behavior: 'smooth' });
+        try {
+          const element = document.querySelector(href);
+          if (element) {
+            element.scrollIntoView({ behavior: 'smooth' });
+          }
+        } catch (err) {
+          // Ignore invalid selectors
         }
       } 
       // Handle root logo click
       else if (href === '/') {
         if (window.location.pathname === '/') {
           e.preventDefault();
+          window.location.hash = '';
           window.scrollTo({ top: 0, behavior: 'smooth' });
-          history.replaceState(null, '', '/');
         }
       }
     };
 
+    const handleHashChange = () => {
+      const hash = window.location.hash;
+      if (hash.startsWith('#archive/')) {
+        setCurrentIssue(hash.replace('#archive/', ''));
+      } else {
+        setCurrentIssue(null);
+      }
+    };
+
     document.addEventListener('click', handleSmoothScroll);
-    return () => document.removeEventListener('click', handleSmoothScroll);
+    window.addEventListener('hashchange', handleHashChange);
+    return () => {
+      document.removeEventListener('click', handleSmoothScroll);
+      window.removeEventListener('hashchange', handleHashChange);
+    };
   }, []);
 
   const toggleTheme = () => {
@@ -97,14 +123,24 @@ function App() {
 
         {/* Main Content Windows */}
         <main style={{ flex: 1, minWidth: 0, display: 'flex', flexDirection: 'column', gap: '40px' }}>
-          <Hero theme={theme} />
-          <section id="subscribe">
-            <div className="container" style={{ maxWidth: '90%', display: 'flex', flexWrap: 'wrap', gap: '40px', alignItems: 'stretch' }}>
-              <Newsletter theme={theme} />
-              <HallOfFameCarousel theme={theme} />
-            </div>
-          </section>
-          {new Date() >= new Date('2026-08-20T00:00:00Z') && <Archive theme={theme} />}
+          {currentIssue ? (
+            <IssueReader 
+              theme={theme} 
+              issueId={currentIssue} 
+              onBack={() => { window.location.hash = '#archive'; }} 
+            />
+          ) : (
+            <>
+              <Hero theme={theme} />
+              <section id="subscribe">
+                <div className="container" style={{ maxWidth: '90%', display: 'flex', flexWrap: 'wrap', gap: '40px', alignItems: 'stretch' }}>
+                  <Newsletter theme={theme} />
+                  <HallOfFameCarousel theme={theme} />
+                </div>
+              </section>
+              <Archive theme={theme} />
+            </>
+          )}
         </main>
         
         {/* Right Sidebar to balance layout visually */}

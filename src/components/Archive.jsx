@@ -1,9 +1,7 @@
 import React from 'react';
 
 const ARCHIVE_POSTS = [
-  { id: '003', date: '08-01-2026', title: 'THE_MAGIC_OF_SQLITE', description: 'Why the most deployed database engine in the world is a masterclass in C programming.', category: 'DB' },
-  { id: '002', date: '07-25-2026', title: 'TAILSCALE_ZERO_CONFIG', description: 'How Tailscale uses WireGuard to make complex networking disappear completely.', category: 'NET' },
-  { id: '001', date: '07-18-2026', title: 'CURL_INTERNET_BACKBONE', description: 'A deep dive into Daniel Stenberg\'s ubiquitous tool that powers the modern web.', category: 'CLI' }
+  { id: '001', date: '08-20-2026', title: 'TAKING_CONTROL_BACK', description: 'A deep dive into 8 tools that let you replace expensive SaaS subscriptions.', category: 'OSS' }
 ];
 
 const Archive = ({ theme }) => {
@@ -55,7 +53,7 @@ const Archive = ({ theme }) => {
                     <span style={{ border: '2px solid var(--border-color)', padding: '2px 8px', fontWeight: '700' }}>
                       TYPE: {post.category}
                     </span>
-                    <a href={`/archive/${post.id}`} className="btn" style={{ padding: '6px 16px', fontSize: '0.9rem' }}>
+                    <a href={`#archive/${post.id}`} className="btn" style={{ padding: '6px 16px', fontSize: '0.9rem' }}>
                       {theme === 'windows' ? 'READ.EXE' : './read.sh'}
                     </a>
                   </div>

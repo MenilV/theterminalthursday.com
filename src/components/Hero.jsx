@@ -1,8 +1,6 @@
 import React from 'react';
 
 const Hero = ({ theme }) => {
-  const isArchiveUnlocked = new Date() >= new Date('2026-08-20T00:00:00Z');
-
   return (
     <section style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
       <div className="container" style={{ maxWidth: '90%' }}>
@@ -35,11 +33,9 @@ const Hero = ({ theme }) => {
               <a href="#subscribe" className="btn btn-primary">
                 {theme === 'windows' ? 'SUBSCRIBE.BAT' : './subscribe.sh'}
               </a>
-              {isArchiveUnlocked && (
-                <a href="#archive" className="btn">
-                  {theme === 'windows' ? 'READ_ARCHIVE.TXT' : 'cat archive.txt'}
-                </a>
-              )}
+              <a href="#archive" className="btn">
+                {theme === 'windows' ? 'READ_ARCHIVE.TXT' : 'cat archive.txt'}
+              </a>
             </div>
             
           </div>
