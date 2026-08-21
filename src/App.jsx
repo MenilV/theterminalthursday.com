@@ -16,6 +16,9 @@ function App() {
     return localStorage.getItem('ttt_theme') || 'windows';
   });
   const [showCredits, setShowCredits] = useState(false);
+  const [readingMode, setReadingMode] = useState(() => {
+    return localStorage.getItem('ttt_reading_mode') || 'crt';
+  });
   const [currentIssue, setCurrentIssue] = useState(() => {
     const hash = window.location.hash;
     return hash.startsWith('#archive/') ? hash.replace('#archive/', '') : null;
@@ -36,6 +39,10 @@ function App() {
       metaTheme.content = theme === 'windows' ? '#c0c0c0' : '#000000';
     }
   }, [theme]);
+
+  useEffect(() => {
+    localStorage.setItem('ttt_reading_mode', readingMode);
+  }, [readingMode]);
 
   // Intercept anchor clicks to scroll manually without updating URL hash
   useEffect(() => {
@@ -92,20 +99,29 @@ function App() {
     setTheme(prev => prev === 'windows' ? 'unix' : 'windows');
   };
 
-  if (currentIssue) {
+  if (currentIssue && readingMode === 'crt') {
     return (
       <div className="crt-fullscreen-mode">
-        {/* Toggle Theme globally from inside the reader */}
-        <div style={{ position: 'fixed', top: '10px', right: '20px', zIndex: 9999 }}>
-          <button onClick={toggleTheme} className="btn" style={{ opacity: 0.7 }}>
+        {/* Top UI Bar (Outside CRT) */}
+        <div style={{ position: 'fixed', top: '15px', left: '25px', zIndex: 9999 }}>
+          <button onClick={() => { window.location.hash = '#archive'; }} className="btn" style={{ opacity: 0.8 }}>
+            {theme === 'windows' ? '◄ BACK_TO_ROOT.EXE' : 'cd ..'}
+          </button>
+        </div>
+        <div style={{ position: 'fixed', top: '15px', right: '25px', zIndex: 9999, display: 'flex', gap: '15px', alignItems: 'center' }}>
+          <button onClick={() => setReadingMode('clean')} className="btn" style={{ opacity: 0.8 }}>
+            {theme === 'windows' ? 'CLEAN_VIEW.EXE' : 'clean-view.sh'}
+          </button>
+          <button onClick={toggleTheme} className="btn" style={{ opacity: 0.8 }}>
             {theme === 'windows' ? 'UNIX' : 'WIN95'}
           </button>
         </div>
-        <IssueReader 
-          theme={theme} 
-          issueId={currentIssue} 
-          onBack={() => { window.location.hash = '#archive'; }} 
-        />
+        
+        <div className="crt-monitor-container">
+          <div className="crt-screen-glass">
+            <IssueReader theme={theme} issueId={currentIssue} />
+          </div>
+        </div>
       </div>
     );
   }
@@ -141,14 +157,20 @@ function App() {
 
         {/* Main Content Windows */}
         <main style={{ flex: 1, minWidth: 0, display: 'flex', flexDirection: 'column', gap: '40px' }}>
-          <Hero theme={theme} />
-          <section id="subscribe">
-            <div className="container" style={{ maxWidth: '90%', display: 'flex', flexWrap: 'wrap', gap: '40px', alignItems: 'stretch' }}>
-              <Newsletter theme={theme} />
-              <HallOfFameCarousel theme={theme} />
-            </div>
-          </section>
-          <Archive theme={theme} />
+          {currentIssue && readingMode === 'clean' ? (
+            <IssueReader theme={theme} issueId={currentIssue} readingMode={readingMode} setReadingMode={setReadingMode} />
+          ) : (
+            <>
+              <Hero theme={theme} />
+              <section id="subscribe">
+                <div className="container" style={{ maxWidth: '90%', display: 'flex', flexWrap: 'wrap', gap: '40px', alignItems: 'stretch' }}>
+                  <Newsletter theme={theme} />
+                  <HallOfFameCarousel theme={theme} />
+                </div>
+              </section>
+              <Archive theme={theme} />
+            </>
+          )}
         </main>
         
         {/* Right Sidebar to balance layout visually */}
