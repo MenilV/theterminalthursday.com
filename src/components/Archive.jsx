@@ -1,8 +1,5 @@
 import React from 'react';
-
-const ARCHIVE_POSTS = [
-  { id: '001', date: '08-20-2026', title: 'TAKING_CONTROL_BACK', description: 'A deep dive into 8 tools that let you replace expensive SaaS subscriptions.', category: 'OSS' }
-];
+import ARCHIVE_POSTS from '../data/posts.json';
 
 const Archive = ({ theme }) => {
   return (

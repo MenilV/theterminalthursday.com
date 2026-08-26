@@ -6,5 +6,12 @@
     <description>A serial homage to the open-source projects, tools, and maintainers that form the bedrock of the modern web.</description>
     <language>en-us</language>
     <atom:link href="https://theterminalthursday.com/rss.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>VOL_001: TAKING_CONTROL_BACK</title>
+      <link>https://theterminalthursday.com/#archive/001</link>
+      <guid>https://theterminalthursday.com/#archive/001</guid>
+      <pubDate>Wed, 19 Aug 2026 22:00:00 GMT</pubDate>
+      <description>A deep dive into 8 tools that let you replace expensive SaaS subscriptions.</description>
+    </item>
   </channel>
 </rss>
