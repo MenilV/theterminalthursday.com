@@ -57,7 +57,7 @@ const IssueReader = ({ theme, issueId, readingMode, setReadingMode }) => {
             <button onClick={onBack} className="btn">
               {theme === 'windows' ? '◄ BACK_TO_ROOT.EXE' : 'cd ..'}
             </button>
-            <button onClick={() => setReadingMode('crt')} className="btn">
+            <button onClick={() => setReadingMode('crt')} className="btn crt-mode-btn hide-mobile">
               {theme === 'windows' ? 'CRT_MODE.EXE' : 'crt-mode.sh'}
             </button>
           </div>

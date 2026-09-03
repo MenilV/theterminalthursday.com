@@ -450,6 +450,12 @@ footer {
   }
 }
 
+@media (max-width: 768px) {
+  .crt-mode-btn {
+    display: none !important;
+  }
+}
+
 /* =========================================
    CRT FULLSCREEN EXPERIMENT (IMAGE BASED)
    ========================================= */

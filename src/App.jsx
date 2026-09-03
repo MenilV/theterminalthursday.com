@@ -17,6 +17,9 @@ function App() {
   });
   const [showCredits, setShowCredits] = useState(false);
   const [readingMode, setReadingMode] = useState(() => {
+    if (typeof window !== 'undefined' && window.innerWidth <= 768) {
+      return 'clean';
+    }
     return localStorage.getItem('ttt_reading_mode') || 'crt';
   });
   const [currentIssue, setCurrentIssue] = useState(() => {
@@ -43,6 +46,18 @@ function App() {
   useEffect(() => {
     localStorage.setItem('ttt_reading_mode', readingMode);
   }, [readingMode]);
+
+  // Revert to non-CRT clean mode when switching to mobile viewport
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth <= 768) {
+        setReadingMode((prev) => (prev === 'crt' ? 'clean' : prev));
+      }
+    };
+
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
   // Intercept anchor clicks to scroll manually without updating URL hash
   useEffect(() => {
@@ -99,7 +114,7 @@ function App() {
     setTheme(prev => prev === 'windows' ? 'unix' : 'windows');
   };
 
-  if (currentIssue && readingMode === 'crt') {
+  if (currentIssue && readingMode === 'crt' && (typeof window === 'undefined' || window.innerWidth > 768)) {
     return (
       <div className="crt-fullscreen-mode">
         {/* Top UI Bar (Outside CRT) */}
@@ -157,7 +172,7 @@ function App() {
 
         {/* Main Content Windows */}
         <main style={{ flex: 1, minWidth: 0, display: 'flex', flexDirection: 'column', gap: '40px' }}>
-          {currentIssue && readingMode === 'clean' ? (
+          {currentIssue ? (
             <IssueReader theme={theme} issueId={currentIssue} readingMode={readingMode} setReadingMode={setReadingMode} />
           ) : (
             <>
