@@ -1,5 +1,12 @@
 [
   {
+    "id": "003",
+    "date": "09-03-2026",
+    "title": "THE_DEEPFAKE_ISSUE",
+    "description": "The open-source community is shipping impersonation tech that is absolutely staggering, and it all runs locally.",
+    "category": "OSS"
+  },
+  {
     "id": "002",
     "date": "08-27-2026",
     "title": "THE_SHADOW_ECOSYSTEM",
