@@ -9,7 +9,7 @@ const Archive = ({ theme }) => {
     <section id="archive" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
       <div className="container" style={{ maxWidth: '90%' }}>
         
-        <div className="window-panel animate-pop-in delay-2">
+        <div className="window-panel animate-pop-in delay-2" style={{ backgroundColor: 'var(--input-bg)' }}>
           
           <div className="window-header">
             <span>{theme === 'windows' ? 'FILE_EXPLORER.EXE - C:\\TTT\\ARCHIVE' : '~/ttt $ ls -la ./archive'}</span>
@@ -31,6 +31,7 @@ const Archive = ({ theme }) => {
                   key={post.id} 
                   className="highlight-box"
                   style={{ 
+                    backgroundColor: 'var(--panel-bg)',
                     padding: '24px', 
                     boxShadow: 'var(--shadow-size) var(--shadow-size) 0px var(--shadow-color)',
                     position: 'relative'
