@@ -22,7 +22,7 @@ const Archive = ({ theme }) => {
               PREVIOUS_SERIALS
             </h2>
 
-            <div style={{ display: 'grid', gap: '24px' }}>
+            <div style={{ display: 'grid', gap: '24px', maxHeight: '500px', overflowY: 'auto', paddingRight: '8px' }}>
               {ARCHIVE_POSTS.map((post) => (
                 <article 
                   key={post.id} 
@@ -50,7 +50,7 @@ const Archive = ({ theme }) => {
                     <span style={{ border: '2px solid var(--border-color)', padding: '2px 8px', fontWeight: '700' }}>
                       TYPE: {post.category}
                     </span>
-                    <a href={`#archive/${post.id}`} className="btn" style={{ padding: '6px 16px', fontSize: '0.9rem' }}>
+                    <a href={`#archive/${post.id}`} className="btn btn-primary" style={{ padding: '6px 16px', fontSize: '0.9rem' }}>
                       {theme === 'windows' ? 'READ.EXE' : './read.sh'}
                     </a>
                   </div>

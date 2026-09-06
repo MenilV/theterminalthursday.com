@@ -177,13 +177,13 @@ function App() {
           ) : (
             <>
               <Hero theme={theme} />
+              <Archive theme={theme} />
               <section id="subscribe">
                 <div className="container" style={{ maxWidth: '90%', display: 'flex', flexWrap: 'wrap', gap: '40px', alignItems: 'stretch' }}>
                   <Newsletter theme={theme} />
                   <HallOfFameCarousel theme={theme} />
                 </div>
               </section>
-              <Archive theme={theme} />
             </>
           )}
         </main>
