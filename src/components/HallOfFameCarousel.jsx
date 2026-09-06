@@ -206,8 +206,22 @@ const HallOfFameCarousel = ({ theme }) => {
                 <div>
                   <span style={{ fontSize: '0.75rem', fontWeight: 'bold', textTransform: 'uppercase', opacity: 0.8 }}>ID NO: {m.id}</span>
                 </div>
-                <div>
-                  <span style={{ fontWeight: 'bold', fontSize: '1.2rem', textTransform: 'uppercase', fontFamily: 'var(--font-mono)' }}>{m.name}</span>
+                <div style={{ overflow: 'hidden', width: '100%' }}>
+                  <span 
+                    title={m.name}
+                    style={{ 
+                      fontWeight: 'bold', 
+                      fontSize: '1.2rem', 
+                      textTransform: 'uppercase', 
+                      fontFamily: 'var(--font-mono)',
+                      display: 'block',
+                      whiteSpace: 'nowrap',
+                      overflow: 'hidden',
+                      textOverflow: 'ellipsis'
+                    }}
+                  >
+                    {m.name}
+                  </span>
                 </div>
                 <div>
                   <span style={{ fontFamily: 'var(--font-mono)', fontSize: '1rem', fontWeight: 'bold' }}>@{m.alias}</span>
