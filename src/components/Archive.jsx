@@ -1,10 +1,13 @@
-import React from 'react';
+import React, { useState } from 'react';
 import ARCHIVE_POSTS from '../data/posts.json';
 
 const Archive = ({ theme }) => {
+  const [showAll, setShowAll] = useState(false);
+  const displayPosts = showAll ? ARCHIVE_POSTS : ARCHIVE_POSTS.slice(0, 3);
+
   return (
-    <section id="archive">
-      <div className="container">
+    <section id="archive" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+      <div className="container" style={{ maxWidth: '90%' }}>
         
         <div className="window-panel animate-pop-in delay-2">
           
@@ -22,8 +25,8 @@ const Archive = ({ theme }) => {
               PREVIOUS_SERIALS
             </h2>
 
-            <div style={{ display: 'grid', gap: '24px', maxHeight: '500px', overflowY: 'auto', paddingRight: '8px' }}>
-              {ARCHIVE_POSTS.map((post) => (
+            <div style={{ display: 'grid', gap: '24px' }}>
+              {displayPosts.map((post) => (
                 <article 
                   key={post.id} 
                   className="highlight-box"
@@ -57,6 +60,15 @@ const Archive = ({ theme }) => {
                 </article>
               ))}
             </div>
+
+            {!showAll && ARCHIVE_POSTS.length > 3 && (
+              <div style={{ display: 'flex', justifyContent: 'center', marginTop: '32px' }}>
+                <button onClick={() => setShowAll(true)} className="btn">
+                  {theme === 'windows' ? 'LOAD_MORE.BAT' : './load_more.sh'}
+                </button>
+              </div>
+            )}
+            
           </div>
         </div>
 
