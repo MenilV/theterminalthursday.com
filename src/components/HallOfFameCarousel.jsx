@@ -101,7 +101,7 @@ const maintainers = [
     revealDate: '2026-08-20T00:00:00Z' // Unlocks Aug 20 (Launch Day!)
   },
   {
-    name: 'David Heinemeier Hansson',
+    name: 'David H. Hansson',
     alias: 'dhh',
     projects: [{ name: 'Ruby on Rails', url: 'https://github.com/rails/rails' }],
     desc: 'Creator of Ruby on Rails, establishing the paradigm for modern MVC web frameworks.',
@@ -206,22 +206,8 @@ const HallOfFameCarousel = ({ theme }) => {
                 <div>
                   <span style={{ fontSize: '0.75rem', fontWeight: 'bold', textTransform: 'uppercase', opacity: 0.8 }}>ID NO: {m.id}</span>
                 </div>
-                <div style={{ overflow: 'hidden', width: '100%' }}>
-                  <span 
-                    title={m.name}
-                    style={{ 
-                      fontWeight: 'bold', 
-                      fontSize: '1.2rem', 
-                      textTransform: 'uppercase', 
-                      fontFamily: 'var(--font-mono)',
-                      display: 'block',
-                      whiteSpace: 'nowrap',
-                      overflow: 'hidden',
-                      textOverflow: 'ellipsis'
-                    }}
-                  >
-                    {m.name}
-                  </span>
+                <div>
+                  <span style={{ fontWeight: 'bold', fontSize: '1.2rem', textTransform: 'uppercase', fontFamily: 'var(--font-mono)' }}>{m.name}</span>
                 </div>
                 <div>
                   <span style={{ fontFamily: 'var(--font-mono)', fontSize: '1rem', fontWeight: 'bold' }}>@{m.alias}</span>
