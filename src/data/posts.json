@@ -1,5 +1,12 @@
 [
   {
+    "id": "004",
+    "date": "09-10-2026",
+    "title": "THE_TERMINAL_AESTHETE",
+    "description": "Some of the most beautiful, meticulously designed interfaces in the world right now run entirely in your command line.",
+    "category": "OSS"
+  },
+  {
     "id": "003",
     "date": "09-03-2026",
     "title": "THE_DEEPFAKE_ISSUE",

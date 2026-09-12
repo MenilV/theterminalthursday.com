@@ -7,6 +7,13 @@
     <language>en-us</language>
     <atom:link href="https://theterminalthursday.com/rss.xml" rel="self" type="application/rss+xml" />
     <item>
+      <title>VOL_004: THE_TERMINAL_AESTHETE</title>
+      <link>https://theterminalthursday.com/#archive/004</link>
+      <guid>https://theterminalthursday.com/#archive/004</guid>
+      <pubDate>Wed, 09 Sep 2026 22:00:00 GMT</pubDate>
+      <description>Some of the most beautiful, meticulously designed interfaces in the world right now run entirely in your command line.</description>
+    </item>
+    <item>
       <title>VOL_003: THE_DEEPFAKE_ISSUE</title>
       <link>https://theterminalthursday.com/#archive/003</link>
       <guid>https://theterminalthursday.com/#archive/003</guid>
