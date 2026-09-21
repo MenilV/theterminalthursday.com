@@ -7,6 +7,13 @@
     <language>en-us</language>
     <atom:link href="https://theterminalthursday.com/rss.xml" rel="self" type="application/rss+xml" />
     <item>
+      <title>VOL_005: THE_DATA_EXTRACTION_BLUEPRINT</title>
+      <link>https://theterminalthursday.com/#archive/005</link>
+      <guid>https://theterminalthursday.com/#archive/005</guid>
+      <pubDate>Wed, 16 Sep 2026 22:00:00 GMT</pubDate>
+      <description>Data is the new oil, but most of it is trapped in terrible formats. Learn how to extract, clean, and weaponize it.</description>
+    </item>
+    <item>
       <title>VOL_004: THE_TERMINAL_AESTHETE</title>
       <link>https://theterminalthursday.com/#archive/004</link>
       <guid>https://theterminalthursday.com/#archive/004</guid>

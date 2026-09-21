@@ -1,5 +1,12 @@
 [
   {
+    "id": "005",
+    "date": "09-17-2026",
+    "title": "THE_DATA_EXTRACTION_BLUEPRINT",
+    "description": "Data is the new oil, but most of it is trapped in terrible formats. Learn how to extract, clean, and weaponize it.",
+    "category": "OSS"
+  },
+  {
     "id": "004",
     "date": "09-10-2026",
     "title": "THE_TERMINAL_AESTHETE",
