@@ -73,6 +73,12 @@ const Archive = ({ theme }) => {
                   placeholder={theme === 'windows' ? "Search tools, issues..." : '"search..." ./archive'}
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
+                  onKeyDown={(e) => {
+                    if (e.key === 'Escape') {
+                      setSearchQuery('');
+                      e.target.blur();
+                    }
+                  }}
                   style={{
                     flex: 1,
                     padding: '8px 12px',
