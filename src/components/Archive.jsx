@@ -16,6 +16,33 @@ const Archive = ({ theme }) => {
 
   const displayPosts = (searchQuery || showAll) ? filteredPosts : filteredPosts.slice(0, 3);
 
+  const getSnippet = (content, query) => {
+    if (!query || !content) return null;
+    const lowerContent = content.toLowerCase();
+    const lowerQuery = query.toLowerCase();
+    const index = lowerContent.indexOf(lowerQuery);
+    
+    if (index === -1) return null;
+    
+    const start = Math.max(0, index - 40);
+    const end = Math.min(content.length, index + query.length + 40);
+    
+    let snippet = content.substring(start, end);
+    
+    const regex = new RegExp(`(${query})`, 'gi');
+    const parts = snippet.split(regex);
+    
+    return (
+      <div style={{ marginTop: '8px', fontSize: '0.85rem', fontStyle: 'italic', color: 'var(--text-color)', opacity: 0.9 }}>
+        ...{parts.map((part, i) => 
+          part.toLowerCase() === lowerQuery 
+            ? <mark key={i} style={{ backgroundColor: '#ffeb3b', color: '#000', padding: '0 2px', fontWeight: 'bold' }}>{part}</mark> 
+            : part
+        )}...
+      </div>
+    );
+  };
+
   return (
     <section id="archive" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
       <div className="container" style={{ maxWidth: '90%' }}>
@@ -78,9 +105,12 @@ const Archive = ({ theme }) => {
                       position: 'relative'
                     }}
                   >
-                    <div style={{ display: 'flex', justifyContent: 'space-between', borderBottom: '2px dashed var(--border-color)', paddingBottom: '12px', marginBottom: '16px' }}>
-                      <span style={{ fontWeight: '700' }}>VOL_{post.id}</span>
-                      <span style={{ fontWeight: '600' }}>{post.date}</span>
+                    <div style={{ borderBottom: '2px dashed var(--border-color)', paddingBottom: '12px', marginBottom: '16px' }}>
+                      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                        <span style={{ fontWeight: '700' }}>VOL_{post.id}</span>
+                        <span style={{ fontWeight: '600' }}>{post.date}</span>
+                      </div>
+                      {searchQuery && post.content && getSnippet(post.content, searchQuery)}
                     </div>
                     
                     <h3 className="accent-box" style={{ fontSize: '1.5rem', marginBottom: '12px', display: 'inline-block', padding: '4px 8px' }}>
