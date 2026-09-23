@@ -1,5 +1,12 @@
 [
   {
+    "id": "006",
+    "date": "09-24-2026",
+    "title": "THE_DECISION_ENGINES",
+    "description": "The open-source ecosystem is exploding with System 1 AI tools built around Jev. Fast, deterministic semantic logic.",
+    "category": "OSS"
+  },
+  {
     "id": "005",
     "date": "09-17-2026",
     "title": "THE_DATA_EXTRACTION_BLUEPRINT",

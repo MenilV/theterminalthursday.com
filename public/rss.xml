@@ -7,6 +7,13 @@
     <language>en-us</language>
     <atom:link href="https://theterminalthursday.com/rss.xml" rel="self" type="application/rss+xml" />
     <item>
+      <title>VOL_006: THE_DECISION_ENGINES</title>
+      <link>https://theterminalthursday.com/#archive/006</link>
+      <guid>https://theterminalthursday.com/#archive/006</guid>
+      <pubDate>Wed, 23 Sep 2026 22:00:00 GMT</pubDate>
+      <description>The open-source ecosystem is exploding with System 1 AI tools built around Jev. Fast, deterministic semantic logic.</description>
+    </item>
+    <item>
       <title>VOL_005: THE_DATA_EXTRACTION_BLUEPRINT</title>
       <link>https://theterminalthursday.com/#archive/005</link>
       <guid>https://theterminalthursday.com/#archive/005</guid>
