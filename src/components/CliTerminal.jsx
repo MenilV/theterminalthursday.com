@@ -175,7 +175,6 @@ const CliTerminal = ({ theme }) => {
             disabled={isProcessing}
             autoComplete="off"
             spellCheck="false"
-            autoFocus
             style={{ 
               background: 'transparent', 
               border: 'none', 
