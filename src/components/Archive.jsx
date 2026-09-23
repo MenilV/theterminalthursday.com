@@ -64,8 +64,8 @@ const Archive = ({ theme }) => {
                 PREVIOUS_SERIALS
               </h2>
               
-              <div style={{ display: 'flex', alignItems: 'center', flex: '1 1 300px', maxWidth: '500px' }}>
-                <span style={{ marginRight: '12px', fontWeight: 'bold', whiteSpace: 'nowrap' }}>
+              <div style={{ display: 'flex', alignItems: 'center', flexWrap: 'wrap', gap: '8px', flex: '1 1 300px', maxWidth: '500px' }}>
+                <span style={{ fontWeight: 'bold', whiteSpace: 'nowrap' }}>
                   {theme === 'windows' ? 'FIND_FILE.EXE >' : '~/ttt $ grep -i'}
                 </span>
                 <input 
