@@ -22,6 +22,9 @@ const IssueReader = ({ theme, issueId, readingMode, setReadingMode }) => {
         return res.text();
       })
       .then(text => {
+        if (text.trim().toLowerCase().startsWith('<!doctype html>')) {
+          throw new Error('Cloudflare fallback HTML returned');
+        }
         setContent(text);
         setLoading(false);
       })
