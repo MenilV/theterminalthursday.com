@@ -6,13 +6,14 @@ const NotFound = ({ theme }) => {
   }, []);
 
   const goHome = () => {
-    window.history.pushState(null, '', '/');
-    window.dispatchEvent(new PopStateEvent('popstate'));
+    window.location.href = '/';
   };
 
   if (theme === 'windows') {
     return (
-      <div style={{
+      <div 
+        onClick={goHome}
+        style={{
         height: '100vh',
         width: '100vw',
         backgroundColor: '#0000a8',
@@ -27,7 +28,8 @@ const NotFound = ({ theme }) => {
         position: 'fixed',
         top: 0,
         left: 0,
-        zIndex: 99999
+        zIndex: 99999,
+        cursor: 'pointer'
       }}>
         <div style={{ maxWidth: '800px', textAlign: 'left' }}>
           <div style={{ 
@@ -63,7 +65,9 @@ const NotFound = ({ theme }) => {
 
   // UNIX Kernel Panic
   return (
-    <div style={{
+    <div 
+      onClick={goHome}
+      style={{
       height: '100vh',
       width: '100vw',
       backgroundColor: '#000000',
@@ -78,7 +82,8 @@ const NotFound = ({ theme }) => {
       top: 0,
       left: 0,
       zIndex: 99999,
-      overflow: 'auto'
+      overflow: 'auto',
+      cursor: 'pointer'
     }}>
       <div style={{ maxWidth: '800px', textAlign: 'left', lineHeight: '1.5' }}>
         <p>VFS: Cannot open root device "hda1" or unknown-block(0,0)</p>
