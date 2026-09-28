@@ -3,6 +3,16 @@ import React, { useEffect } from 'react';
 const NotFound = ({ theme }) => {
   useEffect(() => {
     window.scrollTo(0, 0);
+    
+    // Tell search engines not to index this fake URL (Soft 404 handling)
+    const meta = document.createElement('meta');
+    meta.name = 'robots';
+    meta.content = 'noindex';
+    document.head.appendChild(meta);
+    
+    return () => {
+      document.head.removeChild(meta);
+    };
   }, []);
 
   const goHome = () => {
