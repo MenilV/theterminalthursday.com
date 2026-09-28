@@ -44,6 +44,10 @@ const NotFound = ({ theme }) => {
             Windows
           </div>
           
+          <h1 style={{ fontSize: '8rem', margin: '0 0 40px 0', fontWeight: 'bold', lineHeight: '1' }}>
+            404
+          </h1>
+          
           <p style={{ fontSize: '1.2rem', marginBottom: '20px', lineHeight: '1.5' }}>
             A fatal exception 0E has occurred at 0028:C0011E36 in VXD VMM(01) +<br/>
             00010E36. The current route could not be found.
@@ -86,6 +90,9 @@ const NotFound = ({ theme }) => {
       cursor: 'pointer'
     }}>
       <div style={{ maxWidth: '800px', textAlign: 'left', lineHeight: '1.5' }}>
+        <h1 style={{ fontSize: '6rem', margin: '0 0 40px 0', color: '#ff0000', fontWeight: 'bold', lineHeight: '1' }}>
+          404
+        </h1>
         <p>VFS: Cannot open root device "hda1" or unknown-block(0,0)</p>
         <p>Please append a correct "root=" boot option; here are the available partitions:</p>
         <p>Kernel panic - not syncing: VFS: Unable to mount root fs on unknown-block(0,0)</p>
