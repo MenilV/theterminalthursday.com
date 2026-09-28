@@ -9,6 +9,7 @@ import Newsletter from './components/Newsletter';
 import Archive from './components/Archive';
 import HallOfFameCarousel from './components/HallOfFameCarousel';
 import IssueReader from './components/IssueReader';
+import NotFound from './components/NotFound';
 import './index.css';
 
 function App() {
@@ -130,6 +131,13 @@ function App() {
   const toggleTheme = () => {
     setTheme(prev => prev === 'windows' ? 'unix' : 'windows');
   };
+
+  const path = typeof window !== 'undefined' ? window.location.pathname : '/';
+  const isGlobal404 = path !== '/' && !path.startsWith('/archive/');
+
+  if (isGlobal404) {
+    return <NotFound theme={theme} />;
+  }
 
   if (currentIssue && readingMode === 'crt' && (typeof window === 'undefined' || window.innerWidth > 768)) {
     return (

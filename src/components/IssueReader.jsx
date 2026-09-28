@@ -3,14 +3,19 @@ import ReactMarkdown from 'react-markdown';
 
 import InlineSubscribe from './InlineSubscribe';
 
+import NotFound from './NotFound';
+
 const IssueReader = ({ theme, issueId, readingMode, setReadingMode }) => {
   const [content, setContent] = useState('');
   const [loading, setLoading] = useState(true);
+  const [is404, setIs404] = useState(false);
 
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'instant' });
     
     setLoading(true);
+    setIs404(false);
+    
     fetch(`/archive/${issueId}.md`)
       .then(res => {
         if (!res.ok) throw new Error('Issue not found');
@@ -21,10 +26,14 @@ const IssueReader = ({ theme, issueId, readingMode, setReadingMode }) => {
         setLoading(false);
       })
       .catch(err => {
-        setContent('# ERROR: 404\n\nThe requested archive file could not be found or has been corrupted.');
+        setIs404(true);
         setLoading(false);
       });
   }, [issueId]);
+
+  if (is404) {
+    return <NotFound theme={theme} />;
+  }
 
   const onBack = () => { 
     window.history.pushState(null, '', '/'); 

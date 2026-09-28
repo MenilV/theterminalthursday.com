@@ -559,3 +559,12 @@ footer {
   color: var(--text-color);
   text-shadow: 0 0 2px rgba(var(--text-color), 0.3); 
 }
+
+.blink {
+  animation: blink-animation 1s steps(2, start) infinite;
+}
+@keyframes blink-animation {
+  to {
+    visibility: hidden;
+  }
+}
