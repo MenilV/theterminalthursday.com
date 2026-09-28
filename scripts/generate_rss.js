@@ -11,8 +11,8 @@ const posts = JSON.parse(fs.readFileSync(postsPath, 'utf-8'));
 const rssItems = posts.map(post => `
     <item>
       <title>VOL_${post.id}: ${post.title}</title>
-      <link>https://theterminalthursday.com/#archive/${post.id}</link>
-      <guid>https://theterminalthursday.com/#archive/${post.id}</guid>
+      <link>https://theterminalthursday.com/archive/${post.id}</link>
+      <guid>https://theterminalthursday.com/archive/${post.id}</guid>
       <pubDate>${new Date(post.date).toUTCString()}</pubDate>
       <description>${post.description}</description>
     </item>`).join('');

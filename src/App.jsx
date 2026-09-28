@@ -24,7 +24,18 @@ function App() {
   });
   const [currentIssue, setCurrentIssue] = useState(() => {
     const hash = window.location.hash;
-    return hash.startsWith('#archive/') ? hash.replace('#archive/', '') : null;
+    const path = window.location.pathname;
+    
+    if (hash.startsWith('#archive/')) {
+      const issueId = hash.replace('#archive/', '');
+      window.history.replaceState(null, '', `/archive/${issueId}`);
+      return issueId;
+    }
+    
+    if (path.startsWith('/archive/')) {
+      return path.replace('/archive/', '');
+    }
+    return null;
   });
 
   useEffect(() => {
@@ -59,7 +70,7 @@ function App() {
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
-  // Intercept anchor clicks to scroll manually without updating URL hash
+  // Intercept anchor clicks to scroll manually without updating URL hash or do SPA routing
   useEffect(() => {
     const handleSmoothScroll = (e) => {
       const target = e.target.closest('a');
@@ -67,12 +78,17 @@ function App() {
       
       const href = target.getAttribute('href');
       
-      // Handle # section links (but ignore #archive/ routes)
+      // Handle archive routing
+      if (href && href.startsWith('/archive/')) {
+        e.preventDefault();
+        window.history.pushState(null, '', href);
+        window.dispatchEvent(new PopStateEvent('popstate'));
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+        return;
+      }
+      
+      // Handle # section links
       if (href && href.startsWith('#') && href.length > 1) {
-        if (href.startsWith('#archive/')) {
-          // Let the browser handle the hash change naturally
-          return;
-        }
         e.preventDefault();
         try {
           const element = document.querySelector(href);
@@ -85,28 +101,29 @@ function App() {
       } 
       // Handle root logo click
       else if (href === '/') {
-        if (window.location.pathname === '/') {
-          e.preventDefault();
-          window.location.hash = '';
-          window.scrollTo({ top: 0, behavior: 'smooth' });
+        e.preventDefault();
+        if (window.location.pathname !== '/') {
+          window.history.pushState(null, '', '/');
+          window.dispatchEvent(new PopStateEvent('popstate'));
         }
+        window.scrollTo({ top: 0, behavior: 'smooth' });
       }
     };
 
-    const handleHashChange = () => {
-      const hash = window.location.hash;
-      if (hash.startsWith('#archive/')) {
-        setCurrentIssue(hash.replace('#archive/', ''));
+    const handlePopState = () => {
+      const path = window.location.pathname;
+      if (path.startsWith('/archive/')) {
+        setCurrentIssue(path.replace('/archive/', ''));
       } else {
         setCurrentIssue(null);
       }
     };
 
     document.addEventListener('click', handleSmoothScroll);
-    window.addEventListener('hashchange', handleHashChange);
+    window.addEventListener('popstate', handlePopState);
     return () => {
       document.removeEventListener('click', handleSmoothScroll);
-      window.removeEventListener('hashchange', handleHashChange);
+      window.removeEventListener('popstate', handlePopState);
     };
   }, []);
 
@@ -119,7 +136,7 @@ function App() {
       <div className="crt-fullscreen-mode">
         {/* Top UI Bar (Outside CRT) */}
         <div style={{ position: 'fixed', top: '15px', left: '25px', zIndex: 9999 }}>
-          <button onClick={() => { window.location.hash = '#archive'; }} className="btn" style={{ opacity: 0.8 }}>
+          <button onClick={() => { window.history.pushState(null, '', '/'); window.dispatchEvent(new PopStateEvent('popstate')); }} className="btn" style={{ opacity: 0.8 }}>
             {theme === 'windows' ? '◄ BACK_TO_ROOT.EXE' : 'cd ..'}
           </button>
         </div>

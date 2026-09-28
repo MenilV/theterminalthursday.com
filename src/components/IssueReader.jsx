@@ -26,7 +26,10 @@ const IssueReader = ({ theme, issueId, readingMode, setReadingMode }) => {
       });
   }, [issueId]);
 
-  const onBack = () => { window.location.hash = '#archive'; };
+  const onBack = () => { 
+    window.history.pushState(null, '', '/'); 
+    window.dispatchEvent(new PopStateEvent('popstate'));
+  };
 
   const markdownComponents = {
     img: ({node, ...props}) => (
