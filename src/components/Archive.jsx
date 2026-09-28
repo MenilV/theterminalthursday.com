@@ -6,13 +6,16 @@ const Archive = ({ theme }) => {
   const [showAll, setShowAll] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
 
+  const publishedPosts = ARCHIVE_POSTS.filter(p => !p.publishDate || new Date(p.publishDate) <= new Date());
+  const publishedSearch = SEARCH_INDEX.filter(p => !p.publishDate || new Date(p.publishDate) <= new Date());
+
   const filteredPosts = searchQuery 
-    ? SEARCH_INDEX.filter(post => 
+    ? publishedSearch.filter(post => 
         post.title.toLowerCase().includes(searchQuery.toLowerCase()) || 
         post.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
         post.content.includes(searchQuery.toLowerCase())
       )
-    : ARCHIVE_POSTS;
+    : publishedPosts;
 
   const displayPosts = (searchQuery || showAll) ? filteredPosts : filteredPosts.slice(0, 3);
 

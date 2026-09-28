@@ -1,5 +1,13 @@
 [
   {
+    "id": "007",
+    "date": "10-01-2026",
+    "publishDate": "2026-10-01T06:00:00Z",
+    "title": "THE_MOBILE_DEV_BLUEPRINT",
+    "description": "The mobile dev ecosystem is finally maturing. A look at Scrcpy, Expo, and Google's Now in Android.",
+    "category": "OSS"
+  },
+  {
     "id": "006",
     "date": "09-24-2026",
     "title": "THE_DECISION_ENGINES",

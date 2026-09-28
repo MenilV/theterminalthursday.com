@@ -6,7 +6,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const postsPath = path.join(__dirname, '../src/data/posts.json');
-const posts = JSON.parse(fs.readFileSync(postsPath, 'utf-8'));
+const posts = JSON.parse(fs.readFileSync(postsPath, 'utf-8')).filter(p => !p.publishDate || new Date(p.publishDate) <= new Date());
 
 const rssItems = posts.map(post => `
     <item>

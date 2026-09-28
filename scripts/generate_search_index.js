@@ -5,7 +5,7 @@ const postsPath = path.resolve('src/data/posts.json');
 const archiveDir = path.resolve('public/archive');
 const outputPath = path.resolve('src/data/search_index.json');
 
-const posts = JSON.parse(fs.readFileSync(postsPath, 'utf8'));
+const posts = JSON.parse(fs.readFileSync(postsPath, 'utf8')).filter(p => !p.publishDate || new Date(p.publishDate) <= new Date());
 const searchIndex = [];
 
 for (const post of posts) {

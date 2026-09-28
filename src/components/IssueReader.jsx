@@ -5,6 +5,8 @@ import InlineSubscribe from './InlineSubscribe';
 
 import NotFound from './NotFound';
 
+import POSTS from '../data/posts.json';
+
 const IssueReader = ({ theme, issueId, readingMode, setReadingMode }) => {
   const [content, setContent] = useState('');
   const [loading, setLoading] = useState(true);
@@ -15,6 +17,14 @@ const IssueReader = ({ theme, issueId, readingMode, setReadingMode }) => {
     
     setLoading(true);
     setIs404(false);
+
+    // Security check: ensure post exists and is published
+    const postMeta = POSTS.find(p => p.id === issueId);
+    if (!postMeta || (postMeta.publishDate && new Date(postMeta.publishDate) > new Date())) {
+      setIs404(true);
+      setLoading(false);
+      return;
+    }
     
     fetch(`/archive/${issueId}.md`)
       .then(res => {
