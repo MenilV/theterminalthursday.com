@@ -51,7 +51,7 @@ const ServerStatusWidget = ({ theme }) => {
       <div className="window-content" style={{ padding: '16px', display: 'flex', flexDirection: 'column', flex: 1, gap: '16px', justifyContent: 'space-between' }}>
         <div style={{ display: 'flex', justifyContent: 'space-between', borderBottom: '1px dashed var(--border-color)', paddingBottom: '4px' }}>
           <span style={{ fontWeight: 'bold' }}>SYSTEM:</span>
-          <span style={{ fontFamily: 'var(--font-mono)' }}>TTT_OS v0.5.1</span>
+          <span style={{ fontFamily: 'var(--font-mono)' }}>TTT_OS v0.7.0</span>
         </div>
         
         <div style={{ display: 'flex', justifyContent: 'space-between', borderBottom: '1px dashed var(--border-color)', paddingBottom: '4px' }}>
