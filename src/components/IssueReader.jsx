@@ -18,9 +18,9 @@ const IssueReader = ({ theme, issueId, readingMode, setReadingMode }) => {
     setLoading(true);
     setIs404(false);
 
-    // Security check: ensure post exists (publishDate check temporarily commented out for testing)
+    // Security check: ensure post exists and is published
     const postMeta = POSTS.find(p => p.id === issueId);
-    if (!postMeta /* || (postMeta.publishDate && new Date(postMeta.publishDate) > new Date()) */) {
+    if (!postMeta || (postMeta.publishDate && new Date(postMeta.publishDate) > new Date())) {
       setIs404(true);
       setLoading(false);
       return;

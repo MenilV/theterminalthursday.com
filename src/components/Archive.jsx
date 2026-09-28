@@ -6,9 +6,8 @@ const Archive = ({ theme }) => {
   const [showAll, setShowAll] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
 
-  // Temporarily showing all for testing
-  const publishedPosts = ARCHIVE_POSTS; // .filter(p => !p.publishDate || new Date(p.publishDate) <= new Date());
-  const publishedSearch = SEARCH_INDEX; // .filter(p => !p.publishDate || new Date(p.publishDate) <= new Date());
+  const publishedPosts = ARCHIVE_POSTS.filter(p => !p.publishDate || new Date(p.publishDate) <= new Date());
+  const publishedSearch = SEARCH_INDEX.filter(p => !p.publishDate || new Date(p.publishDate) <= new Date());
 
   const filteredPosts = searchQuery 
     ? publishedSearch.filter(post => 
