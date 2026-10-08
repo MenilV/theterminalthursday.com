@@ -7,6 +7,20 @@
     <language>en-us</language>
     <atom:link href="https://theterminalthursday.com/rss.xml" rel="self" type="application/rss+xml" />
     <item>
+      <title>VOL_008: THE_OPEN_SOURCE_ENTERPRISE</title>
+      <link>https://theterminalthursday.com/archive/008</link>
+      <guid>https://theterminalthursday.com/archive/008</guid>
+      <pubDate>Wed, 07 Oct 2026 22:00:00 GMT</pubDate>
+      <description>The open-source rebellion against enterprise software—from personal wealth OS platforms to fully decoupled business intelligence.</description>
+    </item>
+    <item>
+      <title>VOL_007: THE_MOBILE_DEV_BLUEPRINT</title>
+      <link>https://theterminalthursday.com/archive/007</link>
+      <guid>https://theterminalthursday.com/archive/007</guid>
+      <pubDate>Wed, 30 Sep 2026 22:00:00 GMT</pubDate>
+      <description>The mobile dev ecosystem is finally maturing. A look at Scrcpy, Expo, and Google's Now in Android.</description>
+    </item>
+    <item>
       <title>VOL_006: THE_DECISION_ENGINES</title>
       <link>https://theterminalthursday.com/archive/006</link>
       <guid>https://theterminalthursday.com/archive/006</guid>

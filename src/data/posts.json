@@ -1,5 +1,12 @@
 [
   {
+    "id": "008",
+    "date": "10-08-2026",
+    "title": "THE_OPEN_SOURCE_ENTERPRISE",
+    "description": "The open-source rebellion against enterprise software—from personal wealth OS platforms to fully decoupled business intelligence.",
+    "category": "OSS"
+  },
+  {
     "id": "007",
     "date": "10-01-2026",
     "publishDate": "2026-10-01T07:20:00+02:00",
