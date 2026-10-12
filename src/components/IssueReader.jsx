@@ -6,6 +6,7 @@ import InlineSubscribe from './InlineSubscribe';
 import NotFound from './NotFound';
 
 import POSTS from '../data/posts.json';
+import { updatePageMeta } from '../utils/seo';
 
 const IssueReader = ({ theme, issueId, readingMode, setReadingMode }) => {
   const [content, setContent] = useState('');
@@ -25,6 +26,18 @@ const IssueReader = ({ theme, issueId, readingMode, setReadingMode }) => {
       setLoading(false);
       return;
     }
+
+    // Dynamic SEO Metadata for this Issue
+    const cleanTitle = postMeta.title.replace(/_/g, ' ');
+    const issueTitle = `Issue #${postMeta.id}: ${cleanTitle} | The Terminal Thursday`;
+    const issueUrl = `https://theterminalthursday.com/archive/${postMeta.id}`;
+    const issueDesc = postMeta.description;
+
+    updatePageMeta({
+      title: issueTitle,
+      description: issueDesc,
+      url: issueUrl
+    });
     
     fetch(`/archive/${issueId}.md`)
       .then(res => {
@@ -42,6 +55,10 @@ const IssueReader = ({ theme, issueId, readingMode, setReadingMode }) => {
         setIs404(true);
         setLoading(false);
       });
+
+    return () => {
+      updatePageMeta(); // Reset back to default homepage SEO meta
+    };
   }, [issueId]);
 
   if (is404) {

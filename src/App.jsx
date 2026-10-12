@@ -10,6 +10,7 @@ import Archive from './components/Archive';
 import HallOfFameCarousel from './components/HallOfFameCarousel';
 import IssueReader from './components/IssueReader';
 import NotFound from './components/NotFound';
+import { updatePageMeta } from './utils/seo';
 import './index.css';
 
 function App() {
@@ -58,6 +59,13 @@ function App() {
   useEffect(() => {
     localStorage.setItem('ttt_reading_mode', readingMode);
   }, [readingMode]);
+
+  // Keep homepage SEO metadata synchronized when not viewing an issue
+  useEffect(() => {
+    if (!currentIssue && typeof window !== 'undefined' && window.location.pathname === '/') {
+      updatePageMeta();
+    }
+  }, [currentIssue]);
 
   // Revert to non-CRT clean mode when switching to mobile viewport
   useEffect(() => {

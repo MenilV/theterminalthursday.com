@@ -1,9 +1,16 @@
 import React, { useEffect } from 'react';
+import { updatePageMeta } from '../utils/seo';
 
 const NotFound = ({ theme }) => {
   useEffect(() => {
     window.scrollTo(0, 0);
     
+    updatePageMeta({
+      title: '404 - Not Found | The Terminal Thursday',
+      description: 'The requested route could not be found.',
+      url: window.location.href
+    });
+
     // Tell search engines not to index this fake URL (Soft 404 handling)
     const meta = document.createElement('meta');
     meta.name = 'robots';
@@ -11,7 +18,10 @@ const NotFound = ({ theme }) => {
     document.head.appendChild(meta);
     
     return () => {
-      document.head.removeChild(meta);
+      updatePageMeta();
+      if (meta.parentNode) {
+        document.head.removeChild(meta);
+      }
     };
   }, []);
 
