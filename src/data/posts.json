@@ -1,5 +1,12 @@
 [
   {
+    "id": "009",
+    "date": "10-15-2026",
+    "title": "THE_DECOMPILATION_ENGINES",
+    "description": "How AI-assisted decompilation engines are turning stripped assembly into readable code—featuring Cutter, OSS-Fuzz, and Ghidra.",
+    "category": "OSS"
+  },
+  {
     "id": "008",
     "date": "10-08-2026",
     "title": "THE_OPEN_SOURCE_ENTERPRISE",
