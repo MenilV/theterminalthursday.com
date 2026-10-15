@@ -35,7 +35,7 @@ function App() {
     }
     
     if (path.startsWith('/archive/')) {
-      return path.replace('/archive/', '');
+      return path.replace('/archive/', '').replace(/\/$/, '');
     }
     return null;
   });
@@ -122,7 +122,7 @@ function App() {
     const handlePopState = () => {
       const path = window.location.pathname;
       if (path.startsWith('/archive/')) {
-        setCurrentIssue(path.replace('/archive/', ''));
+        setCurrentIssue(path.replace('/archive/', '').replace(/\/$/, ''));
       } else {
         setCurrentIssue(null);
       }

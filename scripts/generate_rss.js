@@ -8,12 +8,20 @@ const __dirname = path.dirname(__filename);
 const postsPath = path.join(__dirname, '../src/data/posts.json');
 const posts = JSON.parse(fs.readFileSync(postsPath, 'utf-8')).filter(p => !p.publishDate || new Date(p.publishDate) <= new Date());
 
+const formatPubDate = (dateStr) => {
+  const parts = dateStr.split('-');
+  if (parts.length === 3 && parts[2].length === 4) {
+    return new Date(`${parts[2]}-${parts[0]}-${parts[1]}T12:00:00Z`).toUTCString();
+  }
+  return new Date(dateStr).toUTCString();
+};
+
 const rssItems = posts.map(post => `
     <item>
       <title>VOL_${post.id}: ${post.title}</title>
       <link>https://theterminalthursday.com/archive/${post.id}</link>
       <guid>https://theterminalthursday.com/archive/${post.id}</guid>
-      <pubDate>${new Date(post.date).toUTCString()}</pubDate>
+      <pubDate>${formatPubDate(post.date)}</pubDate>
       <description>${post.description}</description>
     </item>`).join('');
 

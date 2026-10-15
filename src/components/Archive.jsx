@@ -134,7 +134,12 @@ const Archive = ({ theme }) => {
                       <span style={{ border: '2px solid var(--border-color)', padding: '2px 8px', fontWeight: '700' }}>
                         TYPE: {post.category}
                       </span>
-                      <a href={`/archive/${post.id}`} className="btn btn-primary" style={{ padding: '6px 16px', fontSize: '0.9rem' }}>
+                      <a 
+                        href={`/archive/${post.id}`} 
+                        className="btn btn-primary" 
+                        style={{ padding: '6px 16px', fontSize: '0.9rem' }}
+                        aria-label={`Read Issue #${post.id}: ${post.title.replace(/_/g, ' ')}`}
+                      >
                         {theme === 'windows' ? 'READ.EXE' : './read.sh'}
                       </a>
                     </div>

@@ -8,8 +8,14 @@ const __dirname = path.dirname(__filename);
 const postsPath = path.join(__dirname, '../src/data/posts.json');
 const posts = JSON.parse(fs.readFileSync(postsPath, 'utf-8')).filter(p => !p.publishDate || new Date(p.publishDate) <= new Date());
 
-// Format date to YYYY-MM-DD
+// Format date to YYYY-MM-DD reliably without timezone offset bugs
 const formatDate = (dateStr) => {
+  if (!dateStr) return new Date().toISOString().split('T')[0];
+  const parts = dateStr.split('-');
+  if (parts.length === 3 && parts[2].length === 4) {
+    // MM-DD-YYYY -> YYYY-MM-DD
+    return `${parts[2]}-${parts[0]}-${parts[1]}`;
+  }
   const d = new Date(dateStr);
   return d.toISOString().split('T')[0];
 };
