@@ -108,6 +108,15 @@ const maintainers = [
     id: '012',
     img: 'https://github.com/dhh.png',
     revealDate: '2026-08-21T00:00:00Z' // Unlocks Aug 21
+  },
+  {
+    name: 'Georgi Gerganov',
+    alias: 'ggerganov',
+    projects: [{ name: 'llama.cpp', url: 'https://github.com/ggerganov/llama.cpp' }, { name: 'whisper.cpp', url: 'https://github.com/ggerganov/whisper.cpp' }],
+    desc: 'Democratized local AI inference on consumer hardware with pure C/C++ tensor architectures.',
+    id: '013',
+    img: 'https://github.com/ggerganov.png',
+    revealDate: '2020-01-01T00:00:00Z' // Always visible
   }
 ];
 
