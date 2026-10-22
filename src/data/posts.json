@@ -1,5 +1,12 @@
 [
   {
+    "id": "010",
+    "date": "10-22-2026",
+    "title": "THE_CVE_SEASON",
+    "description": "Auditing, patching, and zero-day hunting straight from your terminal—featuring Trivy, Nuclei, and Google's OSV-Scanner.",
+    "category": "OSS"
+  },
+  {
     "id": "009",
     "date": "10-15-2026",
     "title": "THE_DECOMPILATION_ENGINES",
