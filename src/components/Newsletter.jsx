@@ -1,34 +1,24 @@
 import React, { useState } from 'react';
+import { subscribe } from '../utils/subscribe';
 
 const Newsletter = ({ theme }) => {
   const [email, setEmail] = useState('');
   const [status, setStatus] = useState('idle');
+  const [errorMessage, setErrorMessage] = useState('');
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!email) return;
     setStatus('loading');
+    setErrorMessage('');
     
     try {
-      const formBody = new URLSearchParams({ email: email }).toString();
-      
-      const response = await fetch('https://app.loops.so/api/newsletter-form/cmpfndk7a027p0jvsdr9a4bud', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-        body: formBody
-      });
-      
-      if (response.ok) {
-        setStatus('success');
-        setEmail('');
-      } else {
-        const errorData = await response.text();
-        setStatus('error');
-        console.error('Subscription failed:', response.status, errorData);
-      }
+      await subscribe(email);
+      setStatus('success');
+      setEmail('');
     } catch (error) {
       setStatus('error');
-      console.error(error);
+      setErrorMessage(error.message);
     }
   };
 
@@ -87,6 +77,11 @@ const Newsletter = ({ theme }) => {
               >
                 {status === 'loading' ? 'EXECUTING...' : (status === 'success' ? 'SUBSCRIBED' : (theme === 'windows' ? 'INITIATE.EXE' : './initiate.sh'))}
               </button>
+              {status === 'error' && (
+                <div role="alert" style={{ fontWeight: 'bold', color: theme === 'unix' ? '#ff5f56' : '#c00000', fontSize: '0.9rem', textAlign: 'center' }}>
+                  ► ERROR: {errorMessage}
+                </div>
+              )}
               <div style={{ fontSize: '0.85rem', fontWeight: '700' }}>
                 // POWERED_BY: <a href="https://loops.so" target="_blank" rel="noreferrer" style={{ color: 'inherit', textDecoration: 'underline' }}>LOOPS.SO</a>
               </div>

@@ -1,31 +1,24 @@
 import React, { useState } from 'react';
+import { subscribe } from '../utils/subscribe';
 
 const InlineSubscribe = ({ theme }) => {
   const [email, setEmail] = useState('');
   const [status, setStatus] = useState('idle');
+  const [errorMessage, setErrorMessage] = useState('');
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!email) return;
     setStatus('loading');
+    setErrorMessage('');
     
     try {
-      const formBody = new URLSearchParams({ email: email, source: 'inline_reader' }).toString();
-      
-      const response = await fetch('https://app.loops.so/api/newsletter-form/cmpfndk7a027p0jvsdr9a4bud', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-        body: formBody
-      });
-      
-      if (response.ok) {
-        setStatus('success');
-        setEmail('');
-      } else {
-        setStatus('error');
-      }
+      await subscribe(email, { source: 'inline_reader' });
+      setStatus('success');
+      setEmail('');
     } catch (error) {
       setStatus('error');
+      setErrorMessage(error.message);
     }
   };
 
@@ -78,6 +71,11 @@ const InlineSubscribe = ({ theme }) => {
           >
             {status === 'loading' ? 'EXECUTING...' : (theme === 'windows' ? 'SUBSCRIBE.EXE' : './subscribe.sh')}
           </button>
+          {status === 'error' && (
+            <div role="alert" style={{ flexBasis: '100%', fontWeight: 'bold', color: theme === 'unix' ? '#ff5f56' : '#c00000', fontSize: '0.9rem' }}>
+              ► ERROR: {errorMessage}
+            </div>
+          )}
         </form>
       )}
     </div>
