@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect } from 'react';
 
 const CliTerminal = ({ theme }) => {
   const [history, setHistory] = useState([
-    { type: 'output', text: 'TERMINAL THURSDAY OS v1.0.0' },
+    { type: 'output', text: `TERMINAL THURSDAY OS v${import.meta.env.VITE_APP_VERSION || '0.0.0'}` },
     { type: 'output', text: 'Type "help" for a list of available commands.' }
   ]);
   const [input, setInput] = useState('');
