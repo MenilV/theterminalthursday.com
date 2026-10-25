@@ -101,6 +101,16 @@ for (const post of posts) {
     `<meta name="twitter:description" content="${description}" />`
   );
 
+  // Issue pages are articles, not the website itself
+  pageHtml = pageHtml.replace(
+    /<meta property="og:type" content=".*?" \/>/,
+    () => [
+      '<meta property="og:type" content="article" />',
+      `<meta property="article:published_time" content="${isoDate}" />`,
+      '<meta property="article:author" content="Menil Vukovic" />'
+    ].join('\n    ')
+  );
+
   // Replace default Website JSON-LD with TechArticle schema
   pageHtml = pageHtml.replace(
     /<script type="application\/ld\+json">[\s\S]*?<\/script>/,
