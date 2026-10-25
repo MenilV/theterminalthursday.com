@@ -117,4 +117,8 @@ for (const post of posts) {
   fs.writeFileSync(path.join(distDir, 'archive', `${post.id}.html`), pageHtml);
 }
 
+// Cloudflare Pages serves a top-level 404.html, with a real 404 status, for any URL
+// that matches no file. It's the same SPA shell, so the app still renders its 404 screen.
+fs.writeFileSync(path.join(distDir, '404.html'), template);
+
 console.log(`Pre-rendered ${posts.length} static archive issue pages with custom SEO tags & JSON-LD!`);
