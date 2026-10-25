@@ -11,18 +11,19 @@ import HallOfFameCarousel from './components/HallOfFameCarousel';
 import IssueReader from './components/IssueReader';
 import NotFound from './components/NotFound';
 import { updatePageMeta } from './utils/seo';
+import { readSetting, writeSetting } from './utils/storage';
 import './index.css';
 
 function App() {
   const [theme, setTheme] = useState(() => {
-    return localStorage.getItem('ttt_theme') || 'windows';
+    return readSetting('ttt_theme', 'windows');
   });
   const [showCredits, setShowCredits] = useState(false);
   const [readingMode, setReadingMode] = useState(() => {
     if (typeof window !== 'undefined' && window.innerWidth <= 768) {
       return 'clean';
     }
-    return localStorage.getItem('ttt_reading_mode') || 'crt';
+    return readSetting('ttt_reading_mode', 'crt');
   });
   const [currentIssue, setCurrentIssue] = useState(() => {
     const hash = window.location.hash;
@@ -43,7 +44,7 @@ function App() {
   useEffect(() => {
     // Switch CSS theme variables
     document.documentElement.setAttribute('data-theme', theme);
-    localStorage.setItem('ttt_theme', theme);
+    writeSetting('ttt_theme', theme);
     
     // Switch Favicon & Mobile Safari Address Bar Theme Color dynamically
     const favicon = document.querySelector('link[rel="icon"]');
@@ -57,7 +58,7 @@ function App() {
   }, [theme]);
 
   useEffect(() => {
-    localStorage.setItem('ttt_reading_mode', readingMode);
+    writeSetting('ttt_reading_mode', readingMode);
   }, [readingMode]);
 
   // Keep homepage SEO metadata synchronized when not viewing an issue
