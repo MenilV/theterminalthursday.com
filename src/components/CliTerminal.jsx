@@ -80,7 +80,7 @@ const CliTerminal = ({ theme }) => {
           addOutput(`Initiating subscription protocol for ${email}...`);
           
           try {
-            await subscribe(email);
+            await subscribe(email, 'terminal');
             addOutput('SUCCESS: Verification link sent. Check your inbox to confirm.', 'success');
           } catch (error) {
             addOutput(`ERROR: ${error.message}`, 'error');

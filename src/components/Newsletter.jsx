@@ -13,7 +13,7 @@ const Newsletter = ({ theme }) => {
     setErrorMessage('');
     
     try {
-      await subscribe(email);
+      await subscribe(email, 'newsletter');
       setStatus('success');
       setEmail('');
     } catch (error) {

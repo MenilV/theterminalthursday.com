@@ -12,6 +12,7 @@ import IssueReader from './components/IssueReader';
 import NotFound from './components/NotFound';
 import { updatePageMeta } from './utils/seo';
 import { readSetting, writeSetting } from './utils/storage';
+import { setTag } from './utils/analytics';
 import './index.css';
 
 // Matches the 768px breakpoint in index.css where the CRT reader is hidden
@@ -48,7 +49,9 @@ function App() {
     // Switch CSS theme variables
     document.documentElement.setAttribute('data-theme', theme);
     writeSetting('ttt_theme', theme);
-    
+    // Lets Clarity recordings be filtered by theme
+    setTag('theme', theme);
+
     // Switch Favicon & Mobile Safari Address Bar Theme Color dynamically
     const favicon = document.querySelector('link[rel="icon"]');
     if (favicon) {
@@ -63,6 +66,13 @@ function App() {
   useEffect(() => {
     writeSetting('ttt_reading_mode', preferredReadingMode);
   }, [preferredReadingMode]);
+
+  // Lets Clarity recordings be filtered by the reader layout actually shown
+  useEffect(() => {
+    if (currentIssue) {
+      setTag('reading_mode', readingMode);
+    }
+  }, [currentIssue, readingMode]);
 
   // Keep homepage SEO metadata synchronized when not viewing an issue
   useEffect(() => {
