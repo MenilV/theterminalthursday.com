@@ -51,7 +51,7 @@ const IssueReader = ({ theme, issueId, readingMode, setReadingMode }) => {
         setContent(text);
         setLoading(false);
       })
-      .catch(err => {
+      .catch(() => {
         setIs404(true);
         setLoading(false);
       });

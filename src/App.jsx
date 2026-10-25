@@ -108,7 +108,7 @@ function App() {
           if (element) {
             element.scrollIntoView({ behavior: 'smooth' });
           }
-        } catch (err) {
+        } catch {
           // Ignore invalid selectors
         }
       } 
