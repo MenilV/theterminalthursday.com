@@ -16,13 +16,19 @@ const formatPubDate = (dateStr) => {
   return new Date(dateStr).toUTCString();
 };
 
+// Titles and descriptions are free text; a bare & or < would make the feed invalid XML
+const escapeXml = (str) => String(str)
+  .replace(/&/g, '&amp;')
+  .replace(/</g, '&lt;')
+  .replace(/>/g, '&gt;');
+
 const rssItems = posts.map(post => `
     <item>
-      <title>VOL_${post.id}: ${post.title}</title>
+      <title>VOL_${post.id}: ${escapeXml(post.title)}</title>
       <link>https://theterminalthursday.com/archive/${post.id}</link>
       <guid>https://theterminalthursday.com/archive/${post.id}</guid>
       <pubDate>${formatPubDate(post.date)}</pubDate>
-      <description>${post.description}</description>
+      <description>${escapeXml(post.description)}</description>
     </item>`).join('');
 
 const rssFeed = `<?xml version="1.0" encoding="UTF-8" ?>

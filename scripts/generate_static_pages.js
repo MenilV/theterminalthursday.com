@@ -28,11 +28,17 @@ const formatDate = (dateStr) => {
   return new Date(dateStr).toISOString().split('T')[0];
 };
 
+const escapeHtml = (str) => String(str)
+  .replace(/&/g, '&amp;')
+  .replace(/</g, '&lt;')
+  .replace(/>/g, '&gt;')
+  .replace(/"/g, '&quot;');
+
 for (const post of posts) {
   const cleanTitle = post.title.replace(/_/g, ' ');
-  const pageTitle = `Issue #${post.id}: ${cleanTitle} | The Terminal Thursday`;
+  const pageTitle = escapeHtml(`Issue #${post.id}: ${cleanTitle} | The Terminal Thursday`);
   const url = `https://theterminalthursday.com/archive/${post.id}`;
-  const description = post.description.replace(/"/g, '&quot;');
+  const description = escapeHtml(post.description);
   const isoDate = formatDate(post.date);
 
   const articleSchema = {
@@ -58,53 +64,57 @@ for (const post of posts) {
 
   let pageHtml = template;
 
+  // Replacements below use functions so a `$` in a title or description
+  // isn't treated as a String.replace pattern like `$&`
+
   // Title
-  pageHtml = pageHtml.replace(/<title>.*?<\/title>/, `<title>${pageTitle}</title>`);
+  pageHtml = pageHtml.replace(/<title>.*?<\/title>/, () => `<title>${pageTitle}</title>`);
 
   // Canonical
   pageHtml = pageHtml.replace(
     /<link rel="canonical" href=".*?" \/>/,
-    `<link rel="canonical" href="${url}" />`
+    () => `<link rel="canonical" href="${url}" />`
   );
 
   // Description
   pageHtml = pageHtml.replace(
     /<meta name="description" content=".*?" \/>/,
-    `<meta name="description" content="${description}" />`
+    () => `<meta name="description" content="${description}" />`
   );
 
   // Open Graph
   pageHtml = pageHtml.replace(
     /<meta property="og:url" content=".*?" \/>/,
-    `<meta property="og:url" content="${url}" />`
+    () => `<meta property="og:url" content="${url}" />`
   );
   pageHtml = pageHtml.replace(
     /<meta property="og:title" content=".*?" \/>/,
-    `<meta property="og:title" content="${pageTitle}" />`
+    () => `<meta property="og:title" content="${pageTitle}" />`
   );
   pageHtml = pageHtml.replace(
     /<meta property="og:description" content=".*?" \/>/,
-    `<meta property="og:description" content="${description}" />`
+    () => `<meta property="og:description" content="${description}" />`
   );
 
   // Twitter Cards
   pageHtml = pageHtml.replace(
     /<meta name="twitter:url" content=".*?" \/>/,
-    `<meta name="twitter:url" content="${url}" />`
+    () => `<meta name="twitter:url" content="${url}" />`
   );
   pageHtml = pageHtml.replace(
     /<meta name="twitter:title" content=".*?" \/>/,
-    `<meta name="twitter:title" content="${pageTitle}" />`
+    () => `<meta name="twitter:title" content="${pageTitle}" />`
   );
   pageHtml = pageHtml.replace(
     /<meta name="twitter:description" content=".*?" \/>/,
-    `<meta name="twitter:description" content="${description}" />`
+    () => `<meta name="twitter:description" content="${description}" />`
   );
 
   // Replace default Website JSON-LD with TechArticle schema
   pageHtml = pageHtml.replace(
     /<script type="application\/ld\+json">[\s\S]*?<\/script>/,
-    `<script type="application/ld+json">\n    ${JSON.stringify(articleSchema, null, 2)}\n    </script>`
+    // Escape < so a "</script>" in the text can't close the JSON-LD block early
+    () => `<script type="application/ld+json">\n    ${JSON.stringify(articleSchema, null, 2).replace(/</g, '\\u003c')}\n    </script>`
   );
 
   // Output directories
