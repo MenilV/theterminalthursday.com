@@ -31,7 +31,7 @@ const maintainers = [
   {
     name: 'Evan You',
     alias: 'yyx990803',
-    projects: [{ name: 'Vue.js', url: 'https://github.com/vuejs/vue' }, { name: 'Vite', url: 'https://github.com/vitejs/vite' }],
+    projects: [{ name: 'Vue.js', url: 'https://github.com/vuejs/core' }, { name: 'Vite', url: 'https://github.com/vitejs/vite' }],
     desc: 'Redefined frontend developer experience with unopinionated web tooling.',
     id: '004',
     img: 'https://github.com/yyx990803.png',
@@ -41,7 +41,7 @@ const maintainers = [
     name: 'Guido van Rossum',
     alias: 'gvanrossum',
     projects: [{ name: 'Python', url: 'https://github.com/python/cpython' }],
-    desc: 'Creator of the Python programming language and its benevolent dictator for life.',
+    desc: 'Creator of Python, and its benevolent dictator for life until he stepped down in 2018.',
     id: '005',
     img: 'https://github.com/gvanrossum.png',
     revealDate: '2026-08-14T00:00:00Z' // Unlocks Aug 14
@@ -112,7 +112,7 @@ const maintainers = [
   {
     name: 'Georgi Gerganov',
     alias: 'ggerganov',
-    projects: [{ name: 'llama.cpp', url: 'https://github.com/ggerganov/llama.cpp' }, { name: 'whisper.cpp', url: 'https://github.com/ggerganov/whisper.cpp' }],
+    projects: [{ name: 'llama.cpp', url: 'https://github.com/ggml-org/llama.cpp' }, { name: 'whisper.cpp', url: 'https://github.com/ggml-org/whisper.cpp' }],
     desc: 'Democratized local AI inference on consumer hardware with pure C/C++ tensor architectures.',
     id: '013',
     img: 'https://github.com/ggerganov.png',
