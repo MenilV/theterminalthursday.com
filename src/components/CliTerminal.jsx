@@ -1,4 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
+import { subscribe } from '../utils/subscribe';
 
 const CliTerminal = ({ theme }) => {
   const [history, setHistory] = useState([
@@ -79,20 +80,10 @@ const CliTerminal = ({ theme }) => {
           addOutput(`Initiating subscription protocol for ${email}...`);
           
           try {
-            const formBody = new URLSearchParams({ email }).toString();
-            const response = await fetch('https://app.loops.so/api/newsletter-form/cmpfndk7a027p0jvsdr9a4bud', {
-              method: 'POST',
-              headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-              body: formBody
-            });
-            
-            if (response.ok) {
-              addOutput('SUCCESS: Subscription confirmed. Welcome to the network.', 'success');
-            } else {
-              addOutput('ERROR: Subscription failed. The mainframe rejected the request.', 'error');
-            }
+            await subscribe(email);
+            addOutput('SUCCESS: Verification link sent. Check your inbox to confirm.', 'success');
           } catch (error) {
-            addOutput('ERROR: Network failure.', 'error');
+            addOutput(`ERROR: ${error.message}`, 'error');
           }
           setIsProcessing(false);
         }
