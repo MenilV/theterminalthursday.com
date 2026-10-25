@@ -171,7 +171,8 @@ function App() {
         
         <div className="crt-monitor-container">
           <div className="crt-screen-glass">
-            <IssueReader theme={theme} issueId={currentIssue} />
+            {/* key: remount per issue so a slow fetch for the previous issue can't overwrite this one */}
+            <IssueReader key={currentIssue} theme={theme} issueId={currentIssue} />
           </div>
         </div>
       </div>
@@ -210,7 +211,7 @@ function App() {
         {/* Main Content Windows */}
         <main style={{ flex: 1, minWidth: 0, display: 'flex', flexDirection: 'column', gap: '40px' }}>
           {currentIssue ? (
-            <IssueReader theme={theme} issueId={currentIssue} readingMode={readingMode} setReadingMode={setReadingMode} />
+            <IssueReader key={currentIssue} theme={theme} issueId={currentIssue} readingMode={readingMode} setReadingMode={setReadingMode} />
           ) : (
             <>
               <Hero theme={theme} />
