@@ -47,6 +47,7 @@ const InlineSubscribe = ({ theme }) => {
         <form onSubmit={handleSubmit} style={{ display: 'flex', gap: '12px', flexWrap: 'wrap' }}>
           <input 
             type="email" 
+            className="compact-input"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             placeholder="ENTER_EMAIL" 

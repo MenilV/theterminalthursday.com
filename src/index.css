@@ -456,6 +456,19 @@ footer {
   }
 }
 
+/* Inputs styled inline without a font size. Pin Chrome's 13.3px default so Safari
+   (11px by default) matches, and use 16px on touch screens: iOS Safari zooms the
+   page when a field under 16px is focused, and stays zoomed. */
+.compact-input {
+  font-size: 13.333px;
+}
+
+@media (pointer: coarse) {
+  .compact-input {
+    font-size: 16px;
+  }
+}
+
 /* =========================================
    CRT FULLSCREEN EXPERIMENT (IMAGE BASED)
    ========================================= */
