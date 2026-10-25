@@ -14,17 +14,20 @@ import { updatePageMeta } from './utils/seo';
 import { readSetting, writeSetting } from './utils/storage';
 import './index.css';
 
+// Matches the 768px breakpoint in index.css where the CRT reader is hidden
+const NARROW_SCREEN = '(max-width: 768px)';
+
 function App() {
   const [theme, setTheme] = useState(() => {
     return readSetting('ttt_theme', 'windows');
   });
   const [showCredits, setShowCredits] = useState(false);
-  const [readingMode, setReadingMode] = useState(() => {
-    if (typeof window !== 'undefined' && window.innerWidth <= 768) {
-      return 'clean';
-    }
+  const [preferredReadingMode, setReadingMode] = useState(() => {
     return readSetting('ttt_reading_mode', 'crt');
   });
+  const [isNarrowScreen, setIsNarrowScreen] = useState(() => window.matchMedia(NARROW_SCREEN).matches);
+  // Narrow screens always get the clean reader, without overwriting the saved preference
+  const readingMode = isNarrowScreen ? 'clean' : preferredReadingMode;
   const [currentIssue, setCurrentIssue] = useState(() => {
     const hash = window.location.hash;
     const path = window.location.pathname;
@@ -58,8 +61,8 @@ function App() {
   }, [theme]);
 
   useEffect(() => {
-    writeSetting('ttt_reading_mode', readingMode);
-  }, [readingMode]);
+    writeSetting('ttt_reading_mode', preferredReadingMode);
+  }, [preferredReadingMode]);
 
   // Keep homepage SEO metadata synchronized when not viewing an issue
   useEffect(() => {
@@ -68,16 +71,13 @@ function App() {
     }
   }, [currentIssue]);
 
-  // Revert to non-CRT clean mode when switching to mobile viewport
+  // Track the mobile breakpoint so the reader switches layouts as the window is resized
   useEffect(() => {
-    const handleResize = () => {
-      if (window.innerWidth <= 768) {
-        setReadingMode((prev) => (prev === 'crt' ? 'clean' : prev));
-      }
-    };
+    const query = window.matchMedia(NARROW_SCREEN);
+    const handleChange = (e) => setIsNarrowScreen(e.matches);
 
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
+    query.addEventListener('change', handleChange);
+    return () => query.removeEventListener('change', handleChange);
   }, []);
 
   // Intercept anchor clicks to scroll manually without updating URL hash or do SPA routing
@@ -151,7 +151,7 @@ function App() {
     return <NotFound theme={theme} />;
   }
 
-  if (currentIssue && readingMode === 'crt' && (typeof window === 'undefined' || window.innerWidth > 768)) {
+  if (currentIssue && readingMode === 'crt') {
     return (
       <div className="crt-fullscreen-mode">
         {/* Top UI Bar (Outside CRT) */}
