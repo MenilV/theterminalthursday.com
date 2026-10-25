@@ -32,7 +32,8 @@ const Archive = ({ theme }) => {
     
     let snippet = content.substring(start, end);
     
-    const regex = new RegExp(`(${query})`, 'gi');
+    const escapedQuery = query.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+    const regex = new RegExp(`(${escapedQuery})`, 'gi');
     const parts = snippet.split(regex);
     
     return (
