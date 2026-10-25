@@ -26,3 +26,6 @@ dist-ssr
 *.sln
 *.sw?
 *_backup*
+
+# Python
+__pycache__/
