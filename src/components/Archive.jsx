@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import ARCHIVE_POSTS from '../data/posts.json';
 import SEARCH_INDEX from '../data/search_index.json';
+import BreakAtUnderscores from './BreakAtUnderscores';
 
 const Archive = ({ theme }) => {
   const [showAll, setShowAll] = useState(false);
@@ -65,7 +66,7 @@ const Archive = ({ theme }) => {
           <div className="window-content">
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', borderBottom: 'var(--border-width) var(--border-style) var(--border-color)', paddingBottom: '16px', marginBottom: '32px', flexWrap: 'wrap', gap: '16px' }}>
               <h2 style={{ fontSize: '2rem', margin: 0 }}>
-                PREVIOUS_SERIALS
+                <BreakAtUnderscores>PREVIOUS_SERIALS</BreakAtUnderscores>
               </h2>
               
               <div style={{ display: 'flex', alignItems: 'center', flexWrap: 'wrap', gap: '8px', flex: '1 1 300px', maxWidth: '500px' }}>
@@ -124,8 +125,8 @@ const Archive = ({ theme }) => {
                       {searchQuery && post.content && getSnippet(post.content, searchQuery)}
                     </div>
                     
-                    <h3 className="accent-box" style={{ fontSize: '1.5rem', marginBottom: '12px', display: 'inline-block', padding: '4px 8px' }}>
-                      {post.title}
+                    <h3 className="accent-box" style={{ fontSize: 'min(1.5rem, 6.2vw)', marginBottom: '12px', display: 'inline-block', padding: '4px 8px' }}>
+                      <BreakAtUnderscores>{post.title}</BreakAtUnderscores>
                     </h3>
                     
                     <p style={{ fontWeight: '600', marginBottom: '24px' }}>
