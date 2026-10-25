@@ -21,7 +21,7 @@ const Hero = ({ theme }) => {
               INSTALLATION IN PROGRESS...
             </div>
             
-            <h1 className="highlight-box" style={{ fontSize: 'clamp(2.5rem, 6vw, 4.5rem)', marginBottom: '24px', padding: '0 20px' }}>
+            <h1 className="highlight-box" style={{ fontSize: 'min(max(min(2.5rem, 11vw), 6vw), 4.5rem)', marginBottom: '24px', padding: '0 20px' }}>
               THE TERMINAL<br/>THURSDAY
             </h1>
             

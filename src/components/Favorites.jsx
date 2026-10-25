@@ -1,4 +1,5 @@
 import React from 'react';
+import BreakAtUnderscores from './BreakAtUnderscores';
 
 const FEATURED_FAVORITES = [
   {
@@ -53,7 +54,7 @@ const Favorites = ({ theme }) => {
               DAILY DRIVERS & ESSENTIAL STACK
             </div>
             <h2 style={{ fontSize: '2rem', textTransform: 'uppercase', margin: 0 }}>
-              {theme === 'windows' ? 'MY CURRENT FAVORITES' : 'curated_tools.log'}
+              <BreakAtUnderscores>{theme === 'windows' ? 'MY CURRENT FAVORITES' : 'curated_tools.log'}</BreakAtUnderscores>
             </h2>
             <p style={{ marginTop: '8px', opacity: 0.8, fontSize: '0.95rem', fontWeight: '600', maxWidth: '900px' }}>
               A hand-picked collection of software, CLI utilities, and open-source tools I rely on daily.
