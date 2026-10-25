@@ -82,6 +82,9 @@ function App() {
   // Intercept anchor clicks to scroll manually without updating URL hash or do SPA routing
   useEffect(() => {
     const handleSmoothScroll = (e) => {
+      // Leave cmd/ctrl/shift/alt-clicks to the browser so "open in new tab/window" works
+      if (e.defaultPrevented || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+
       const target = e.target.closest('a');
       if (!target) return;
       
