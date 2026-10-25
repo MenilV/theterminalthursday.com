@@ -40,6 +40,11 @@ class SimpleHTMLToMD(HTMLParser):
         self.current_tag = tag
         attrs_dict = dict(attrs)
 
+        if tag == 'br':
+            # Loops puts "Rating / Website / Get Started" on separate <br> lines;
+            # a space renders the same in markdown and keeps them on one source line
+            self.md.append(' ')
+
         if tag == 'img':
             src = attrs_dict.get('src') or ''
             alt = attrs_dict.get('alt') or 'Image'
@@ -54,21 +59,25 @@ class SimpleHTMLToMD(HTMLParser):
         self.current_tag = None
 
     def handle_data(self, data):
-        data = data.strip()
-        if not data or self.current_tag in self.ignore_tags:
+        if self.current_tag in self.ignore_tags:
+            return
+        if not data.strip():
+            # e.g. <span> </span> between a label and its link
+            self.md.append(' ')
             return
 
+        # Keep the source's own spacing around inline elements (<code>, <a>, <strong>),
+        # collapsed to single spaces, so "<code>go.sum</code>, and" stays "go.sum, and"
+        text = re.sub(r'\s+', ' ', data)
+
         if self.current_tag == 'h2':
-            self.md.append(f"## {data}")
+            self.md.append(f"## {text.strip()}")
         elif self.current_tag == 'h3':
-            self.md.append(f"### {data}")
+            self.md.append(f"### {text.strip()}")
         elif self.current_tag == 'li':
-            self.md.append(f"- {data}")
-        elif self.current_tag == 'a':
-            self.md.append(f" {data} ")
-        else:
-            if "View this email in your browser" not in data and "Unsubscribe" not in data:
-                self.md.append(data + " ")
+            self.md.append(f"- {text.strip()}")
+        elif "View this email in your browser" not in text and "Unsubscribe" not in text:
+            self.md.append(text)
 
 
 def extract_html(eml_path):
@@ -84,6 +93,9 @@ def to_markdown(html_content, issue_id, preheader=None):
     parser = SimpleHTMLToMD()
     parser.feed(html_content)
     text = "".join(parser.md)
+    # Spacing carried over from the HTML source: no runs, nothing at line edges
+    text = re.sub(r' {2,}', ' ', text)
+    text = re.sub(r'(?m)^ +| +$', '', text)
 
     # Invisible preview-text padding and zero-width characters
     text = re.sub(r'[​‌‍⁠﻿­ ͏]+', '', text)
