@@ -1,4 +1,5 @@
 import React from 'react';
+import { setTag, trackEvent } from '../utils/analytics';
 
 // Catches render errors anywhere in the app so a single broken component
 // shows a recovery screen instead of blanking the whole page.
@@ -7,6 +8,12 @@ class ErrorBoundary extends React.Component {
 
   static getDerivedStateFromError() {
     return { hasError: true };
+  }
+
+  // Flag the session in Clarity so crashes can be found and replayed
+  componentDidCatch(error) {
+    setTag('crash', String(error?.message || error).slice(0, 120));
+    trackEvent('render_crash');
   }
 
   render() {

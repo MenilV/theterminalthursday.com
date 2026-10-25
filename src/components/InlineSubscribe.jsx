@@ -13,7 +13,7 @@ const InlineSubscribe = ({ theme }) => {
     setErrorMessage('');
     
     try {
-      await subscribe(email, { source: 'inline_reader' });
+      await subscribe(email, 'inline_reader', { source: 'inline_reader' });
       setStatus('success');
       setEmail('');
     } catch (error) {

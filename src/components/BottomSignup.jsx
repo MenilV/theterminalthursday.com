@@ -13,7 +13,7 @@ const BottomSignup = ({ theme }) => {
     setErrorMessage('');
     
     try {
-      await subscribe(email);
+      await subscribe(email, 'bottom');
       setStatus('success');
       setEmail('');
     } catch (error) {
