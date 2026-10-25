@@ -74,6 +74,7 @@ const Archive = ({ theme }) => {
                 </span>
                 <input 
                   type="text" 
+                  className="compact-input"
                   placeholder={theme === 'windows' ? "Search tools, issues..." : '"search..." ./archive'}
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
