@@ -3,7 +3,7 @@
 Source for [theterminalthursday.com](https://theterminalthursday.com). It's a weekly newsletter about open-source projects, tools and maintainers, presented as a Windows 95 / UNIX desktop.
 
 - **Stack:** React 19, Vite, [react-markdown](https://github.com/remarkjs/react-markdown) for issue pages, Oxlint
-- **Hosting:** Cloudflare Pages (`public/_redirects` sends every route to the SPA)
+- **Hosting:** Cloudflare Pages, serving the static `dist/` build
 - **Newsletter:** signups go to a [Loops](https://loops.so) form
 
 ## Development
