@@ -1,5 +1,19 @@
 import React from 'react';
 
+// #subscribe only exists on the homepage. From an issue page, go home first and
+// scroll once it has rendered; otherwise App's click handler scrolls as usual.
+const goToHomeSection = (e) => {
+  const id = e.currentTarget.getAttribute('href').slice(1);
+  if (document.getElementById(id)) return;
+
+  e.preventDefault();
+  window.history.pushState(null, '', '/');
+  window.dispatchEvent(new PopStateEvent('popstate'));
+  requestAnimationFrame(() => {
+    document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
+  });
+};
+
 const DesktopIcons = ({ theme }) => {
   return (
     <div className="desktop-icons" style={{
@@ -12,7 +26,7 @@ const DesktopIcons = ({ theme }) => {
     }}>
       
             {/* 2. Inbox -> Scrolls to Newsletter */}
-      <a href="#subscribe" className="desktop-icon" style={{ textDecoration: 'none' }}>
+      <a href="#subscribe" onClick={goToHomeSection} className="desktop-icon" style={{ textDecoration: 'none' }}>
         {theme === 'windows' ? (
           <div className="icon-graphic">
             <svg viewBox="0 0 32 32" width="48" height="48" xmlns="http://www.w3.org/2000/svg">
@@ -37,7 +51,7 @@ const DesktopIcons = ({ theme }) => {
       </a>
 
       {/* 3. System Architects -> Scrolls to Carousel */}
-      <a href="#subscribe" className="desktop-icon" style={{ textDecoration: 'none' }}>
+      <a href="#subscribe" onClick={goToHomeSection} className="desktop-icon" style={{ textDecoration: 'none' }}>
         {theme === 'windows' ? (
           <div className="icon-graphic">
             <svg viewBox="0 0 32 32" width="48" height="48" xmlns="http://www.w3.org/2000/svg">
