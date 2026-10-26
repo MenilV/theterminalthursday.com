@@ -1,6 +1,9 @@
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import { createElement } from 'react';
+import { renderToStaticMarkup } from 'react-dom/server';
+import Markdown from 'react-markdown';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -33,6 +36,19 @@ const escapeHtml = (str) => String(str)
   .replace(/</g, '&lt;')
   .replace(/>/g, '&gt;')
   .replace(/"/g, '&quot;');
+
+// Most AI crawlers don't run JavaScript, so without this they'd find an empty #root.
+// index.html hides #static-content in browsers that run JavaScript, and React
+// replaces it on mount.
+const withStaticContent = (html, content) => html.replace(
+  '<div id="root"></div>',
+  () => `<div id="root"><main id="static-content">${content}</main></div>`
+);
+
+const markdownComponents = {
+  // Lazy, so browsers skip images in the hidden copy and React adds no preload hints
+  img: ({ node, ...props }) => createElement('img', { ...props, loading: 'lazy' })
+};
 
 for (const post of posts) {
   const cleanTitle = post.title.replace(/_/g, ' ');
@@ -127,6 +143,20 @@ for (const post of posts) {
     () => `<script type="application/ld+json">\n    ${JSON.stringify(articleSchema, null, 2).replace(/</g, '\\u003c')}\n    </script>`
   );
 
+  // The issue text itself, rendered by the same markdown library the app uses
+  const markdownPath = path.join(distDir, 'archive', `${post.id}.md`);
+  if (fs.existsSync(markdownPath)) {
+    const article = renderToStaticMarkup(
+      createElement(Markdown, { components: markdownComponents }, fs.readFileSync(markdownPath, 'utf-8'))
+    );
+    pageHtml = withStaticContent(
+      pageHtml,
+      `<p><a href="/">The Terminal Thursday</a> · <time datetime="${isoDate}">${isoDate}</time></p><article>${article}</article>`
+    );
+  } else {
+    console.warn(`archive/${post.id}.md not found; its page has no static text.`);
+  }
+
   // Output directories
   const issueDir = path.join(distDir, 'archive', post.id);
   if (!fs.existsSync(issueDir)) {
@@ -141,4 +171,16 @@ for (const post of posts) {
 // that matches no file. It's the same SPA shell, so the app still renders its 404 screen.
 fs.writeFileSync(path.join(distDir, '404.html'), template);
 
-console.log(`Pre-rendered ${posts.length} static archive issue pages with custom SEO tags & JSON-LD!`);
+// Homepage: the site description and a link to every published issue
+const siteDescription = template.match(/<meta name="description" content="(.*?)" \/>/)[1];
+const issueList = posts.map(post => {
+  const isoDate = formatDate(post.date);
+  const cleanTitle = escapeHtml(post.title.replace(/_/g, ' '));
+  return `<li><a href="/archive/${post.id}">Issue #${post.id}: ${cleanTitle}</a> <time datetime="${isoDate}">${isoDate}</time><br />${escapeHtml(post.description)}</li>`;
+}).join('');
+fs.writeFileSync(templatePath, withStaticContent(
+  template,
+  `<h1>The Terminal Thursday</h1><p>${siteDescription}</p><h2>Issues</h2><ul>${issueList}</ul><p><a href="/rss.xml">RSS feed</a></p>`
+));
+
+console.log(`Pre-rendered ${posts.length} static archive issue pages with custom SEO tags, JSON-LD & readable text!`);
