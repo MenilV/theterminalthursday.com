@@ -5,6 +5,14 @@
     <link rel="icon" type="image/svg+xml" href="/favicon-win.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
     <meta name="theme-color" content="#c0c0c0" />
+
+    <!-- Built pages carry plain text in #static-content for crawlers that don't run JavaScript; browsers that do never show it -->
+    <script>document.documentElement.classList.add('js')</script>
+    <style>
+      #static-content { max-width: 800px; margin: 0 auto; padding: 16px; }
+      #static-content img { max-width: 100%; height: auto; }
+      .js #static-content { display: none; }
+    </style>
     <link rel="canonical" href="https://theterminalthursday.com/" />
     <link rel="alternate" type="application/rss+xml" title="The Terminal Thursday" href="https://theterminalthursday.com/rss.xml" />
     
