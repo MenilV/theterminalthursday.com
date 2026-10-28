@@ -39,7 +39,12 @@ const IssueReader = ({ theme, issueId, readingMode, setReadingMode }) => {
       url: issueUrl
     });
     
-    fetch(`/archive/${issueId}.md`)
+    // Issue pages start this download before the app loads (scripts/generate_static_pages.js)
+    const early = window.__issueMarkdown;
+    delete window.__issueMarkdown;
+    const request = early?.id === issueId ? early.response : fetch(`/archive/${issueId}.md`);
+
+    request
       .then(res => {
         if (!res.ok) throw new Error('Issue not found');
         return res.text();

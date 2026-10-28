@@ -86,10 +86,16 @@ for (const post of posts) {
   // Title
   pageHtml = pageHtml.replace(/<title>.*?<\/title>/, () => `<title>${pageTitle}</title>`);
 
-  // Canonical
+  // Canonical, plus a script that starts downloading the issue's markdown alongside the
+  // JS bundle instead of after it; IssueReader picks up the response. A preload link
+  // would be simpler, but Safari doesn't reuse as="fetch" preloads and downloads twice.
+  const markdownRequest = `{ id: ${JSON.stringify(post.id)}, response: fetch(${JSON.stringify(`/archive/${post.id}.md`)}) }`;
   pageHtml = pageHtml.replace(
     /<link rel="canonical" href=".*?" \/>/,
-    () => `<link rel="canonical" href="${url}" />`
+    () => [
+      `<link rel="canonical" href="${url}" />`,
+      `<script>window.__issueMarkdown = ${markdownRequest}; window.__issueMarkdown.response.catch(() => {});</script>`
+    ].join('\n    ')
   );
 
   // Description
