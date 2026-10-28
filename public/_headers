@@ -3,3 +3,11 @@
   Content-Security-Policy: frame-ancestors 'none'; object-src 'none'; base-uri 'self'
   X-Frame-Options: DENY
   Permissions-Policy: camera=(), microphone=(), geolocation=(), payment=(), usb=()
+
+# Built JS/CSS have a content hash in their names and font files carry the font version,
+# so a changed file always gets a new URL and these can be cached for a year
+/assets/*
+  Cache-Control: public, max-age=31536000, immutable
+
+/fonts/*
+  Cache-Control: public, max-age=31536000, immutable
