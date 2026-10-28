@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "node scripts/generate_rss.js && node scripts/generate_search_index.js && node scripts/generate_sitemap.js && vite build && node scripts/generate_static_pages.js",
+    "build": "node scripts/generate_rss.js && node scripts/generate_search_index.js && node scripts/generate_sitemap.js && node scripts/generate_llms_txt.js && vite build && node scripts/generate_static_pages.js",
     "lint": "oxlint",
     "preview": "vite preview"
   },

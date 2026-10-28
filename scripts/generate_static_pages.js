@@ -136,6 +136,12 @@ for (const post of posts) {
     ].join('\n    ')
   );
 
+  // Point agents and crawlers at the issue's markdown, next to the RSS link
+  pageHtml = pageHtml.replace(
+    /<link rel="alternate" type="application\/rss\+xml".*? \/>/,
+    match => `${match}\n    <link rel="alternate" type="text/markdown" title="${escapeHtml(`Issue #${post.id} as Markdown`)}" href="${url}.md" />`
+  );
+
   // Replace default Website JSON-LD with TechArticle schema
   pageHtml = pageHtml.replace(
     /<script type="application\/ld\+json">[\s\S]*?<\/script>/,
