@@ -1,0 +1,23 @@
+# The Terminal Thursday
+
+> A weekly serial homage to the open-source projects, tools, and maintainers forming the bedrock of the modern web.
+
+A newsletter by Menil Vukovic, published every Thursday. Each issue below links to its full text as Markdown; the web page for an issue is the same URL without `.md` (for example `https://theterminalthursday.com/archive/010`).
+
+## Issues
+
+- [Issue #010: THE CVE SEASON](https://theterminalthursday.com/archive/010.md): Auditing, patching, and zero-day hunting straight from your terminal—featuring Trivy, Nuclei, and Google's OSV-Scanner. (2026-10-22)
+- [Issue #009: THE DECOMPILATION ENGINES](https://theterminalthursday.com/archive/009.md): How AI-assisted decompilation engines are turning stripped assembly into readable code—featuring Cutter, OSS-Fuzz, and Ghidra. (2026-10-15)
+- [Issue #008: THE OPEN SOURCE ENTERPRISE](https://theterminalthursday.com/archive/008.md): The open-source rebellion against enterprise software—from personal wealth OS platforms to fully decoupled business intelligence. (2026-10-08)
+- [Issue #007: THE MOBILE DEV BLUEPRINT](https://theterminalthursday.com/archive/007.md): The mobile dev ecosystem is finally maturing. A look at Scrcpy, Expo, and Google's Now in Android. (2026-10-01)
+- [Issue #006: THE DECISION ENGINES](https://theterminalthursday.com/archive/006.md): The open-source ecosystem is exploding with System 1 AI tools built around Jev. Fast, deterministic semantic logic. (2026-09-24)
+- [Issue #005: THE DATA EXTRACTION BLUEPRINT](https://theterminalthursday.com/archive/005.md): Data is the new oil, but most of it is trapped in terrible formats. Learn how to extract, clean, and weaponize it. (2026-09-17)
+- [Issue #004: THE TERMINAL AESTHETE](https://theterminalthursday.com/archive/004.md): Some of the most beautiful, meticulously designed interfaces in the world right now run entirely in your command line. (2026-09-10)
+- [Issue #003: THE DEEPFAKE ISSUE](https://theterminalthursday.com/archive/003.md): The open-source community is shipping impersonation tech that is absolutely staggering, and it all runs locally. (2026-09-03)
+- [Issue #002: THE SHADOW ECOSYSTEM](https://theterminalthursday.com/archive/002.md): A look into Local AI, Video Editing, and the breakout 'Hot Summer' Repos of August 2026. (2026-08-27)
+- [Issue #001: TAKING CONTROL BACK](https://theterminalthursday.com/archive/001.md): A deep dive into 8 tools that let you replace expensive SaaS subscriptions. (2026-08-20)
+
+## Optional
+
+- [RSS feed](https://theterminalthursday.com/rss.xml): every issue, newest first
+- [Sitemap](https://theterminalthursday.com/sitemap.xml)
