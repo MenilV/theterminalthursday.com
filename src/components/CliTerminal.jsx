@@ -166,6 +166,7 @@ const CliTerminal = ({ theme }) => {
             disabled={isProcessing}
             autoComplete="off"
             spellCheck="false"
+            aria-label="Terminal command"
             style={{ 
               background: 'transparent', 
               border: 'none', 
