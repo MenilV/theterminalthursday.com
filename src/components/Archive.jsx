@@ -6,6 +6,9 @@ import BreakAtUnderscores from './BreakAtUnderscores';
 const Archive = ({ theme }) => {
   const [showAll, setShowAll] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
+  // The read buttons' aria-label starts with this visible text, so voice control
+  // ("click READ.EXE") can find them
+  const readLabel = theme === 'windows' ? 'READ.EXE' : './read.sh';
 
   const publishedPosts = ARCHIVE_POSTS.filter(p => !p.publishDate || new Date(p.publishDate) <= new Date());
   const publishedSearch = SEARCH_INDEX.filter(p => !p.publishDate || new Date(p.publishDate) <= new Date());
@@ -141,9 +144,9 @@ const Archive = ({ theme }) => {
                         href={`/archive/${post.id}`} 
                         className="btn btn-primary" 
                         style={{ padding: '6px 16px', fontSize: '0.9rem' }}
-                        aria-label={`Read Issue #${post.id}: ${post.title.replace(/_/g, ' ')}`}
+                        aria-label={`${readLabel} Issue #${post.id}: ${post.title.replace(/_/g, ' ')}`}
                       >
-                        {theme === 'windows' ? 'READ.EXE' : './read.sh'}
+                        {readLabel}
                       </a>
                     </div>
                   </article>
