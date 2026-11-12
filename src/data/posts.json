@@ -1,5 +1,12 @@
 [
   {
+    "id": "013",
+    "date": "11-12-2026",
+    "title": "THE_OBSERVABILITY_ORACLES",
+    "description": "Keeping logs, metrics, and traces in-house with OpenTelemetry and open-source backends—featuring SigNoz, OpenObserve, and VictoriaMetrics.",
+    "category": "OSS"
+  },
+  {
     "id": "012",
     "date": "11-05-2026",
     "title": "GIT_SORCERY",
