@@ -1,5 +1,12 @@
 [
   {
+    "id": "014",
+    "date": "11-19-2026",
+    "title": "JUST_USE_POSTGRES",
+    "description": "Queues, search, vectors and REST APIs inside the database you already run, with the limits spelled out—featuring pgvector, PostgREST, and PGlite.",
+    "category": "OSS"
+  },
+  {
     "id": "013",
     "date": "11-12-2026",
     "title": "THE_OBSERVABILITY_ORACLES",
