@@ -1,5 +1,12 @@
 [
   {
+    "id": "015",
+    "date": "11-26-2026",
+    "title": "THE_LOAD_BEARING_REPOS",
+    "description": "A Thanksgiving thank-you to the maintainers whose code holds up the internet, and how to help them—featuring curl, jq, and SQLite.",
+    "category": "OSS"
+  },
+  {
     "id": "014",
     "date": "11-19-2026",
     "title": "JUST_USE_POSTGRES",
