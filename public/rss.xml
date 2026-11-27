@@ -7,6 +7,374 @@
     <language>en-us</language>
     <atom:link href="https://theterminalthursday.com/rss.xml" rel="self" type="application/rss+xml" />
     <item>
+      <title>VOL_015: THE_LOAD_BEARING_REPOS</title>
+      <link>https://theterminalthursday.com/archive/015</link>
+      <guid>https://theterminalthursday.com/archive/015</guid>
+      <pubDate>Thu, 26 Nov 2026 12:00:00 GMT</pubDate>
+      <description>A Thanksgiving thank-you to the maintainers whose code holds up the internet, and how to help them—featuring curl, jq, and SQLite.</description>
+      <content:encoded>&lt;h1&gt;🗞️ Issue #015: The Load-Bearing Repos: Giving Thanks to the Code Holding Up the Internet&lt;/h1&gt;
+&lt;p&gt;&lt;img src="https://images.vialoops.com/cmpfndk6x026w0jvslad39ftq/cmv8yi3q00f3w0j044w2njxiz.jpg" alt="The Terminal Thursday" loading="lazy"/&gt;&lt;/p&gt;
+&lt;p&gt;It&amp;#x27;s Thanksgiving week in the US, so this issue is a thank-you note to code most of us never think about. xkcd&amp;#x27;s &amp;quot;Dependency&amp;quot; draws modern infrastructure balanced on one thin block that some random person in Nebraska maintains, and every engineer can name their own. The 2024 xz backdoor showed the risk: an attacker spent over two years earning maintainer trust. That&amp;#x27;s no reason to blame maintainers, and a strong one to help them. So: three tools to thank, twelve more on the Radar, and ways to chip in at the end.&lt;/p&gt;
+&lt;p&gt;Grab your coffee. Open your terminal. Let&amp;#x27;s start hacking.&lt;/p&gt;
+&lt;h2&gt;🔬 The Sandbox: 3 Projects I Tested This Week&lt;/h2&gt;
+&lt;h3&gt;1. curl 🌐 &lt;em&gt;(Data Transfer)&lt;/em&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;img src="https://images.vialoops.com/cmpfndk6x026w0jvslad39ftq/cmw1w1o5n2sml0jyo6rsu1fwp.png" alt="curl" loading="lazy"/&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;What is it?&lt;/strong&gt; curl is a command-line tool for moving data with URLs, built on libcurl, the C library that does the actual work; its README lists 25 protocols, from HTTP and FTP to MQTT and SFTP. The project&amp;#x27;s history page traces it to HttpGet 0.1, a small tool Rafael Sagula released in November 1996, which Daniel Stenberg took over and extended, and which became curl with the release of curl 4 in March 1998. It is distributed under an MIT-like license, and curl&amp;#x27;s governance page defines a maintainer as a project volunteer with the right to merge changes.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Why you should care:&lt;/strong&gt;&lt;br/&gt;
+When a request misbehaves, curl takes your application out of the picture: &lt;code&gt;-v&lt;/code&gt; prints verbose transfer details, &lt;code&gt;-I&lt;/code&gt; fetches headers only, and &lt;code&gt;--resolve&lt;/code&gt; overrides DNS for one host and port, which the manual calls an &lt;code&gt;/etc/hosts&lt;/code&gt; alternative on the command line. The first line of &lt;code&gt;curl --version&lt;/code&gt; names the third-party libraries linked into your build, such as the TLS library and zlib, so one command shows how many other projects hold curl up. The project&amp;#x27;s bug-reporting page also says exactly what to include: your version and OS, what you expected, and how to repeat the problem.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;My Rating:&lt;/strong&gt; Handshake Everywhere 4.9/5 ⭐&lt;br/&gt;
+&lt;strong&gt;Website:&lt;/strong&gt; &lt;a href="https://github.com/curl/curl"&gt;github.com/curl/curl&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;💻 Get Started:&lt;/strong&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;curl --version | head -n 1 &amp;amp;&amp;amp; curl -sI https://curl.se | head -n 1
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3&gt;2. jq 🔎 &lt;em&gt;(JSON Processor)&lt;/em&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;img src="https://images.vialoops.com/cmpfndk6x026w0jvslad39ftq/cmw1w1pho2q600jy77p6pgq74.png" alt="jq" loading="lazy"/&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;What is it?&lt;/strong&gt; jq is a command-line JSON processor that its homepage describes as sed for JSON data: you write a short filter, and it slices, maps and reshapes structured input. It is written in portable C with zero runtime dependencies, so a single binary can be copied to another machine of the same type, and it is MIT-licensed. Stephen Dolan created it (the repository dates to 2012), and after a five-year gap between releases, a new group of maintainers moved the project to the jqlang GitHub organization in 2023 and shipped jq 1.7.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Why you should care:&lt;/strong&gt;&lt;br/&gt;
+Pipe any JSON-speaking command into it: &lt;code&gt;-r&lt;/code&gt; prints strings without quotes, &lt;code&gt;-n&lt;/code&gt; runs a filter with no input at all, and &lt;code&gt;$ENV&lt;/code&gt; exposes your environment variables as an object, which is all the Get Started line below needs. The project&amp;#x27;s own story is the second reason to care, because the 1.7 release notes open with the five-year hiatus and thank the new owners, admins and maintainers who got the long-awaited release out. That is what keeping a load-bearing tool alive looks like: new people taking on the CI, documentation and release chores.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;My Rating:&lt;/strong&gt; Second-Wind Filter 4.8/5 ⭐&lt;br/&gt;
+&lt;strong&gt;Website:&lt;/strong&gt; &lt;a href="https://github.com/jqlang/jq"&gt;github.com/jqlang/jq&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;💻 Get Started:&lt;/strong&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;brew install jq &amp;amp;&amp;amp; jq -nr &amp;#x27;$ENV.PATH | split(&amp;quot;:&amp;quot;)[]&amp;#x27;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3&gt;3. SQLite 🗄️ &lt;em&gt;(Embedded Database)&lt;/em&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;img src="https://images.vialoops.com/cmpfndk6x026w0jvslad39ftq/cmw1w1qwa2smt0jyrfizygcyd.png" alt="SQLite" loading="lazy"/&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;What is it?&lt;/strong&gt; SQLite is an in-process C library that implements a self-contained, serverless, zero-configuration, transactional SQL database engine: there is no server process, and a complete database with tables, indices, triggers and views lives in a single ordinary disk file. The source code is in the public domain. One accuracy note: sqlite/sqlite on GitHub is an official Git mirror, and its README says development happens in Fossil, the version control system written to support SQLite, at sqlite.org/src.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Why you should care:&lt;/strong&gt;&lt;br/&gt;
+The file format is cross-platform, so a database copies cleanly between 32-bit and 64-bit systems or between big-endian and little-endian ones, and the project says SQLite is likely used more than all other database engines combined, found in every Android device, iPhone, Mac and Windows 10/11 install and every Firefox, Chrome and Safari browser. A team on three continents writes it, and the source files open with a blessing in place of a legal notice: &amp;quot;May you share freely, never taking more than you give.&amp;quot; For bugs, use the project&amp;#x27;s forum; it does not accept patches without a public-domain affidavit, so a precise report is the practical way to help.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;My Rating:&lt;/strong&gt; Single-File Bedrock 4.9/5 ⭐&lt;br/&gt;
+&lt;strong&gt;Website:&lt;/strong&gt; &lt;a href="https://github.com/sqlite/sqlite"&gt;github.com/sqlite/sqlite&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;💻 Get Started:&lt;/strong&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;sqlite3 ttt.db &amp;quot;create table t(x);&amp;quot; &amp;amp;&amp;amp; ls -l ttt.db
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2&gt;☕ The Curious Non-Dev: No Code Required&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;Why does so much of the internet depend on a handful of volunteers?&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Think of the pipes inside a city&amp;#x27;s walls. Nobody designs a new fitting for every house; everyone buys the standard one because it connects to everything else. Software works the same way for solved problems like compressing a file, reading a time zone or opening a secure connection: one good library gets reused everywhere, and open-source licenses let anyone do that without paying or asking. A 2024 Harvard Business School working paper put the supply-side value of widely used open source (the cost of building it once) at $4.15 billion, the demand-side value (what every company using it would pay to replace it) at $8.8 trillion, and found that over 95% of that demand-side value comes from about 5% of developers.&lt;/p&gt;
+&lt;p&gt;Who are those developers? In Tidelift&amp;#x27;s 2024 survey, 60% of the more than 400 maintainers who answered called themselves unpaid hobbyists, and only 12% earned most or all of their income from maintenance. Funding does exist: SQLite has a consortium of member companies, and in 2026 the City of Munich began paying libexpat&amp;#x27;s maintainer for up to six months. But think of the plumbing again. A water utility meters every household and sends a bill; nothing meters a library, so no bill goes out. That mismatch, not carelessness or villainy, is how load-bearing code ends up resting on a handful of people.&lt;/p&gt;
+&lt;h2&gt;📡 The Radar: 12 More Load-Bearing Repos to Thank This Weekend&lt;/h2&gt;
+&lt;h3&gt;🧱 Foundations Under Everything&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;a href="https://github.com/madler/zlib"&gt;madler/zlib&lt;/a&gt; (~7.2k Stars) - Jean-loup Gailly and Mark Adler&amp;#x27;s compression library, copyrighted since 1995, implements the zlib, deflate and gzip formats, and its README still asks volunteers to write the man pages.&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/openssl/openssl"&gt;openssl/openssl&lt;/a&gt; (~31.1k Stars) - A toolkit for TLS, DTLS and QUIC plus a general-purpose crypto library, descended from Eric Young and Tim Hudson&amp;#x27;s SSLeay and licensed under Apache 2.0.&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/libexpat/libexpat"&gt;libexpat/libexpat&lt;/a&gt; (~1.4k Stars) - A C99 streaming XML parser started by James Clark in 1997 under an MIT-style license; in 2026 the City of Munich began funding its maintainer for up to six months.&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/tukaani-project/xz"&gt;tukaani-project/xz&lt;/a&gt; (~1.7k Stars) - XZ Utils, the liblzma library and xz tool, whose LZMA2 compression the project says makes typical files about 30% smaller than gzip; its 5.6.0 and 5.6.1 tarballs carried the 2024 backdoor.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3&gt;🕰️ Time, Text &amp;amp; Pixels&lt;/h3&gt;
+&lt;ol start="5"&gt;
+&lt;li&gt;&lt;a href="https://github.com/eggert/tz"&gt;eggert/tz&lt;/a&gt; (~1.9k Stars) - The mostly public-domain time zone database behind Python&amp;#x27;s zoneinfo, updated as governments change their clocks, sometimes with little warning, with patches sent by email to tz@iana.org rather than GitHub.&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/PCRE2Project/pcre2"&gt;PCRE2Project/pcre2&lt;/a&gt; (~1.4k Stars) - A BSD-licensed C library for Perl-compatible regular expressions with an optional JIT engine, which the project says is bundled in products from Excel and Safari to Apache and Git.&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/harfbuzz/harfbuzz"&gt;harfbuzz/harfbuzz&lt;/a&gt; (~6.2k Stars) - The text shaping engine the project says shapes the majority of text on modern screens, named from Persian harf (letter) and buzz (open) as a calque of OpenType.&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/ImageMagick/ImageMagick"&gt;ImageMagick/ImageMagick&lt;/a&gt; (~17.8k Stars) - The image conversion suite that the title text of xkcd 2347 jokes will one day break for good; its README urges you to write a security policy for your environment before using it.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3&gt;🔧 Quiet Workhorses&lt;/h3&gt;
+&lt;ol start="9"&gt;
+&lt;li&gt;&lt;a href="https://github.com/libuv/libuv"&gt;libuv/libuv&lt;/a&gt; (~27.3k Stars) - An MIT-licensed asynchronous I/O library built primarily for Node.js and also used by Julia, Luvit and uvloop, with one event loop over epoll, kqueue, IOCP and event ports.&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/RsyncProject/rsync"&gt;RsyncProject/rsync&lt;/a&gt; (~5.3k Stars) - The file copier that sends just the differences between files across the link, shipped with the technical report describing its delta-transfer algorithm.&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/tmux/tmux"&gt;tmux/tmux&lt;/a&gt; (~50.0k Stars) - An ISC-licensed terminal multiplexer whose sessions keep running after you detach, built for OpenBSD, FreeBSD, NetBSD, Linux, macOS and Solaris; its README says bug reports and especially code contributions are most welcome.&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/git/git"&gt;git/git&lt;/a&gt; (~64.1k Stars) - Originally written by Linus Torvalds and developed on its mailing list, not GitHub; this repo is a publish-only mirror, and GitGitGadget turns pull requests into list patches.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2&gt;🏗️ Closing Thoughts&lt;/h2&gt;
+&lt;p&gt;What stands out in this list is how plain the work is: Munich paying for six months of libexpat upkeep, jq&amp;#x27;s new team shipping a release after five quiet years, zlib&amp;#x27;s README still asking someone to write man pages, tz&amp;#x27;s contributors emailing rule changes with sources. Nothing heroic, just sustained attention. The xz incident is the reminder that trust is a security control too, since a stranger spent two years earning it. More helping hands, not more blame, is the fix.&lt;/p&gt;
+&lt;p&gt;Here is the short list. Pay: &lt;a href="https://curl.se/donation.html"&gt;curl takes donations&lt;/a&gt; through Open Collective, &lt;a href="https://git-scm.com/sfc"&gt;Git takes them through the Software Freedom Conservancy&lt;/a&gt;, &lt;a href="https://github.com/sponsors/ImageMagick"&gt;ImageMagick takes GitHub Sponsors&lt;/a&gt;, and companies can fund SQLite through its &lt;a href="https://sqlite.org/consortium.html"&gt;Consortium&lt;/a&gt;. Report well: curl ended its bug bounty in January 2026, citing a surge of AI-generated slop reports and a confirmed-vulnerability rate below one in twenty, so a verified, reproducible report is a real gift. Send fixes upstream instead of carrying a private patch, but read the rules first: Git wants patches on its mailing list, tz wants plain email with sources, and SQLite wants a public-domain affidavit.&lt;/p&gt;
+&lt;p&gt;Which small project quietly holds up your stack, and when did you last thank its maintainers? Tell me on &lt;a href="https://twitter.com/MenilVukovic"&gt;X (Twitter)&lt;/a&gt; or &lt;a href="https://linkedin.com/in/menilv"&gt;LinkedIn&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Until next Thursday, keep your servers close and support your local maintainers.&lt;/p&gt;</content:encoded>
+    </item>
+    <item>
+      <title>VOL_014: JUST_USE_POSTGRES</title>
+      <link>https://theterminalthursday.com/archive/014</link>
+      <guid>https://theterminalthursday.com/archive/014</guid>
+      <pubDate>Thu, 19 Nov 2026 12:00:00 GMT</pubDate>
+      <description>Queues, search, vectors and REST APIs inside the database you already run, with the limits spelled out—featuring pgvector, PostgREST, and PGlite.</description>
+      <content:encoded>&lt;h1&gt;🗞️ Issue #014: Just Use Postgres: One Database to Replace Half Your Stack&lt;/h1&gt;
+&lt;p&gt;&lt;img src="https://images.vialoops.com/cmpfndk6x026w0jvslad39ftq/cmv8yi3q00f3w0j044w2njxiz.jpg" alt="The Terminal Thursday" loading="lazy"/&gt;&lt;/p&gt;
+&lt;p&gt;Every feature request adds a box to the architecture diagram: Redis for jobs, Elasticsearch for search, a vector database for embeddings, Kafka for events. Each box brings its own backups, auth and 3 a.m. failures, plus a second copy of data your database already holds. Meanwhile Postgres extensions can run queues, search, vectors and schedulers inside the same transactions and backups as your tables. This issue is Postgres first, with exit criteria, and a plain note on where Kafka, Elasticsearch and vector databases still win.&lt;/p&gt;
+&lt;p&gt;Grab your coffee. Open your terminal. Let&amp;#x27;s start hacking.&lt;/p&gt;
+&lt;h2&gt;🔬 The Sandbox: 3 Projects I Tested This Week&lt;/h2&gt;
+&lt;h3&gt;1. pgvector 🧭 &lt;em&gt;(Vector Search)&lt;/em&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;img src="https://images.vialoops.com/cmpfndk6x026w0jvslad39ftq/cmw1w1cbh2shb0jyoefc70kmq.png" alt="pgvector" loading="lazy"/&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;What is it?&lt;/strong&gt; pgvector is a Postgres extension written in C, under the PostgreSQL License, that adds a &lt;code&gt;vector&lt;/code&gt; column type and distance operators such as &lt;code&gt;&amp;lt;-&amp;gt;&lt;/code&gt; for L2 and &lt;code&gt;&amp;lt;=&amp;gt;&lt;/code&gt; for cosine, on Postgres 13 and newer. Search is plain SQL and exact by default, and an HNSW or IVFFlat index trades some recall for speed. The Get Started line assumes a running Homebrew &lt;code&gt;postgresql@17&lt;/code&gt; or &lt;code&gt;postgresql@18&lt;/code&gt;, the only two the formula covers, and opens psql, where &lt;code&gt;CREATE EXTENSION vector;&lt;/code&gt; switches it on for that database (the README also documents an official Docker image, &lt;code&gt;pgvector/pgvector&lt;/code&gt;).&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Why you should care:&lt;/strong&gt;&lt;br/&gt;
+Embeddings sit next to the rows they describe, so one query can mix similarity, a &lt;code&gt;WHERE&lt;/code&gt; clause and a &lt;code&gt;JOIN&lt;/code&gt; inside one transaction, and the README lists replication and point-in-time recovery through the write-ahead log, so no sync job has to keep a second database honest. Read the limits first: approximate indexes filter after the index scan, so with the default &lt;code&gt;hnsw.ef_search&lt;/code&gt; of 40 a filter that matches 10% of rows returns about 4 results on average (iterative scans, added in 0.8.0, address that), and indexes stop at 2,000 dimensions for &lt;code&gt;vector&lt;/code&gt; and 4,000 for &lt;code&gt;halfvec&lt;/code&gt;. Past one machine the README says to scale up, then add replicas or shard with Citus or PgDog, and that is the point where a purpose-built vector database earns a look.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;My Rating:&lt;/strong&gt; Vendor-Free Vectors 4.8/5 ⭐&lt;br/&gt;
+&lt;strong&gt;Website:&lt;/strong&gt; &lt;a href="https://github.com/pgvector/pgvector"&gt;github.com/pgvector/pgvector&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;💻 Get Started:&lt;/strong&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;brew install pgvector &amp;amp;&amp;amp; psql postgres
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3&gt;2. PostgREST 🔌 &lt;em&gt;(Database to REST API)&lt;/em&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;img src="https://images.vialoops.com/cmpfndk6x026w0jvslad39ftq/cmw1w1lgh2sh00jyz3h8tg279.png" alt="PostgREST" loading="lazy"/&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;What is it?&lt;/strong&gt; PostgREST is a web server written in Haskell, under the MIT license, that serves a REST API straight from an existing Postgres database. You point it at a schema and it turns the tables, views and functions there into endpoints (a function is called with a POST to &lt;code&gt;/rpc/function_name&lt;/code&gt;), pushing as much work as possible into the database, including serializing the JSON response in SQL. Authentication is a JWT whose role claim makes PostgREST switch to the database role of that name for the length of the request, so Postgres roles and privileges, not controller code, decide who can do what.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Why you should care:&lt;/strong&gt;&lt;br/&gt;
+Anything in the exposed schema becomes an endpoint without a controller, a serializer or an ORM model, the constraints in your schema stay the single source of truth for validation, and the OpenAPI description it generates feeds tools like Swagger UI. The docs recommend exposing views and functions instead of raw tables, so the schema you publish can change shape without breaking clients. The trade-off is that your business rules now live in SQL functions, views and constraints, so a team that wants them in TypeScript or Go is better served by a conventional app server in front of Postgres.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;My Rating:&lt;/strong&gt; The Controller-Free Zone 4.6/5 ⭐&lt;br/&gt;
+&lt;strong&gt;Website:&lt;/strong&gt; &lt;a href="https://github.com/PostgREST/postgrest"&gt;github.com/PostgREST/postgrest&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;💻 Get Started:&lt;/strong&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;brew install postgrest &amp;amp;&amp;amp; postgrest --example
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3&gt;3. PGlite 📦 &lt;em&gt;(Embedded Postgres)&lt;/em&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;img src="https://images.vialoops.com/cmpfndk6x026w0jvslad39ftq/cmw1w1mut2q4z0jy7bjci5yim.png" alt="PGlite" loading="lazy"/&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;What is it?&lt;/strong&gt; PGlite is Postgres compiled to WebAssembly and packaged as a TypeScript library by Electric, so it runs in Node.js, Bun, Deno or a browser with no other dependencies, and the README puts it at about 3 MB gzipped. The README says there is no Linux virtual machine involved, and because WebAssembly can&amp;#x27;t fork processes, it uses Postgres&amp;#x27; single-user mode and talks to it through an input/output pathway from JavaScript. Databases can live in memory, on the file system or in IndexedDB, extensions such as pgvector and PostGIS are supported, and the license is your choice of Apache 2.0 or the PostgreSQL License.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Why you should care:&lt;/strong&gt;&lt;br/&gt;
+Tests and local-first apps get a Postgres engine in-process, started with &lt;code&gt;new PGlite()&lt;/code&gt;, so the test database stops being a different engine that disagrees with production about edge cases. The limit is in the README: PGlite is single user and single connection, which makes it a fit for tests, prototypes and apps that embed their own database, and not a stand-in for a server with a pool of clients. The README also carries an alpha status badge, so pin your version and check the docs before you build a product on it.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;My Rating:&lt;/strong&gt; Pocket Elephant 4.7/5 ⭐&lt;br/&gt;
+&lt;strong&gt;Website:&lt;/strong&gt; &lt;a href="https://github.com/electric-sql/pglite"&gt;github.com/electric-sql/pglite&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;💻 Get Started:&lt;/strong&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;npm install @electric-sql/pglite
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2&gt;☕ The Curious Non-Dev: No Code Required&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;What is a database extension, and how can one database replace five services?&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Think of Postgres as a stand mixer. The motor does the hard, valuable work: storing data durably, making every change all-or-nothing, and recovering after a crash. An extension is an attachment that clicks onto that motor. Technically, &lt;code&gt;CREATE EXTENSION&lt;/code&gt; runs a script that adds new building blocks to one database, such as data types, functions, operators and index support, and it records them so the whole bundle can be removed again. One attachment teaches the database to compare embeddings, another runs jobs on a schedule, another adds a message queue, and all of them borrow the same motor, the same backups and the same permissions.&lt;/p&gt;
+&lt;p&gt;So how does one database replace five services? Each of those services is mostly an attachment that arrived with its own motor: its own storage, crash recovery, accounts and backups. Fold the attachment into the database you already run and the spare motor goes away, along with the awkward moment where two systems disagree, because a queued job and the order it refers to can be saved in one transaction or not at all. The caveat is that a few jobs need a bigger machine than any attachment. Kafka spreads topics across servers and Elasticsearch spreads an index across a cluster. When you need that, you stop attaching and buy the industrial mixer.&lt;/p&gt;
+&lt;h2&gt;📡 The Radar: 12 More Boxes to Delete From Your Diagram This Weekend&lt;/h2&gt;
+&lt;h3&gt;🧩 Extensions That Replace Services&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;a href="https://github.com/citusdata/pg_cron"&gt;citusdata/pg_cron&lt;/a&gt; (~3.9k Stars) - A job scheduler that runs inside Postgres as an extension: cron syntax or an interval of 1 to 59 seconds, jobs stored in a cron.job table, and a rule that two runs of the same job never overlap.&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/pgmq/pgmq"&gt;pgmq/pgmq&lt;/a&gt; (~5.4k Stars) - An SQS-style message queue built from plain Postgres SQL objects, with no background worker, exactly-once delivery within a visibility timeout, and archiving instead of deletion when you want replay.&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/paradedb/paradedb"&gt;paradedb/paradedb&lt;/a&gt; (~9.5k Stars) - The README&amp;#x27;s own tagline is &amp;quot;Just use Postgres,&amp;quot; and it ships a Rust extension with a custom index for BM25 full-text and vector search, plus filters and aggregations; the community edition is AGPL-3.0.&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/postgis/postgis"&gt;postgis/postgis&lt;/a&gt; (~2.3k Stars) - Adds GIS simple features, R-tree indexing and a long list of spatial functions to Postgres; this GitHub repo is a mirror, and the project&amp;#x27;s official home is at OSGeo.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3&gt;🛠️ Migrations &amp;amp; Operations&lt;/h3&gt;
+&lt;ol start="5"&gt;
+&lt;li&gt;&lt;a href="https://github.com/xataio/pgroll"&gt;xataio/pgroll&lt;/a&gt; (~6.6k Stars) - A Go CLI for zero-downtime, reversible schema migrations that serves old and new schema versions side by side, backfills columns when needed, rolls back instantly, and works with RDS and Aurora.&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/pgbackrest/pgbackrest"&gt;pgbackrest/pgbackrest&lt;/a&gt; (~4.5k Stars) - Backup and restore for Postgres, written in C and MIT licensed, with parallel processing, lz4 and zstd compression, backups from a standby, multiple repositories and a custom protocol over TLS or SSH.&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/ankane/pghero"&gt;ankane/pghero&lt;/a&gt; (~8.9k Stars) - A performance dashboard for Postgres that starts with one docker run and a database URL, or mounts as a Rails engine, with query stats built on the pg_stat_statements module.&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/dbcli/pgcli"&gt;dbcli/pgcli&lt;/a&gt; (~13.4k Stars) - A Postgres client in Python built on prompt_toolkit, with context-sensitive auto-completion and Pygments syntax highlighting; on macOS it is one brew install away.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3&gt;⚙️ Postgres as a Platform&lt;/h3&gt;
+&lt;ol start="9"&gt;
+&lt;li&gt;&lt;a href="https://github.com/riverqueue/river"&gt;riverqueue/river&lt;/a&gt; (~5.8k Stars) - A transactional job queue on Postgres or SQLite for Go, TypeScript, Ruby and Rust: jobs exist if their transaction commits, vanish if it rolls back, and stay invisible to workers until commit.&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/graphile/worker"&gt;graphile/worker&lt;/a&gt; (~2.4k Stars) - A Node.js job queue that uses LISTEN/NOTIFY to start jobs in milliseconds, per its docs, with cron tasks at minute granularity and delayed or debounced jobs; the README pairs it with PostgREST.&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/neondatabase/neon"&gt;neondatabase/neon&lt;/a&gt; (~23.3k Stars) - An open-source serverless Postgres platform written in Rust that separates storage from compute: stateless Postgres nodes sit on a Pageserver for storage and Safekeepers, a redundant WAL service.&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/pgbouncer/pgbouncer"&gt;pgbouncer/pgbouncer&lt;/a&gt; (~4.4k Stars) - A lightweight connection pooler written in C, with session, transaction and statement pooling modes and a documented default of about 2 kB of memory per connection.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2&gt;🏗️ Closing Thoughts&lt;/h2&gt;
+&lt;p&gt;This ecosystem leans on a friendly base license. Postgres says it is committed to staying free and open source and has no plans to change the PostgreSQL License, and a permissive base lets anyone ship an extension: pgvector, pgmq and pg_cron use that license, pgBackRest is MIT and PgBouncer is ISC. Not everything is that permissive, so read the terms before you wire something into a product, because ParadeDB&amp;#x27;s community edition is AGPL-3.0 and PostGIS is GPL. Every extension is also a dependency you upgrade in lockstep with Postgres, so check the supported versions before a major upgrade; PGMQ&amp;#x27;s README lists Postgres 14 to 18, for example.&lt;/p&gt;
+&lt;p&gt;The rule to steal isn&amp;#x27;t &amp;quot;never add a service.&amp;quot; It&amp;#x27;s to add one on purpose, with a number in your hand. Pool connections early, watch your slow queries, and test your restores instead of trusting that backups exist. Then write down the limit that would make you move a workload out: events that many consumers must replay, a search cluster, a vector index that outgrew one machine. Postgres first, with an exit sign you wrote yourself.&lt;/p&gt;
+&lt;p&gt;Which service in your stack would you delete first if Postgres could do its job, and which one is staying no matter what? Tell me on &lt;a href="https://twitter.com/MenilVukovic"&gt;X (Twitter)&lt;/a&gt; or &lt;a href="https://linkedin.com/in/menilv"&gt;LinkedIn&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Until next Thursday, keep your servers close and support your local maintainers.&lt;/p&gt;</content:encoded>
+    </item>
+    <item>
+      <title>VOL_013: THE_OBSERVABILITY_ORACLES</title>
+      <link>https://theterminalthursday.com/archive/013</link>
+      <guid>https://theterminalthursday.com/archive/013</guid>
+      <pubDate>Thu, 12 Nov 2026 12:00:00 GMT</pubDate>
+      <description>Keeping logs, metrics, and traces in-house with OpenTelemetry and open-source backends—featuring SigNoz, OpenObserve, and VictoriaMetrics.</description>
+      <content:encoded>&lt;h1&gt;🗞️ Issue #013: The Observability Oracles: Logs, Metrics and Traces Without the Datadog Bill&lt;/h1&gt;
+&lt;p&gt;&lt;img src="https://images.vialoops.com/cmpfndk6x026w0jvslad39ftq/cmv8yi3q00f3w0j044w2njxiz.jpg" alt="The Terminal Thursday" loading="lazy"/&gt;&lt;/p&gt;
+&lt;p&gt;Every request your service handles leaves exhaust behind: a few log lines, a handful of spans, a nudge on a dozen counters. Multiply that by every pod and every deploy, and telemetry becomes the one dataset that grows with your traffic instead of your headcount. If the meter is per gigabyte, per host or per custom metric, the incentives go sideways: somebody deletes the debug logs, somebody else drops the high-cardinality label, and the first incident that needs exactly that detail finds it gone. Nobody budgets for that conversation, but it tends to land in the same thread as the invoice. This isn&amp;#x27;t a takedown of any single vendor; it&amp;#x27;s an argument about who gets to set the meter.&lt;/p&gt;
+&lt;p&gt;Two things changed. OpenTelemetry made instrumentation a vendor-neutral standard: its docs describe an open-source CNCF project that works with open-source and commercial backends alike, and promise that you own the data you generate. And several open-source backends now come in shapes a small team can realistically run. SigNoz keeps all three signals in one ClickHouse columnar database, OpenObserve writes Parquet from a single Rust binary, and VictoriaMetrics ships as one dependency-free binary. Collectors like Vector and the OpenTelemetry Collector sit in front and can transform and route data before it lands. None of this is free, because you inherit the disks, the upgrades and the pager, but at least the meter is yours.&lt;/p&gt;
+&lt;p&gt;Grab your coffee. Open your terminal. Let&amp;#x27;s start hacking.&lt;/p&gt;
+&lt;h2&gt;🔬 The Sandbox: 3 Projects I Tested This Week&lt;/h2&gt;
+&lt;h3&gt;1. SigNoz 🔭 &lt;em&gt;(Full-Stack Observability)&lt;/em&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;img src="https://images.vialoops.com/cmpfndk6x026w0jvslad39ftq/cmw1w17y42sq80jxi363ihz5k.png" alt="SigNoz" loading="lazy"/&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;What is it?&lt;/strong&gt; SigNoz is an open-source observability platform built on OpenTelemetry that keeps logs, metrics and traces in a single ClickHouse columnar database behind one UI, so you can pivot from a slow trace to the logs and metrics around it. The self-hosted stack is five containers (ClickHouse, ClickHouse Keeper, PostgreSQL for metadata, an OpenTelemetry-based collector and the SigNoz server), installed with the project&amp;#x27;s Foundry tool. The code is MIT outside the &lt;code&gt;ee/&lt;/code&gt; and &lt;code&gt;cmd/enterprise/&lt;/code&gt; directories, which carry a separate Enterprise license; the company also offers a hosted Cloud and an Enterprise tier.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Why you should care:&lt;/strong&gt;&lt;br/&gt;
+Send OTLP from any OpenTelemetry SDK or Collector to ports 4317 and 4318 and you get APM views, a log explorer, dashboards and alerts, with metrics queryable through a query builder, PromQL or ClickHouse SQL. The README&amp;#x27;s own log benchmark claims 50% lower resource requirements than Elastic during ingestion, which is the project&amp;#x27;s number, so replay it on your own logs. Budget at least 4 GB of memory for Docker, read the curl-to-bash installer before you run it (it drops &lt;code&gt;foundryctl&lt;/code&gt; in &lt;code&gt;~/.local/bin&lt;/code&gt;, often missing from PATH on macOS), and note that the Noz AI assistant is Cloud-only.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;My Rating:&lt;/strong&gt; Full-Moon Oracle 4.7/5 ⭐&lt;br/&gt;
+&lt;strong&gt;Website:&lt;/strong&gt; &lt;a href="https://github.com/SigNoz/signoz"&gt;github.com/SigNoz/signoz&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;💻 Get Started:&lt;/strong&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;u=https://signoz.io/foundry.sh &amp;amp;&amp;amp; curl -fsSL $u | bash &amp;amp;&amp;amp; foundryctl gen examples &amp;amp;&amp;amp; cd docs/examples/docker/compose &amp;amp;&amp;amp; foundryctl cast
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3&gt;2. OpenObserve 🔮 &lt;em&gt;(Single-Binary Observability)&lt;/em&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;img src="https://images.vialoops.com/cmpfndk6x026w0jvslad39ftq/cmw1w19i12sqy0jxi3va56l9x.png" alt="OpenObserve" loading="lazy"/&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;What is it?&lt;/strong&gt; OpenObserve (O2) is a single Rust binary for logs, metrics and traces that stores data as Parquet files in an S3-native design and queries it with SQL, plus PromQL for metrics. It takes OpenTelemetry&amp;#x27;s OTLP natively, so SDKs and Collectors can send straight to it. The open-source edition is AGPL-3.0; SSO, advanced RBAC, audit trails and federated search sit in a separate Enterprise edition under a commercial license.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Why you should care:&lt;/strong&gt;&lt;br/&gt;
+The README claims up to 140x lower storage cost than Elasticsearch, with better queries on about a quarter of the hardware; those are the project&amp;#x27;s own comparisons, so replay your own logs first. Ingest-time pipelines can enrich, redact or reduce data before it&amp;#x27;s stored, and the FAQ says there are no shards, replicas or heap sizes to manage. The catch: ingested data is immutable and only whole retention periods can be dropped, so think twice before sending it personal data. The command below is the README&amp;#x27;s quick start: open &lt;code&gt;localhost:5080&lt;/code&gt; and log in with the root account it creates, and swap that example password before anything real reaches it.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;My Rating:&lt;/strong&gt; Parquet Prophet 4.6/5 ⭐&lt;br/&gt;
+&lt;strong&gt;Website:&lt;/strong&gt; &lt;a href="https://github.com/openobserve/openobserve"&gt;github.com/openobserve/openobserve&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;💻 Get Started:&lt;/strong&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;E=root@example.com &amp;amp;&amp;amp; P=Complexpass#123 &amp;amp;&amp;amp; docker run -d --name openobserve -v $PWD/data:/data -p 5080:5080 -e ZO_ROOT_USER_EMAIL=$E -e ZO_ROOT_USER_PASSWORD=$P openobserve/openobserve:latest
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3&gt;3. VictoriaMetrics 📈 &lt;em&gt;(Time-Series Database)&lt;/em&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;img src="https://images.vialoops.com/cmpfndk6x026w0jvslad39ftq/cmw1w1aqc2rtx0jz656yy2okq.png" alt="VictoriaMetrics" loading="lazy"/&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;What is it?&lt;/strong&gt; VictoriaMetrics is a time-series database and monitoring solution written in Go under the Apache 2.0 license, shipped as a dependency-free single-node binary configured through command-line flags, with a cluster version that is open source too. It scrapes Prometheus exporters, accepts Prometheus remote write, and also ingests InfluxDB, Graphite, OpenTSDB, Datadog agent and OpenTelemetry metrics. You query it with PromQL or its own MetricsQL, in a built-in UI at &lt;code&gt;localhost:8428/vmui&lt;/code&gt;; the Homebrew service scrapes itself every 10 seconds, so there is data to look at within seconds.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Why you should care:&lt;/strong&gt;&lt;br/&gt;
+Point an existing Prometheus at it with remote write and keep your exporters, dashboards and alert rules; the README pitches it as long-term storage for Prometheus, or a drop-in replacement for Prometheus and Graphite in Grafana. Its own benchmarks claim up to 7x less RAM and 7x less storage than Prometheus, Thanos or Cortex, a cost lever you can test in an afternoon. It covers metrics only: logs and traces have sibling projects, VictoriaLogs and VictoriaTraces, and downsampling, multiple retentions and anomaly detection are Enterprise features.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;My Rating:&lt;/strong&gt; Seer of Series 4.8/5 ⭐&lt;br/&gt;
+&lt;strong&gt;Website:&lt;/strong&gt; &lt;a href="https://github.com/VictoriaMetrics/VictoriaMetrics"&gt;github.com/VictoriaMetrics/VictoriaMetrics&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;💻 Get Started:&lt;/strong&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;brew install victoriametrics &amp;amp;&amp;amp; brew services start victoriametrics
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2&gt;☕ The Curious Non-Dev: No Code Required&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;What is the difference between logs, metrics and traces?&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Picture a courier company. A metric is a number on the depot wall: parcels handled per hour, average delivery time, vans currently out. OpenTelemetry defines it as a measurement captured at runtime, and because it&amp;#x27;s just a number, it&amp;#x27;s usually small to keep. A log is the driver&amp;#x27;s notebook, one timestamped entry per event, such as &amp;quot;door locked, left with neighbour&amp;quot;. It holds the detail, but only if you know which notebook to open. A trace is the tracking page for one parcel: every hop in order, with how long it sat at each, or in OpenTelemetry&amp;#x27;s words, the path of a request through your application.&lt;/p&gt;
+&lt;p&gt;You use them as a chain. The metric tells you something is wrong: delivery times doubled at 14:00. The trace of one slow parcel tells you where: it sat for 40 minutes at a single depot. That depot&amp;#x27;s notebook for those 40 minutes tells you why: the scanner kept crashing. Tools link the three by stamping trace and span IDs onto log lines, which an active OpenTelemetry SDK does automatically for your existing logs. It also explains where the volume comes from. Metrics grow with the number of distinct series you create, while logs and traces record individual events and grow with traffic.&lt;/p&gt;
+&lt;h2&gt;📡 The Radar: 12 More Oracles for Your Stack This Weekend&lt;/h2&gt;
+&lt;h3&gt;📊 Metrics &amp;amp; Dashboards&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;a href="https://github.com/prometheus/prometheus"&gt;prometheus/prometheus&lt;/a&gt; (~66.8k Stars) - A CNCF project that pulls metrics over HTTP from your targets and stores them as time series defined by a metric name plus key/value dimensions; each server node is autonomous, with no distributed storage to run.&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/grafana/grafana"&gt;grafana/grafana&lt;/a&gt; (~77.6k Stars) - The dashboard layer for metrics, logs and traces, where each query picks its own data source so one graph can mix them; licensed AGPL-3.0-only, with some Apache-2.0 exceptions.&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/perses/perses"&gt;perses/perses&lt;/a&gt; (~2.5k Stars) - A CNCF sandbox dashboard tool built around an open dashboard specification, with Go and CUE SDKs for dashboards-as-code and data sources for Prometheus, Tempo, Loki and Pyroscope.&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/netdata/netdata"&gt;netdata/netdata&lt;/a&gt; (~81.2k Stars) - Per-second metrics with zero configuration and unsupervised ML anomaly detection; the Agent is GPLv3+, but the README calls the dashboard UI closed-source, if free to use.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3&gt;📜 Logs, Traces &amp;amp; Pipelines&lt;/h3&gt;
+&lt;ol start="5"&gt;
+&lt;li&gt;&lt;a href="https://github.com/grafana/loki"&gt;grafana/loki&lt;/a&gt; (~29.1k Stars) - Prometheus-style log aggregation that indexes only a set of labels per log stream, not the log text itself, which the README says makes it simpler to operate and cheaper to run.&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/jaegertracing/jaeger"&gt;jaegertracing/jaeger&lt;/a&gt; (~23.3k Stars) - Distributed tracing created at Uber and graduated at the CNCF in October 2019, with an all-in-one build that bundles the UI, collector, query service and in-memory storage.&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/vectordotdev/vector"&gt;vectordotdev/vector&lt;/a&gt; (~22.8k Stars) - A Rust pipeline that collects, transforms and routes logs and metrics to any backend; the README lists cutting observability costs as a use case and says Datadog&amp;#x27;s open-source team maintains it.&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/open-telemetry/opentelemetry-collector"&gt;open-telemetry/opentelemetry-collector&lt;/a&gt; (~7.7k Stars) - The vendor-agnostic binary that receives, processes and exports traces, metrics and logs, so you don&amp;#x27;t run a separate agent for every data format; one codebase deploys as an agent or as a collector.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3&gt;🚨 Uptime &amp;amp; Alerting&lt;/h3&gt;
+&lt;ol start="9"&gt;
+&lt;li&gt;&lt;a href="https://github.com/louislam/uptime-kuma"&gt;louislam/uptime-kuma&lt;/a&gt; (~93.0k Stars) - A self-hosted uptime monitor with a reactive UI, 20-second check intervals, status pages you can map to your own domains and 90+ notification services.&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/TwiN/gatus"&gt;TwiN/gatus&lt;/a&gt; (~12.4k Stars) - A developer-oriented health dashboard where YAML conditions such as a 200 status and a response time under 300 ms decide whether an endpoint is healthy, paired with alerts to Slack, PagerDuty and more.&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/healthchecks/healthchecks"&gt;healthchecks/healthchecks&lt;/a&gt; (~10.5k Stars) - Cron monitoring in reverse: your jobs ping it over HTTP or email, and when a ping doesn&amp;#x27;t arrive on time it alerts you; a BSD-licensed Django app that also runs as a hosted service.&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/keephq/keep"&gt;keephq/keep&lt;/a&gt; (~12.5k Stars) - An alert management layer that pulls alerts from your monitoring tools into one pane, with deduplication, correlation, enrichment and workflows; MIT-licensed outside its ee/ directory.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2&gt;🏗️ Closing Thoughts&lt;/h2&gt;
+&lt;p&gt;Read the licenses before the feature lists. SigNoz and Keep put an &lt;code&gt;ee/&lt;/code&gt; directory under a separate license, OpenObserve and VictoriaMetrics both offer commercial Enterprise editions with extra features, and Netdata&amp;#x27;s README calls its dashboard UI closed-source but free to use. None of that is a scandal, since the free parts do real work, but it tells you what you can fork if the roadmap and your needs ever part ways.&lt;/p&gt;
+&lt;p&gt;The durable move sits upstream of any backend. Instrument with OpenTelemetry, put a Collector or Vector in front, and decide there what gets kept, sampled or dropped. Then the backend is a replaceable part, and the day a license, a price or a maintainer changes, you rewrite a config file instead of every service. Running it yourself isn&amp;#x27;t free either: you take on the disks, the upgrades and the 3 a.m. page that a vendor used to absorb, so count those hours before you count the savings.&lt;/p&gt;
+&lt;p&gt;Which signal would you keep if you could only afford one: logs, metrics or traces? Tell me on &lt;a href="https://twitter.com/MenilVukovic"&gt;X (Twitter)&lt;/a&gt; or &lt;a href="https://linkedin.com/in/menilv"&gt;LinkedIn&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Until next Thursday, keep your servers close and support your local maintainers.&lt;/p&gt;</content:encoded>
+    </item>
+    <item>
+      <title>VOL_012: GIT_SORCERY</title>
+      <link>https://theterminalthursday.com/archive/012</link>
+      <guid>https://theterminalthursday.com/archive/012</guid>
+      <pubDate>Thu, 05 Nov 2026 12:00:00 GMT</pubDate>
+      <description>Rebasing, splitting, and untangling git history without losing your mind—featuring Jujutsu, Difftastic, and Delta.</description>
+      <content:encoded>&lt;h1&gt;🗞️ Issue #012: Git Sorcery: Rewriting History Without Losing Your Mind&lt;/h1&gt;
+&lt;p&gt;&lt;img src="https://images.vialoops.com/cmpfndk6x026w0jvslad39ftq/cmv8yi3q00f3w0j044w2njxiz.jpg" alt="The Terminal Thursday" loading="lazy"/&gt;&lt;/p&gt;
+&lt;p&gt;Most of us live in a five-command subset of git: add, commit, push, pull, and a quiet prayer. Everything else gets treated like a live wire. Take interactive rebase: you edit a text file of verbs like &lt;code&gt;pick&lt;/code&gt;, &lt;code&gt;squash&lt;/code&gt; and &lt;code&gt;drop&lt;/code&gt;, git replays your commits one at a time, and the first conflict stops it halfway through. The safety nets are real, since &lt;code&gt;git rebase --abort&lt;/code&gt; returns your branch to its original state and the reflog remembers where it used to point. But nobody advertises them, so the history fills up with &amp;quot;wip&amp;quot;, &amp;quot;fix&amp;quot;, &amp;quot;fix again&amp;quot; and &amp;quot;actually fix&amp;quot;, and whoever runs &lt;code&gt;git bisect&lt;/code&gt; six months from now pays the bill.&lt;/p&gt;
+&lt;p&gt;The answer isn&amp;#x27;t to memorize more flags. Git&amp;#x27;s data model is fine; its controls are the problem, and a newer generation of tools replaces the controls without touching the engine. Jujutsu keeps your commits in a Git repository but treats rewriting them as an everyday operation, with an undo log behind it. Difftastic compares syntax trees instead of lines, so a reformat stops burying the one real edit. Delta makes the diff itself readable, and git-absorb works out which commit each fix belongs to. None of them needs your teammates to switch, because what reaches the remote is still ordinary git commits.&lt;/p&gt;
+&lt;p&gt;Grab your coffee. Open your terminal. Let&amp;#x27;s start hacking.&lt;/p&gt;
+&lt;h2&gt;🔬 The Sandbox: 3 Projects I Tested This Week&lt;/h2&gt;
+&lt;h3&gt;1. Jujutsu 🥋 &lt;em&gt;(Version Control)&lt;/em&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;img src="https://images.vialoops.com/cmpfndk6x026w0jvslad39ftq/cmw1vzbdp2qzh0jyoafji2jhu.png" alt="Jujutsu" loading="lazy"/&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;What is it?&lt;/strong&gt; Jujutsu (command: &lt;code&gt;jj&lt;/code&gt;) is a version control system written in Rust under the Apache 2.0 license that keeps its commits and files in an ordinary Git repository, so it works with any Git remote and, in a colocated checkout, side by side with &lt;code&gt;git&lt;/code&gt; itself. Its model differs from Git&amp;#x27;s in a few basic ways: the working copy is itself a commit that is amended automatically, there is no staging area, and every change keeps a stable ID while its commit hash changes on each rewrite. Martin von Zweigbergk started it as a hobby project in late 2019; Google is a main contributor, but the README is explicit that it is not a supported Google product.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Why you should care:&lt;/strong&gt;&lt;br/&gt;
+Edit a commit anywhere in your stack and every descendant is rebased automatically; conflicts get recorded in the commits instead of freezing you halfway through a rebase, so you resolve them when you choose to. Every operation lands in an operation log, so &lt;code&gt;jj undo&lt;/code&gt; takes back the last one (a botched rebase included), while &lt;code&gt;jj split&lt;/code&gt; and &lt;code&gt;jj squash -i&lt;/code&gt; carve and recombine commits without a todo list. Try it in a throwaway clone first, since the README still calls Jujutsu experimental and the docs list Git hooks as unsupported.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;My Rating:&lt;/strong&gt; Black-Belt Undo 4.8/5 ⭐&lt;br/&gt;
+&lt;strong&gt;Website:&lt;/strong&gt; &lt;a href="https://github.com/jj-vcs/jj"&gt;github.com/jj-vcs/jj&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;💻 Get Started:&lt;/strong&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;brew install jj &amp;amp;&amp;amp; jj git init &amp;amp;&amp;amp; jj log
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3&gt;2. Difftastic 🔮 &lt;em&gt;(Structural Diff)&lt;/em&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;img src="https://images.vialoops.com/cmpfndk6x026w0jvslad39ftq/cmw1vzcxu2r4x0j0e8mbzhvdm.png" alt="Difftastic" loading="lazy"/&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;What is it?&lt;/strong&gt; Difftastic is a diff tool written in Rust under the MIT license that detects the language, parses both files with tree-sitter grammars, and compares the syntax trees instead of the lines. Because it compares trees, a method chain reflowed onto new lines comes out as unchanged, and the matching itself is a route-finding problem on a graph that it solves with Dijkstra&amp;#x27;s algorithm. For file types it doesn&amp;#x27;t know, and for extremely large inputs, it falls back to a line-based diff with word highlighting.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Why you should care:&lt;/strong&gt;&lt;br/&gt;
+Formatter commits, re-indented HTML and reflowed call chains stop burying the one real edit in review, and a file that was only reformatted just prints &amp;quot;No syntactic changes.&amp;quot; Run &lt;code&gt;git -c diff.external=difft diff&lt;/code&gt; in any repo with uncommitted changes (add &lt;code&gt;--ext-diff&lt;/code&gt; for &lt;code&gt;show&lt;/code&gt; and &lt;code&gt;log -p&lt;/code&gt;), or wire it into Jujutsu with a two-line &lt;code&gt;diff-formatter&lt;/code&gt; setting. The README is upfront about the trade-offs: the output is for humans and can&amp;#x27;t be applied as a patch, and it scales poorly on files with a large number of changes.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;My Rating:&lt;/strong&gt; Crystal-Ball Diff 4.7/5 ⭐&lt;br/&gt;
+&lt;strong&gt;Website:&lt;/strong&gt; &lt;a href="https://github.com/Wilfred/difftastic"&gt;github.com/Wilfred/difftastic&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;💻 Get Started:&lt;/strong&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;brew install difftastic &amp;amp;&amp;amp; git -c diff.external=difft diff
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3&gt;3. Delta ✨ &lt;em&gt;(Diff Pager)&lt;/em&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;img src="https://images.vialoops.com/cmpfndk6x026w0jvslad39ftq/cmw1vzebu2r510jxib9c48w8k.png" alt="Delta" loading="lazy"/&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;What is it?&lt;/strong&gt; Delta is a syntax-highlighting pager for git, diff, grep and blame output, written in Rust under the MIT license. Git pipes its output through it, and it re-renders the diff with the same syntax themes as bat, word-level highlights inside changed lines (via a Levenshtein edit-inference algorithm), optional side-by-side panes and line numbers. The package is called &lt;code&gt;git-delta&lt;/code&gt; in most package managers, but the executable is just &lt;code&gt;delta&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Why you should care:&lt;/strong&gt;&lt;br/&gt;
+Set &lt;code&gt;core.pager = delta&lt;/code&gt; once and your &lt;code&gt;git diff&lt;/code&gt;, &lt;code&gt;git show&lt;/code&gt;, &lt;code&gt;git log -p&lt;/code&gt; and &lt;code&gt;git blame&lt;/code&gt; output comes out highlighted, with &lt;code&gt;n&lt;/code&gt; and &lt;code&gt;N&lt;/code&gt; jumping between files once &lt;code&gt;navigate = true&lt;/code&gt; is set. Its improved merge-conflict display helps mid-rebase, and code copied out of a diff arrives without the &lt;code&gt;+&lt;/code&gt; and &lt;code&gt;-&lt;/code&gt; markers. It also ships an emulation mode for diff-so-fancy, and Jujutsu&amp;#x27;s docs show the config for using delta as its pager.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;My Rating:&lt;/strong&gt; Syntax Potion 4.6/5 ⭐&lt;br/&gt;
+&lt;strong&gt;Website:&lt;/strong&gt; &lt;a href="https://github.com/dandavison/delta"&gt;github.com/dandavison/delta&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;💻 Get Started:&lt;/strong&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;brew install git-delta &amp;amp;&amp;amp; git show | delta --side-by-side
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2&gt;☕ The Curious Non-Dev: No Code Required&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;What actually is a commit, and how can you &amp;quot;rewrite history&amp;quot; without losing anything?&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;A commit is a snapshot, not a list of edits. Each one stores the full state of a project at one moment, plus a note, an author, a timestamp and a pointer to the commit that came before it. Picture a stack of dated photographs of a whiteboard, each stapled to the one beneath it and stamped with a fingerprint computed from its own contents and the fingerprint below. A branch is just a sticky flag on one photo, and the flag is what moves when you add a new one. That chaining makes history tamper-evident: change one photo and its fingerprint changes, and so does every fingerprint stacked above it.&lt;/p&gt;
+&lt;p&gt;So &amp;quot;rewriting history&amp;quot; never edits a photo in place. It reshoots from the photo you want to change upward, staples the new stack onto the old base, and moves the flag to the top of the new stack. The old stack isn&amp;#x27;t shredded: git keeps a local log of where every flag used to sit, called the reflog, and by default it holds on to old positions for at least 30 days. That&amp;#x27;s how a botched rewrite gets undone. The golden rule is to do this before you share. Once colleagues hold copies of the old photos, two competing versions of the story exist, and somebody has to reconcile them.&lt;/p&gt;
+&lt;h2&gt;📡 The Radar: 12 More Spells for Your Git Grimoire This Weekend&lt;/h2&gt;
+&lt;h3&gt;🪚 History Surgery&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;a href="https://github.com/tummychow/git-absorb"&gt;tummychow/git-absorb&lt;/a&gt; (~5.8k Stars) - A Rust port of Facebook&amp;#x27;s hg absorb: stage your review fixes, run it, and it writes a fixup! commit for each hunk, aimed at the commit that should own it.&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/newren/git-filter-repo"&gt;newren/git-filter-repo&lt;/a&gt; (~13.5k Stars) - A single Python script for rewriting a whole repository&amp;#x27;s history, recommended by the git project over filter-branch and the tool GitHub&amp;#x27;s docs use for purging files from every commit.&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/arxanas/git-branchless"&gt;arxanas/git-branchless&lt;/a&gt; (~4.1k Stars) - Adds git undo (commits, amends, merges, even rebases), a smartlog view of your commit graph and in-memory rebases to plain git; the README still labels it alpha.&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/git-town/git-town"&gt;git-town/git-town&lt;/a&gt; (~3.4k Stars) - A Go CLI that turns branch chores into commands (hack, sync, propose, ship), with stacked-change helpers like append and prepend and an undo for its own commands.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3&gt;🖥️ Git in Your Terminal&lt;/h3&gt;
+&lt;ol start="5"&gt;
+&lt;li&gt;&lt;a href="https://github.com/jonas/tig"&gt;jonas/tig&lt;/a&gt; (~13.4k Stars) - A text-mode git repository browser written in C, first committed in April 2006, that also stages changes chunk by chunk and doubles as a pager for other git commands.&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/gitui-org/gitui"&gt;gitui-org/gitui&lt;/a&gt; (~22.6k Stars) - A keyboard-only terminal UI in Rust for staging single hunks or lines, stashing and searching the log; interactive rebase is still on its roadmap to 1.0.&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/so-fancy/diff-so-fancy"&gt;so-fancy/diff-so-fancy&lt;/a&gt; (~18.1k Stars) - A Perl script that makes diffs human-readable by stripping the leading +/- markers and simplifying hunk headers; delta even ships an emulation mode for it.&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/dlvhdr/gh-dash"&gt;dlvhdr/gh-dash&lt;/a&gt; (~12.7k Stars) - A gh extension that turns pull requests and issues into a keyboard-driven dashboard of sections you define per repo, built on Bubble Tea and using delta to render PR diffs.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3&gt;🤝 Hooks, Changelogs &amp;amp; Releases&lt;/h3&gt;
+&lt;ol start="9"&gt;
+&lt;li&gt;&lt;a href="https://github.com/pre-commit/pre-commit"&gt;pre-commit/pre-commit&lt;/a&gt; (~15.7k Stars) - A package manager for git hooks: list them in .pre-commit-config.yaml and it fetches each hook&amp;#x27;s toolchain without root, even downloading and building node to run eslint.&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/evilmartians/lefthook"&gt;evilmartians/lefthook&lt;/a&gt; (~9.0k Stars) - A dependency-free Go binary from Evil Martians that runs your git hooks from a lefthook.yml, in parallel, with glob filters and a list of just the staged files for each job.&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/orhun/git-cliff"&gt;orhun/git-cliff&lt;/a&gt; (~12.3k Stars) - Writes your changelog from git history using conventional commits or regex parsers, with the output shaped by a template and a cliff.toml you control.&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/cli/cli"&gt;cli/cli&lt;/a&gt; (~46.8k Stars) - GitHub&amp;#x27;s official gh: pull requests, issues and other GitHub concepts in the terminal, right next to your git workflow, and pre-installed on GitHub-hosted runners.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2&gt;🏗️ Closing Thoughts&lt;/h2&gt;
+&lt;p&gt;Some of the best ideas in this issue weren&amp;#x27;t invented for git. git-absorb ports a Facebook Mercurial command, Jujutsu cites Mercurial&amp;#x27;s revsets and Darcs&amp;#x27; first-class conflicts as inspirations, and git-branchless goes after an undo that covers a whole repository instead of one ref at a time. Git stays the storage layer underneath while the ergonomics arrive from other version control systems, which is a decent argument for reading about ones you&amp;#x27;ll never use.&lt;/p&gt;
+&lt;p&gt;One warning before you go rewrite everything. A tidy history is a kindness to your reviewers, but rewriting isn&amp;#x27;t erasing, because clones and forks keep the old commits, so GitHub&amp;#x27;s docs say to revoke or rotate a leaked secret first. And once you&amp;#x27;ve pushed, treat the history as published. If you must rewrite a shared branch, use &lt;code&gt;--force-with-lease&lt;/code&gt;, which fails when the remote branch isn&amp;#x27;t where you last saw it, and tell your team before you press enter.&lt;/p&gt;
+&lt;p&gt;Which git command do you still refuse to touch without a backup branch? Tell me on &lt;a href="https://twitter.com/MenilVukovic"&gt;X (Twitter)&lt;/a&gt; or &lt;a href="https://linkedin.com/in/menilv"&gt;LinkedIn&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Until next Thursday, keep your servers close and support your local maintainers.&lt;/p&gt;</content:encoded>
+    </item>
+    <item>
+      <title>VOL_011: NIGHT_OF_THE_LIVING_FORKS</title>
+      <link>https://theterminalthursday.com/archive/011</link>
+      <guid>https://theterminalthursday.com/archive/011</guid>
+      <pubDate>Thu, 29 Oct 2026 12:00:00 GMT</pubDate>
+      <description>Open-source projects the community raised from the dead after license changes and corporate takeovers—featuring Valkey, OpenTofu, and OpenBao.</description>
+      <content:encoded>&lt;h1&gt;🗞️ Issue #011: Night of the Living Forks: Open Source That Refused to Stay Dead&lt;/h1&gt;
+&lt;p&gt;&lt;img src="https://theterminalthursday.com/img/issues/011/header_halloween.jpg" alt="The Terminal Thursday" loading="lazy"/&gt;&lt;/p&gt;
+&lt;p&gt;It&amp;#x27;s Halloween week, so let&amp;#x27;s talk about the undead. Every few years, a company that grew up on community contributions decides its open-source license is bad for the quarterly numbers. The playbook barely changes: a blog post about the &amp;quot;evolution&amp;quot; of the licensing model, a new &lt;code&gt;LICENSE&lt;/code&gt; file with words like &amp;quot;source available&amp;quot; or &amp;quot;Business Source&amp;quot;, and a polite note that the code is still open—just not for your cloud provider, your competitor, or anyone who runs it as a service. Elastic did it in 2021. Lightbend did it to Akka in 2022. HashiCorp did it to Terraform and Vault in 2023. Redis did it in 2024.&lt;/p&gt;
+&lt;p&gt;Here&amp;#x27;s the part the boardroom keeps forgetting: you can&amp;#x27;t un-release code. Every version already published under an open license stays open forever, and a community with a &lt;code&gt;git clone&lt;/code&gt; and a grudge can pick it up the next morning. This week is about the projects that clawed their way back out of the grave—forks that didn&amp;#x27;t just survive the funeral, but kept shipping releases long after the eulogies were written.&lt;/p&gt;
+&lt;p&gt;Grab your coffee. Open your terminal. Let&amp;#x27;s start hacking.&lt;/p&gt;
+&lt;h2&gt;🔬 The Sandbox: 3 Projects I Tested This Week&lt;/h2&gt;
+&lt;h3&gt;1. Valkey 🧛 &lt;em&gt;(In-Memory Data Store)&lt;/em&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;img src="https://theterminalthursday.com/img/issues/011/valkey_og.png" alt="Valkey" loading="lazy"/&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;What is it?&lt;/strong&gt; Valkey is a high-performance key-value data store forked from Redis 7.2.4 in March 2024, right before Redis switched to source-available licenses. It lives under the Linux Foundation with a BSD 3-Clause license, it was backed by AWS, Google and Oracle from day one, and it just shipped version 9.1.3.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Why you should care:&lt;/strong&gt;&lt;br/&gt;
+Valkey speaks the same RESP protocol and the same commands, and it still answers &lt;code&gt;INFO&lt;/code&gt; with &lt;code&gt;redis_version:7.2.4&lt;/code&gt;, so redis-py, ioredis, Jedis and every other client library keep working without a single code change. If Redis 7.2 or earlier is your cache, session store or job queue, swapping the binary is the cheapest license insurance you&amp;#x27;ll ever buy. Redis 7.4 and later write data files Valkey can&amp;#x27;t read, so those need a migration rather than a swap.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;My Rating:&lt;/strong&gt; Undead Throughput 4.8/5 ⭐&lt;br/&gt;
+&lt;strong&gt;Website:&lt;/strong&gt; &lt;a href="https://github.com/valkey-io/valkey"&gt;github.com/valkey-io/valkey&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;💻 Get Started:&lt;/strong&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;brew install valkey &amp;amp;&amp;amp; valkey-server --daemonize yes &amp;amp;&amp;amp; valkey-cli ping
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3&gt;2. OpenTofu 🧟 &lt;em&gt;(Infrastructure as Code)&lt;/em&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;img src="https://theterminalthursday.com/img/issues/011/opentofu_og.png" alt="OpenTofu" loading="lazy"/&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;What is it?&lt;/strong&gt; OpenTofu is the community fork of Terraform, started in August 2023 after HashiCorp moved Terraform 1.6 and later to the Business Source License. It&amp;#x27;s a Linux Foundation project under MPL 2.0 that runs your existing &lt;code&gt;.tf&lt;/code&gt; files, modules and providers, and it has since shipped features Terraform users had been asking for for years, like client-side state encryption.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Why you should care:&lt;/strong&gt;&lt;br/&gt;
+Your infrastructure code is the last thing you want held hostage by a license change. For most projects, migrating means installing &lt;code&gt;tofu&lt;/code&gt; and running &lt;code&gt;tofu init&lt;/code&gt; inside your existing Terraform directory—no rewrite, no new language, and the plan you get should look exactly like the one you had yesterday.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;My Rating:&lt;/strong&gt; Drop-In Necromancy 4.9/5 ⭐&lt;br/&gt;
+&lt;strong&gt;Website:&lt;/strong&gt; &lt;a href="https://github.com/opentofu/opentofu"&gt;github.com/opentofu/opentofu&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;💻 Get Started:&lt;/strong&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;brew install opentofu &amp;amp;&amp;amp; tofu init &amp;amp;&amp;amp; tofu plan
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3&gt;3. OpenBao 👻 &lt;em&gt;(Secrets Management)&lt;/em&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;img src="https://theterminalthursday.com/img/issues/011/openbao_og.png" alt="OpenBao" loading="lazy"/&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;What is it?&lt;/strong&gt; OpenBao is the community fork of HashiCorp Vault, built from the last MPL-licensed code after Vault 1.15 and later moved to the Business Source License. It stores and hands out secrets, certificates and encryption keys behind policies and audit logs, it&amp;#x27;s developed under the Linux Foundation umbrella, and its CLI is simply called &lt;code&gt;bao&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Why you should care:&lt;/strong&gt;&lt;br/&gt;
+Secrets management is the worst possible place for a license surprise: it sits in every deploy pipeline, every CI job and every service&amp;#x27;s startup path. OpenBao keeps the Vault model you already know—the KV engine, policies, the same &lt;code&gt;/v1/&lt;/code&gt; API paths—under MPL 2.0, and &lt;code&gt;bao server -dev&lt;/code&gt; gives you an unsealed, in-memory server for local testing in one command.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;My Rating:&lt;/strong&gt; Ghost in the Keychain 4.6/5 ⭐&lt;br/&gt;
+&lt;strong&gt;Website:&lt;/strong&gt; &lt;a href="https://github.com/openbao/openbao"&gt;github.com/openbao/openbao&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;💻 Get Started:&lt;/strong&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;brew install openbao &amp;amp;&amp;amp; bao server -dev
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2&gt;☕ The Curious Non-Dev: No Code Required&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;If a company owns the code, how can anyone fork it and keep it free?&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;An open-source license is a promise attached to a specific version of the code. When a company changes its license, it can only change the terms for future versions—everything it already published under the old open license stays open forever. A fork is simply a group of people taking that last open version, giving it a new name (the trademark stays with the company), and continuing the work from there. Think of a recipe printed in a cookbook: the publisher can stop printing new editions, but it can&amp;#x27;t take back the copies already sitting on everyone&amp;#x27;s shelves.&lt;/p&gt;
+&lt;p&gt;The surprising part is how often the forks win. The companies that depend on a project—cloud providers, Linux distributions, banks—usually prefer one run by a neutral foundation, so they move their engineers and their money to the fork. And that pressure works: Elastic added the open-source AGPL license back to Elasticsearch in 2024, and Redis did the same in 2025.&lt;/p&gt;
+&lt;h2&gt;📡 The Radar: 12 More Forks to Raise This Weekend&lt;/h2&gt;
+&lt;h3&gt;🦇 Escaped from Oracle&amp;#x27;s Crypt&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;a href="https://github.com/MariaDB/server"&gt;MariaDB/server&lt;/a&gt; (~8.5k Stars) - Monty Widenius&amp;#x27;s fork of MySQL, started in 2009 as Oracle moved to buy Sun, and now the MySQL-compatible server most Linux distributions ship by default.&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/LibreOffice/core"&gt;LibreOffice/core&lt;/a&gt; (~4.6k Stars) - The Document Foundation&amp;#x27;s 2010 fork of OpenOffice.org, created when most of the community walked away from Oracle; the office suite nearly every Linux desktop ships today.&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/jenkinsci/jenkins"&gt;jenkinsci/jenkins&lt;/a&gt; (~26.7k Stars) - Hudson&amp;#x27;s community renamed the project Jenkins in 2011 after a trademark dispute with Oracle, and the fork became one of the most widely deployed CI servers on the planet.&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/illumos/illumos-gate"&gt;illumos/illumos-gate&lt;/a&gt; (~1.9k Stars) - The OpenSolaris kernel and core userland, kept alive after Oracle shut OpenSolaris down in 2010; it still powers OmniOS, SmartOS and OpenIndiana.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3&gt;🧛 The Relicensing Undead&lt;/h3&gt;
+&lt;ol start="5"&gt;
+&lt;li&gt;&lt;a href="https://github.com/opensearch-project/OpenSearch"&gt;opensearch-project/OpenSearch&lt;/a&gt; (~13.9k Stars) - AWS&amp;#x27;s 2021 fork of Elasticsearch 7.10 after Elastic dropped Apache 2.0, now governed by the OpenSearch Software Foundation under the Linux Foundation.&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/apache/pekko"&gt;apache/pekko&lt;/a&gt; (~1.7k Stars) - The Apache Software Foundation&amp;#x27;s fork of Akka 2.6, taken just before Akka adopted the Business Source License; actors, streams and clustering for Java and Scala.&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/lxc/incus"&gt;lxc/incus&lt;/a&gt; (~6.5k Stars) - The Linux Containers community&amp;#x27;s fork of LXD after Canonical took the project in-house in 2023, maintained by the same team that first created LXD; system containers and VMs from one CLI.&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/OpenVoxProject/openvox"&gt;OpenVoxProject/openvox&lt;/a&gt; (~0.2k Stars) - The Vox Pupuli community&amp;#x27;s build of Puppet, started in late 2024 after Perforce stopped publishing public open-source packages; effectively the same as Puppet, so existing manifests and modules keep working.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3&gt;🧟 Community Coups&lt;/h3&gt;
+&lt;ol start="9"&gt;
+&lt;li&gt;&lt;a href="https://github.com/neovim/neovim"&gt;neovim/neovim&lt;/a&gt; (~103k Stars) - Started in 2014 to refactor Vim for async jobs, embedding and Lua plugins; the fork has since passed 100,000 GitHub stars.&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/jellyfin/jellyfin"&gt;jellyfin/jellyfin&lt;/a&gt; (~58.7k Stars) - Forked from Emby in 2018 after Emby went closed source; a free media server with no premium tier and no account required.&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/nextcloud/server"&gt;nextcloud/server&lt;/a&gt; (~37.3k Stars) - Forked from ownCloud in 2016 by its founder and core developers; self-hosted files, calendar, contacts and office under the AGPL.&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://codeberg.org/forgejo/forgejo"&gt;forgejo/forgejo&lt;/a&gt; (~5.7k Stars) - A community fork of Gitea started in 2022 after Gitea&amp;#x27;s domain and trademark moved to a for-profit company; a lightweight self-hosted Git forge with built-in Actions CI, hosted on Codeberg.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2&gt;🏗️ Closing Thoughts&lt;/h2&gt;
+&lt;p&gt;The license changes of the past five years were sold as protection against cloud giants freeloading on open source. In practice, the cloud giants were among the first to fund the forks—AWS built OpenSearch, and AWS, Google and Oracle lined up behind Valkey within days. The people left stranded were the volunteer contributors whose patches suddenly shipped under terms they never agreed to.&lt;/p&gt;
+&lt;p&gt;That&amp;#x27;s why the most important line in a project&amp;#x27;s README isn&amp;#x27;t the star count; it&amp;#x27;s who owns the copyright and whether contributors sign a CLA that lets one company relicense their work. A project governed by a neutral foundation can&amp;#x27;t be relicensed over a weekend. And the dead do come back, eventually: HashiCorp&amp;#x27;s own license turns every Terraform release back into MPL 2.0 four years after it ships, which means Terraform 1.6.0 rises from the grave in October 2027. Until then, the forks are doing the work—so send them a bug report, a sponsorship, or at least a star.&lt;/p&gt;
+&lt;p&gt;Have you migrated something from Redis, Terraform or Vault to a fork—or decided to stay put? Tell me how it went on &lt;a href="https://twitter.com/MenilVukovic"&gt;X (Twitter)&lt;/a&gt; or &lt;a href="https://linkedin.com/in/menilv"&gt;LinkedIn&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Until next Thursday, keep your servers close and support your local maintainers.&lt;/p&gt;</content:encoded>
+    </item>
+    <item>
       <title>VOL_010: THE_CVE_SEASON</title>
       <link>https://theterminalthursday.com/archive/010</link>
       <guid>https://theterminalthursday.com/archive/010</guid>
