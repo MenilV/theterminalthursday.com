@@ -11,10 +11,10 @@ const Archive = ({ theme }) => {
   const readLabel = theme === 'windows' ? 'READ.EXE' : './read.sh';
 
   const publishedPosts = ARCHIVE_POSTS.filter(p => !p.publishDate || new Date(p.publishDate) <= new Date());
-  const publishedSearch = SEARCH_INDEX.filter(p => !p.publishDate || new Date(p.publishDate) <= new Date());
 
-  const filteredPosts = searchQuery 
-    ? publishedSearch.filter(post => 
+  // search_index.json only lists published issues (scripts/generate_search_index.js)
+  const filteredPosts = searchQuery
+    ? SEARCH_INDEX.filter(post =>
         post.title.toLowerCase().includes(searchQuery.toLowerCase()) || 
         post.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
         post.content.includes(searchQuery.toLowerCase())
@@ -154,7 +154,7 @@ const Archive = ({ theme }) => {
               </div>
             )}
 
-            {!searchQuery && !showAll && ARCHIVE_POSTS.length > 3 && (
+            {!searchQuery && !showAll && publishedPosts.length > 3 && (
               <div style={{ display: 'flex', justifyContent: 'center', marginTop: '32px' }}>
                 <button onClick={() => setShowAll(true)} className="btn">
                   {theme === 'windows' ? 'LOAD_MORE.BAT' : './load_more.sh'}

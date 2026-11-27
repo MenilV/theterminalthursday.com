@@ -6,6 +6,8 @@ import InlineSubscribe from './InlineSubscribe';
 import NotFound from './NotFound';
 
 import POSTS from '../data/posts.json';
+import IMAGE_OVERRIDES from '../data/image_overrides.json';
+import IMAGE_SIZES from '../data/image_sizes.json';
 import { updatePageMeta } from '../utils/seo';
 
 const IssueReader = ({ theme, issueId, readingMode, setReadingMode }) => {
@@ -75,10 +77,24 @@ const IssueReader = ({ theme, issueId, readingMode, setReadingMode }) => {
     window.dispatchEvent(new PopStateEvent('popstate'));
   };
 
+  // The banner at the top loads right away; images further down wait until they're near
+  // the screen. Sizes come from scripts/generate_image_sizes.js so nothing shifts as they load.
+  const firstImage = content.match(/!\[[^\]]*\]\((\S+?)\)/)?.[1];
+
   const markdownComponents = {
-    img: ({node, ...props}) => (
-      <img style={{ maxWidth: '100%', height: 'auto', border: '2px solid var(--border-color)', margin: '20px 0' }} {...props} />
-    ),
+    img: ({node, src, ...props}) => {
+      const localSrc = IMAGE_OVERRIDES[src] ?? src;
+      return (
+        <img
+          style={{ maxWidth: '100%', height: 'auto', border: '2px solid var(--border-color)', margin: '20px 0' }}
+          {...props}
+          {...IMAGE_SIZES[localSrc]}
+          src={localSrc}
+          loading={src === firstImage ? 'eager' : 'lazy'}
+          decoding="async"
+        />
+      );
+    },
     h1: ({node, ...props}) => <h1 style={{ fontSize: '2rem', marginBottom: '20px', borderBottom: '2px dashed var(--border-color)', paddingBottom: '10px' }} {...props} />,
     h2: ({node, ...props}) => <h2 style={{ fontSize: '1.5rem', marginTop: '40px', marginBottom: '15px' }} {...props} />,
     h3: ({node, ...props}) => <h3 style={{ fontSize: '1.2rem', marginTop: '30px', marginBottom: '10px' }} {...props} />,
