@@ -2,10 +2,15 @@
 
 > A weekly serial homage to the open-source projects, tools, and maintainers forming the bedrock of the modern web.
 
-A newsletter by Menil Vukovic, published every Thursday. Each issue below links to its full text as Markdown; the web page for an issue is the same URL without `.md` (for example `https://theterminalthursday.com/archive/010`).
+A newsletter by Menil Vukovic, published every Thursday. Each issue below links to its full text as Markdown; the web page for an issue is the same URL without `.md` (for example `https://theterminalthursday.com/archive/015`).
 
 ## Issues
 
+- [Issue #015: THE LOAD BEARING REPOS](https://theterminalthursday.com/archive/015.md): A Thanksgiving thank-you to the maintainers whose code holds up the internet, and how to help them—featuring curl, jq, and SQLite. (2026-11-26)
+- [Issue #014: JUST USE POSTGRES](https://theterminalthursday.com/archive/014.md): Queues, search, vectors and REST APIs inside the database you already run, with the limits spelled out—featuring pgvector, PostgREST, and PGlite. (2026-11-19)
+- [Issue #013: THE OBSERVABILITY ORACLES](https://theterminalthursday.com/archive/013.md): Keeping logs, metrics, and traces in-house with OpenTelemetry and open-source backends—featuring SigNoz, OpenObserve, and VictoriaMetrics. (2026-11-12)
+- [Issue #012: GIT SORCERY](https://theterminalthursday.com/archive/012.md): Rebasing, splitting, and untangling git history without losing your mind—featuring Jujutsu, Difftastic, and Delta. (2026-11-05)
+- [Issue #011: NIGHT OF THE LIVING FORKS](https://theterminalthursday.com/archive/011.md): Open-source projects the community raised from the dead after license changes and corporate takeovers—featuring Valkey, OpenTofu, and OpenBao. (2026-10-29)
 - [Issue #010: THE CVE SEASON](https://theterminalthursday.com/archive/010.md): Auditing, patching, and zero-day hunting straight from your terminal—featuring Trivy, Nuclei, and Google's OSV-Scanner. (2026-10-22)
 - [Issue #009: THE DECOMPILATION ENGINES](https://theterminalthursday.com/archive/009.md): How AI-assisted decompilation engines are turning stripped assembly into readable code—featuring Cutter, OSS-Fuzz, and Ghidra. (2026-10-15)
 - [Issue #008: THE OPEN SOURCE ENTERPRISE](https://theterminalthursday.com/archive/008.md): The open-source rebellion against enterprise software—from personal wealth OS platforms to fully decoupled business intelligence. (2026-10-08)
