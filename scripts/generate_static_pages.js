@@ -50,6 +50,21 @@ const markdownComponents = {
   img: ({ node, ...props }) => createElement('img', { ...props, loading: 'lazy' })
 };
 
+// Title, description, canonical, Open Graph and Twitter tags for one page. Takes
+// HTML-escaped values. Replacements use functions so a `$` in a title or description
+// isn't treated as a String.replace pattern like `$&`.
+const withPageMeta = (html, { title, description, url }) => [
+  [/<title>.*?<\/title>/, `<title>${title}</title>`],
+  [/<link rel="canonical" href=".*?" \/>/, `<link rel="canonical" href="${url}" />`],
+  [/<meta name="description" content=".*?" \/>/, `<meta name="description" content="${description}" />`],
+  [/<meta property="og:url" content=".*?" \/>/, `<meta property="og:url" content="${url}" />`],
+  [/<meta property="og:title" content=".*?" \/>/, `<meta property="og:title" content="${title}" />`],
+  [/<meta property="og:description" content=".*?" \/>/, `<meta property="og:description" content="${description}" />`],
+  [/<meta name="twitter:url" content=".*?" \/>/, `<meta name="twitter:url" content="${url}" />`],
+  [/<meta name="twitter:title" content=".*?" \/>/, `<meta name="twitter:title" content="${title}" />`],
+  [/<meta name="twitter:description" content=".*?" \/>/, `<meta name="twitter:description" content="${description}" />`]
+].reduce((page, [pattern, tag]) => page.replace(pattern, () => tag), html);
+
 for (const post of posts) {
   const cleanTitle = post.title.replace(/_/g, ' ');
   const pageTitle = escapeHtml(`Issue #${post.id}: ${cleanTitle} | The Terminal Thursday`);
@@ -80,56 +95,18 @@ for (const post of posts) {
 
   let pageHtml = template;
 
-  // Replacements below use functions so a `$` in a title or description
-  // isn't treated as a String.replace pattern like `$&`
+  pageHtml = withPageMeta(pageHtml, { title: pageTitle, description, url });
 
-  // Title
-  pageHtml = pageHtml.replace(/<title>.*?<\/title>/, () => `<title>${pageTitle}</title>`);
-
-  // Canonical, plus a script that starts downloading the issue's markdown alongside the
-  // JS bundle instead of after it; IssueReader picks up the response. A preload link
+  // Next to the canonical, a script that starts downloading the issue's markdown alongside
+  // the JS bundle instead of after it; IssueReader picks up the response. A preload link
   // would be simpler, but Safari doesn't reuse as="fetch" preloads and downloads twice.
   const markdownRequest = `{ id: ${JSON.stringify(post.id)}, response: fetch(${JSON.stringify(`/archive/${post.id}.md`)}) }`;
   pageHtml = pageHtml.replace(
     /<link rel="canonical" href=".*?" \/>/,
-    () => [
-      `<link rel="canonical" href="${url}" />`,
+    match => [
+      match,
       `<script>window.__issueMarkdown = ${markdownRequest}; window.__issueMarkdown.response.catch(() => {});</script>`
     ].join('\n    ')
-  );
-
-  // Description
-  pageHtml = pageHtml.replace(
-    /<meta name="description" content=".*?" \/>/,
-    () => `<meta name="description" content="${description}" />`
-  );
-
-  // Open Graph
-  pageHtml = pageHtml.replace(
-    /<meta property="og:url" content=".*?" \/>/,
-    () => `<meta property="og:url" content="${url}" />`
-  );
-  pageHtml = pageHtml.replace(
-    /<meta property="og:title" content=".*?" \/>/,
-    () => `<meta property="og:title" content="${pageTitle}" />`
-  );
-  pageHtml = pageHtml.replace(
-    /<meta property="og:description" content=".*?" \/>/,
-    () => `<meta property="og:description" content="${description}" />`
-  );
-
-  // Twitter Cards
-  pageHtml = pageHtml.replace(
-    /<meta name="twitter:url" content=".*?" \/>/,
-    () => `<meta name="twitter:url" content="${url}" />`
-  );
-  pageHtml = pageHtml.replace(
-    /<meta name="twitter:title" content=".*?" \/>/,
-    () => `<meta name="twitter:title" content="${pageTitle}" />`
-  );
-  pageHtml = pageHtml.replace(
-    /<meta name="twitter:description" content=".*?" \/>/,
-    () => `<meta name="twitter:description" content="${description}" />`
   );
 
   // Issue pages are articles, not the website itself
@@ -178,6 +155,24 @@ for (const post of posts) {
   fs.writeFileSync(path.join(issueDir, 'index.html'), pageHtml);
   fs.writeFileSync(path.join(distDir, 'archive', `${post.id}.html`), pageHtml);
 }
+
+// Privacy notice: the same markdown and meta the app's Privacy page uses, so /privacy
+// returns 200 with readable text instead of falling through to 404.html
+const privacyMeta = JSON.parse(fs.readFileSync(path.join(__dirname, '../src/content/privacy.json'), 'utf-8'));
+const privacyArticle = renderToStaticMarkup(
+  createElement(Markdown, null, fs.readFileSync(path.join(__dirname, '../src/content/privacy.md'), 'utf-8'))
+);
+const privacyHtml = withStaticContent(
+  withPageMeta(template, {
+    title: escapeHtml(privacyMeta.title),
+    description: escapeHtml(privacyMeta.description),
+    url: privacyMeta.url
+  }),
+  `<p><a href="/">The Terminal Thursday</a></p><article>${privacyArticle}</article>`
+);
+fs.mkdirSync(path.join(distDir, 'privacy'), { recursive: true });
+fs.writeFileSync(path.join(distDir, 'privacy', 'index.html'), privacyHtml);
+fs.writeFileSync(path.join(distDir, 'privacy.html'), privacyHtml);
 
 // Cloudflare Pages serves a top-level 404.html, with a real 404 status, for any URL
 // that matches no file. It's the same SPA shell, so the app still renders its 404 screen.

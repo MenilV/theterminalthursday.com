@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { subscribe } from '../utils/subscribe';
+import PrivacyNote from './PrivacyNote';
 
 const InlineSubscribe = ({ theme }) => {
   const [email, setEmail] = useState('');
@@ -77,6 +78,7 @@ const InlineSubscribe = ({ theme }) => {
               ► ERROR: {errorMessage}
             </div>
           )}
+          <PrivacyNote theme={theme} style={{ flexBasis: '100%' }} />
         </form>
       )}
     </div>

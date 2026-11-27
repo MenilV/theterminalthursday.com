@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { subscribe } from '../utils/subscribe';
+import PrivacyNote from './PrivacyNote';
 
 const BottomSignup = ({ theme }) => {
   const [email, setEmail] = useState('');
@@ -80,6 +81,7 @@ const BottomSignup = ({ theme }) => {
           >
             {status === 'loading' ? 'EXECUTING...' : (status === 'success' ? 'SUBSCRIBED' : (theme === 'windows' ? 'INITIATE.EXE' : './initiate.sh'))}
           </button>
+          <PrivacyNote theme={theme} style={{ textAlign: 'center' }} />
         </form>
 
         {status === 'success' && (

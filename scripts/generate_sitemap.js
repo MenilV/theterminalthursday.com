@@ -28,6 +28,13 @@ const rootUrl = `
     <priority>1.0</priority>
   </url>`;
 
+const privacyUrl = `
+  <url>
+    <loc>https://theterminalthursday.com/privacy</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>`;
+
 const issueUrls = posts.map(post => `
   <url>
     <loc>https://theterminalthursday.com/archive/${post.id}</loc>
@@ -40,6 +47,7 @@ const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 ${rootUrl}
 ${issueUrls}
+${privacyUrl}
 </urlset>`;
 
 fs.writeFileSync(path.join(__dirname, '../public/sitemap.xml'), sitemap.trim());
