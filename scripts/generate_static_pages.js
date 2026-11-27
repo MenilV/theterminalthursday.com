@@ -45,6 +45,11 @@ const withStaticContent = (html, content) => html.replace(
   () => `<div id="root"><main id="static-content">${content}</main></div>`
 );
 
+// Starts downloading the issue's markdown on issue pages (see below). It reads the issue
+// number from the URL instead of having it written in, so every issue page carries the
+// same script and the CSP in public/_headers allows it with one hash.
+const ISSUE_MARKDOWN_SCRIPT = String.raw`<script>(function () { var m = location.pathname.match(/^\/archive\/(\d+)/); if (!m) return; window.__issueMarkdown = { id: m[1], response: fetch('/archive/' + m[1] + '.md') }; window.__issueMarkdown.response.catch(function () {}); })();</script>`;
+
 const markdownComponents = {
   // Lazy, so browsers skip images in the hidden copy and React adds no preload hints
   img: ({ node, ...props }) => createElement('img', { ...props, loading: 'lazy' })
@@ -100,13 +105,9 @@ for (const post of posts) {
   // Next to the canonical, a script that starts downloading the issue's markdown alongside
   // the JS bundle instead of after it; IssueReader picks up the response. A preload link
   // would be simpler, but Safari doesn't reuse as="fetch" preloads and downloads twice.
-  const markdownRequest = `{ id: ${JSON.stringify(post.id)}, response: fetch(${JSON.stringify(`/archive/${post.id}.md`)}) }`;
   pageHtml = pageHtml.replace(
     /<link rel="canonical" href=".*?" \/>/,
-    match => [
-      match,
-      `<script>window.__issueMarkdown = ${markdownRequest}; window.__issueMarkdown.response.catch(() => {});</script>`
-    ].join('\n    ')
+    match => [match, ISSUE_MARKDOWN_SCRIPT].join('\n    ')
   );
 
   // Issue pages are articles, not the website itself

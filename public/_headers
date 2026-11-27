@@ -1,6 +1,7 @@
 /*
   Strict-Transport-Security: max-age=31536000
   Content-Security-Policy: frame-ancestors 'none'; object-src 'none'; base-uri 'self'
+  Content-Security-Policy-Report-Only: default-src 'self'; script-src 'self' 'sha256-Du+OJKJSbdUgz5nrHeWWINvez6XKDDU/tyj/5c2uvwo=' 'sha256-HdhaeiHlx1X/66WpEOvsMDBKAECEQ8tMeTyPikniruU=' 'sha256-uocaoTeyq0LbaVAqpUaWfiUGvFrUzhxinlzaLM0QHXg=' https://www.clarity.ms https://*.clarity.ms https://c.bing.com; style-src 'self' 'sha256-YgJMjRPdsnclG9PshyKaP8vi3uX0mUbaHcVcIoF44Ao='; img-src 'self' https://images.vialoops.com https://github.com https://avatars.githubusercontent.com https://*.clarity.ms https://c.bing.com; font-src 'self'; connect-src 'self' https://app.loops.so https://*.clarity.ms https://c.bing.com; form-action 'self'; frame-ancestors 'none'; object-src 'none'; base-uri 'self'
   X-Frame-Options: DENY
   Permissions-Policy: camera=(), microphone=(), geolocation=(), payment=(), usb=()
 
