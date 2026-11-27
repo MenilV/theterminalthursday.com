@@ -10,6 +10,7 @@ import Archive from './components/Archive';
 import HallOfFameCarousel from './components/HallOfFameCarousel';
 import IssueReader from './components/IssueReader';
 import NotFound from './components/NotFound';
+import Privacy from './components/Privacy';
 import { updatePageMeta } from './utils/seo';
 import { readSetting, writeSetting } from './utils/storage';
 import { setTag } from './utils/analytics';
@@ -17,6 +18,8 @@ import './index.css';
 
 // Matches the 768px breakpoint in index.css where the CRT reader is hidden
 const NARROW_SCREEN = '(max-width: 768px)';
+
+const isPrivacyPath = (path) => path.replace(/\/$/, '') === '/privacy';
 
 function App() {
   const [theme, setTheme] = useState(() => {
@@ -44,6 +47,7 @@ function App() {
     }
     return null;
   });
+  const [isPrivacy, setIsPrivacy] = useState(() => isPrivacyPath(window.location.pathname));
 
   useEffect(() => {
     // Switch CSS theme variables
@@ -101,8 +105,8 @@ function App() {
       
       const href = target.getAttribute('href');
       
-      // Handle archive routing
-      if (href && href.startsWith('/archive/')) {
+      // Handle archive and privacy page routing
+      if (href && (href.startsWith('/archive/') || href === '/privacy')) {
         e.preventDefault();
         window.history.pushState(null, '', href);
         window.dispatchEvent(new PopStateEvent('popstate'));
@@ -140,6 +144,7 @@ function App() {
       } else {
         setCurrentIssue(null);
       }
+      setIsPrivacy(isPrivacyPath(path));
     };
 
     document.addEventListener('click', handleSmoothScroll);
@@ -155,7 +160,7 @@ function App() {
   };
 
   const path = typeof window !== 'undefined' ? window.location.pathname : '/';
-  const isGlobal404 = path !== '/' && !path.startsWith('/archive/');
+  const isGlobal404 = path !== '/' && !path.startsWith('/archive/') && !isPrivacyPath(path);
 
   if (isGlobal404) {
     return <NotFound theme={theme} />;
@@ -222,6 +227,8 @@ function App() {
         <main style={{ flex: 1, minWidth: 0, display: 'flex', flexDirection: 'column', gap: '40px' }}>
           {currentIssue ? (
             <IssueReader key={currentIssue} theme={theme} issueId={currentIssue} readingMode={readingMode} setReadingMode={setReadingMode} />
+          ) : isPrivacy ? (
+            <Privacy theme={theme} />
           ) : (
             <>
               <Hero theme={theme} />
@@ -277,6 +284,9 @@ function App() {
             </a>
             <a href="#" onClick={(e) => { e.preventDefault(); setShowCredits(true); }}>
               {theme === 'windows' ? 'OPEN_SOURCE.TXT' : 'opensource.txt'}
+            </a>
+            <a href="/privacy">
+              {theme === 'windows' ? 'PRIVACY.TXT' : 'privacy.txt'}
             </a>
           </div>
 

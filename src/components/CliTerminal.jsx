@@ -38,6 +38,7 @@ const CliTerminal = ({ theme }) => {
         addOutput('Available commands:');
         addOutput('  about       - Learn about The Terminal Thursday');
         addOutput('  subscribe   - Subscribe to the newsletter (usage: subscribe [email])');
+        addOutput('  privacy     - What happens to your email and visit data');
         addOutput('  ping        - Ping the server');
         addOutput('  whoami      - Display current user');
         addOutput('  sudo        - Execute a command as superuser');
@@ -46,6 +47,12 @@ const CliTerminal = ({ theme }) => {
       
       case 'about':
         addOutput('The Terminal Thursday is a weekly homage to open-source legends and retro aesthetics.');
+        break;
+
+      case 'privacy':
+        addOutput('Newsletter: Loops stores your email only to send the newsletter. Every issue has an unsubscribe link.');
+        addOutput('Analytics: Microsoft Clarity records clicks and scrolling to find bugs. Form fields are masked.');
+        setHistory(prev => [...prev, { type: 'output', text: 'Full notice: /privacy', href: '/privacy' }]);
         break;
 
       case 'ping':
@@ -78,6 +85,7 @@ const CliTerminal = ({ theme }) => {
           
           setIsProcessing(true);
           addOutput(`Initiating subscription protocol for ${email}...`);
+          addOutput('Your email is only used to send the newsletter. Type "privacy" for details.');
           
           try {
             await subscribe(email, 'terminal');
@@ -151,7 +159,7 @@ const CliTerminal = ({ theme }) => {
                 wordBreak: 'break-all'
               }}
             >
-              {line.text}
+              {line.href ? <a href={line.href} style={{ color: 'inherit', textDecoration: 'underline' }}>{line.text}</a> : line.text}
             </div>
           ))}
         </div>

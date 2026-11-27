@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { subscribe } from '../utils/subscribe';
+import PrivacyNote from './PrivacyNote';
 
 const Newsletter = ({ theme }) => {
   const [email, setEmail] = useState('');
@@ -85,6 +86,7 @@ const Newsletter = ({ theme }) => {
               <div style={{ fontSize: '0.85rem', fontWeight: '700' }}>
                 // POWERED_BY: <a href="https://loops.so" target="_blank" rel="noreferrer" style={{ color: 'inherit', textDecoration: 'underline' }}>LOOPS.SO</a>
               </div>
+              <PrivacyNote theme={theme} />
             </form>
           </div>
         </div>
